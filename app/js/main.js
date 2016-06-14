@@ -140,7 +140,7 @@ var VKMusicApp = React.createClass({
     },
 
     onProgressHandle: function(event) {
-
+        //
         console.log('::: progress handle ->' + event.played);
 
         this.setState({ played: parseFloat(event.played) });
