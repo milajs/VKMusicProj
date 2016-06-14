@@ -67,7 +67,7 @@ function vk_getaudios (callback) {
 
             audios_array = r.response;
 
-            console.log('Список аудио 50 штук последних, ' + JSON.stringify(audios_array[0]));
+            console.log('Список аудио, ' + JSON.stringify(audios_array[0]));
             callback(r.response);
         }
     }); 
