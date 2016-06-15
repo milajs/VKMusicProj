@@ -101,8 +101,8 @@ a img {
 }
 body {
   font-family: 'Open Sans';
-  background: #4183d7;
-  color: #fff;
+  background: #fff;
+  color: #707070;
 }
 #container {
   width: 100%;
@@ -120,23 +120,26 @@ body {
 }
 .btn {
   width: 200px;
-  height: 50px;
-  background: #fff;
+  height: 70px;
+  background: rgba(255,255,255,0.5);
   color: #202020;
-  font-size: 20px;
+  font-size: 16px;
   border: 0px solid;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  margin-left: 20px;
 }
 .btn:hover {
   background: #202020;
   color: #fff;
-  -webkit-transition: 0.15s;
-  -moz-transition: 0.15s;
-  -o-transition: 0.15s;
-  -ms-transition: 0.15s;
-  transition: 0.15s;
+  -webkit-transition: 0.2s;
+  -moz-transition: 0.2s;
+  -o-transition: 0.2s;
+  -ms-transition: 0.2s;
+  transition: 0.2s;
+  font-size: 18px;
+}
+.btn:focus {
+  outline: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }
 .play-btn {
   width: 100px;
@@ -152,6 +155,10 @@ td {
   width: 30%;
   height: 30px;
 }
+.artists {
+  color: #22313f;
+  font-weight: 600;
+}
 .wrap {
   white-space: nowrap;
 }
@@ -161,72 +168,115 @@ td {
 .top {
   vertical-align: top;
   position: fixed;
-  margin-top: 20px;
+  padding-top: 20px;
+  height: 100vh;
+  background: rgba(107,185,240,0.5);
 }
 .table {
-  margin-left: 260px;
+  margin-left: 280px;
   margin-top: 10px;
 }
 .player {
-  margin-left: 260px;
+  margin-left: 280px;
 }
 .stop-btn {
+  color: #fff;
+  background: #1e8bc3;
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: 3px;
   position: fixed;
+  text-align: right;
   left: 825px;
-  top: 20px;
-  width: 100px;
-  height: 30px;
-  -webkit-border-radius: 3%;
-  border-radius: 3%;
+  top: 30px;
+  width: 30px;
+  height: 25px;
+  -webkit-border-radius: 5%;
+  border-radius: 5%;
+  border: 0px solid;
   z-index: 2;
+}
+.stop-btn:focus {
+  outline: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.stop-btn-onrow {
+  color: #fff;
+  background: #1e8bc3;
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-align: right;
+  width: 25px;
+  height: 20px;
+  -webkit-border-radius: 5%;
+  border-radius: 5%;
+  border: 0px solid;
+}
+.stop-btn-onrow:focus {
+  outline: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }
 input[type=range] {
   -webkit-appearance: none;
   width: 500px;
+  background: rgba(200,200,200,0);
 }
 input[type=range]:focus {
   outline: none;
 }
 input[type=range]::-webkit-slider-runnable-track {
   width: 100%;
-  height: 11px;
+  height: 6px;
   cursor: pointer;
   animate: 0.2s;
-  background: #202020;
-  border: 0px solid #000;
+  background: #fff;
+  border: 0px solid;
+  -webkit-border-radius: 3%;
+  border-radius: 3%;
 }
 input[type=range]::-webkit-slider-thumb {
   -webkit-box-shadow: 0px 0px 0px #000;
   box-shadow: 0px 0px 0px #000;
-  border: 0px solid #000;
-  height: 9px;
-  width: 15px;
-  background: #529de1;
+  border: 0px solid #529de1;
+  height: 6px;
+  width: 6px;
+  background: #22313f;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
   cursor: pointer;
   -webkit-appearance: none;
-  margin-top: 0.5px;
 }
 input[type=range]:focus::-webkit-slider-runnable-track {
-  background: #202020;
+  background: #dcdcdc;
+}
+input[type=range]:focus::-webkit-slider-thumb {
+  margin-top: -2px;
+  height: 10px;
+  width: 10px;
 }
 .progress-bar {
   position: fixed;
-  left: 260px;
+  left: 280px;
   top: 40px;
   z-index: 2;
 }
 .player-holder {
-  background: #4183d7;
+  background: #81cfe0;
   height: 100px;
-  width: 100%;
+  width: 650px;
   position: fixed;
+  -webkit-border-radius: 1%;
+  border-radius: 1%;
   left: 260px;
   top: 0px;
   z-index: 2;
 }
 .volume-bar {
   position: fixed;
-  left: 260px;
+  left: 280px;
   top: 70px;
   z-index: 2;
   opacity: 0.8;

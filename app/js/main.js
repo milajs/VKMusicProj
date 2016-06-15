@@ -16,9 +16,19 @@ var defCompanies = [];
 var AuthBnt = React.createClass({
 
     handleClick :function(){
+
+        var that = this
+
         VK.Auth.login(function (cb) {
             console.log('cb ->' + cb); 
         },1034);
+
+        vk_getuserphoto(function (userData){
+            if (userData) {
+
+                that.props.handleUpdate(userData);
+            }
+        })
     },
 
     render: function() {
@@ -57,40 +67,25 @@ var AudioBnt = React.createClass({
 });
 
 
-function vk_getaudios (callback) {
-    VK.Api.call('audio.get', {count: 50}, function(r) { 
+var UserImg = React.createClass({
 
-        if(r.error) {
-            console.log("audio.get error ->" + JSON.stringify(r.error));
-        } else {
+    getInitialState: function() {
+        return {imgUrl: "/media/no-photo.png"};
+    },
 
-            audios_array = r.response;
+    handleNewPhoto: function(user_data) {
+        var imageURL = user_data.photo_200;
 
-            console.log('Список аудио 50 штук, ' + JSON.stringify(audios_array[0]));
-            callback(r.response);
-        }
-    }); 
-}
+        console.log('image url -> ' + imageURL);
 
-
-var GetPermissionsBnt = React.createClass({
-
-    handleClick :function(){
-
-        VK.Api.call('account.getAppPermissions', {}, function(r) { 
-
-            if(r.error) {
-                console.log("account.getAppPermissions error ->" + JSON.stringify(r.error));
-            } else {
-                console.log('account.getAppPermissions ->, ' + JSON.stringify(r.response));
-            }
-        }); 
+        this.setState( {imgUrl: imageURL} );
     },
 
     render: function() {
+
         return(
             <div>
-               <button className="btn" onClick={this.handleClick}> Get permissions </button>
+               <img className="user-img" src={this.state.imgUrl} handleUpdate={this.handleNewPhoto} /> 
             </div>
         );
     }
@@ -114,6 +109,41 @@ var LogOutBnt = React.createClass({
     }
 });
 
+//////////////////////
+/////   VK API 
+//////////////////////
+
+function vk_getaudios (callback) {
+    VK.Api.call('audio.get', {count: 50}, function(r) { 
+
+        if(r.error) {
+            console.log("audio.get error ->" + JSON.stringify(r.error));
+        } else {
+
+            audios_array = r.response;
+
+            console.log('Список аудио 50 штук, ' + JSON.stringify(audios_array[0]));
+            callback(r.response);
+        }
+    }); 
+}
+
+
+function vk_getuserphoto (callback) {
+    VK.Api.call('users.get', {fields: 'photo_200'}, function(r) { 
+
+        if(r.error) {
+            console.log("users.get error ->" + JSON.stringify(r.error));
+        } else {
+
+            var user = r.response;
+
+            console.log('Данные пользователя ' + JSON.stringify(user[0]));
+            callback(user[0]);
+        }
+    }); 
+}
+
 
 var VKMusicApp = React.createClass({
 
@@ -122,7 +152,7 @@ var VKMusicApp = React.createClass({
         return {audiolist:this.props.audios,
                 audiourl:"", 
                 playing: true, 
-                value: "Pause",
+                value: "▶",
                 played: 0,
                 volume: 0.8};
     },
@@ -149,7 +179,7 @@ var VKMusicApp = React.createClass({
 
     pause: function() {
     
-        this.setState( {playing: !this.state.playing, value: this.state.playing ? 'Play' : 'Pause'} );
+        this.setState( {playing: !this.state.playing, value: this.state.playing ? '▶' : '||'} );
     },
 
     onSeekChange: function(event) {
@@ -163,6 +193,10 @@ var VKMusicApp = React.createClass({
         this.setState({ volume: parseFloat(event.target.value) });
     },
 
+    updateUserImage: function(user_data) {
+        this.refs.user_image.handleNewPhoto(user_data);
+    },
+
     render: function() {
 
         var tableStyle = {width: '100%'};
@@ -171,9 +205,9 @@ var VKMusicApp = React.createClass({
             <div>
                 <div className="wrap">
                     <div className="line top">
-                        <AuthBnt />
-                        <AudioBnt handleUpdate={this.handleNewRowSubmit}/>
-                        <GetPermissionsBnt />
+                        <UserImg ref='user_image'/>
+                        <AuthBnt handleUpdate={this.updateUserImage} />
+                        <AudioBnt handleUpdate={this.handleNewRowSubmit} />
                         <LogOutBnt />
                     </div>
 
@@ -187,12 +221,12 @@ var VKMusicApp = React.createClass({
                         playing={this.state.playing} 
                         seekTo={this.state.played}
                         onProgress={this.onProgressHandle}
-                        height="90px"
+                        height="120px"
                         /> 
 
                         <div className="player-holder">
                             <input type='range' className="progress-bar" min={0} max={1} step='any' value={this.state.played} onChange={this.onSeekChange} />
-                            <input type="button" className="btn stop-btn" onClick={this.pause} value={this.state.value} /> 
+                            <input type="button" className="stop-btn" onClick={this.pause} value={this.state.value} /> 
                             <input type='range' className="volume-bar" min={0} max={1} step='any' value={this.state.volume} onChange={this.setVolume} />
                         </div>
                 
@@ -207,11 +241,6 @@ var VKMusicApp = React.createClass({
 
 
 var AudiosList = React.createClass({
-
-    handleTesttttt: function(kokostring) {
-
-        console.log(kokostring);
-    },
 
     handleTest: function(url) {
 
@@ -244,6 +273,10 @@ var AudiosList = React.createClass({
 
 var AudioRow = React.createClass({
 
+    getInitialState: function() {
+        return {value: "▶"};
+    },
+
     handleClick :function(){
         this.props.handleUpdate(this.props.audio.url);
     },
@@ -251,9 +284,9 @@ var AudioRow = React.createClass({
     render: function() {
         return (
             <tr>
-                <td>{this.props.audio.artist}</td>
-                <td>{this.props.audio.title}</td>
-                <td><button onClick={this.handleClick} className="btn play-btn"> Play </button> </td>
+                <td className="artists"> {this.props.audio.artist} </td>
+                <td> {this.props.audio.title} </td>
+                <td><input type="button" className="stop-btn-onrow" onClick={this.handleClick} value={this.state.value} />  </td>
             </tr>
           );
     }
