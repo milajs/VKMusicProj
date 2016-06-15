@@ -34,7 +34,6 @@ var AuthBnt = React.createClass({
 var AudioBnt = React.createClass({
 
     handleClick :function(){
-
         var that = this
 
         console.log(JSON.stringify(this.props));
@@ -67,7 +66,7 @@ function vk_getaudios (callback) {
 
             audios_array = r.response;
 
-            console.log('Список аудио, ' + JSON.stringify(audios_array[0]));
+            console.log('Список аудио 50 штук, ' + JSON.stringify(audios_array[0]));
             callback(r.response);
         }
     }); 
@@ -124,7 +123,8 @@ var VKMusicApp = React.createClass({
                 audiourl:"", 
                 playing: true, 
                 value: "Pause",
-                played: 0};
+                played: 0,
+                volume: 0.8};
     },
 
     handleNewRowSubmit: function( newaudios ) {
@@ -158,6 +158,11 @@ var VKMusicApp = React.createClass({
         this.refs.player.seekTo(parseFloat(event.target.value));
     },
 
+    setVolume: function(event) {
+    
+        this.setState({ volume: parseFloat(event.target.value) });
+    },
+
     render: function() {
 
         var tableStyle = {width: '100%'};
@@ -177,16 +182,18 @@ var VKMusicApp = React.createClass({
                         <ReactPlayer 
                         ref='player'
                         url={this.state.audiourl} 
+                        volume={this.state.volume}
                         className="player" 
                         playing={this.state.playing} 
                         seekTo={this.state.played}
                         onProgress={this.onProgressHandle}
-                        height="80px"
+                        height="90px"
                         /> 
 
                         <div className="player-holder">
                             <input type='range' className="progress-bar" min={0} max={1} step='any' value={this.state.played} onChange={this.onSeekChange} />
                             <input type="button" className="btn stop-btn" onClick={this.pause} value={this.state.value} /> 
+                            <input type='range' className="volume-bar" min={0} max={1} step='any' value={this.state.volume} onChange={this.setVolume} />
                         </div>
                 
                         <AudiosList handleUpdate={this.handleNewAudioSubmit} audiolist={this.state.audiolist} />
