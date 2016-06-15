@@ -153,7 +153,8 @@ body {
 }
 td {
   width: 30%;
-  height: 30px;
+  height: 40px;
+  font-size: 14px;
 }
 .artists {
   color: #22313f;
@@ -171,6 +172,7 @@ td {
   padding-top: 20px;
   height: 100vh;
   background: rgba(107,185,240,0.5);
+  z-index: 5;
 }
 .table {
   margin-left: 280px;
@@ -264,13 +266,13 @@ input[type=range]:focus::-webkit-slider-thumb {
   z-index: 2;
 }
 .player-holder {
-  background: #81cfe0;
+  background: #e4f1fe;
   height: 100px;
-  width: 650px;
+  width: 100%;
   position: fixed;
   -webkit-border-radius: 1%;
   border-radius: 1%;
-  left: 260px;
+  padding-left: 260px;
   top: 0px;
   z-index: 2;
 }

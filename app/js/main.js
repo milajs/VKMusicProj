@@ -23,12 +23,12 @@ var AuthBnt = React.createClass({
             console.log('cb ->' + cb); 
         },1034);
 
-        vk_getuserphoto(function (userData){
-            if (userData) {
+        // vk_getuserphoto(function (userData){
+        //     if (userData) {
 
-                that.props.handleUpdate(userData);
-            }
-        })
+        //         that.props.handleUpdate(userData);
+        //     }
+        // })
     },
 
     render: function() {
@@ -44,16 +44,16 @@ var AuthBnt = React.createClass({
 var AudioBnt = React.createClass({
 
     handleClick :function(){
-        var that = this
 
         console.log(JSON.stringify(this.props));
 
         vk_getaudios(function (audiosArray){
             if (audiosArray) {
 
-                that.props.handleUpdate(audiosArray);
+                this.props.handleUpdate(audiosArray);
             }
-        })
+        }.bind(this))
+
     },
 
     render: function() {
@@ -71,6 +71,30 @@ var UserImg = React.createClass({
 
     getInitialState: function() {
         return {imgUrl: "/media/no-photo.png"};
+    },
+
+    loadCommentsFromServer: function() {
+
+        vk_getuserphoto(function (userData){
+
+            if (userData) {
+
+                // that.props.handleUpdate(userData);
+
+                var imageURL = userData.photo_200;
+
+                console.log('image url -> ' + imageURL);
+
+                this.setState( {imgUrl: imageURL} );
+            }
+
+        }.bind(this))
+
+    },
+
+
+    componentDidMount: function() {
+        this.loadCommentsFromServer();
     },
 
     handleNewPhoto: function(user_data) {
@@ -225,12 +249,14 @@ var VKMusicApp = React.createClass({
                         /> 
 
                         <div className="player-holder">
-                            <input type='range' className="progress-bar" min={0} max={1} step='any' value={this.state.played} onChange={this.onSeekChange} />
-                            <input type="button" className="stop-btn" onClick={this.pause} value={this.state.value} /> 
-                            <input type='range' className="volume-bar" min={0} max={1} step='any' value={this.state.volume} onChange={this.setVolume} />
+                            <div className="player-design">
+                                <input type='range' className="progress-bar" min={0} max={1} step='any' value={this.state.played} onChange={this.onSeekChange} />
+                                <input type="button" className="stop-btn" onClick={this.pause} value={this.state.value} /> 
+                                <input type='range' className="volume-bar" min={0} max={1} step='any' value={this.state.volume} onChange={this.setVolume} />
+                            </div>
                         </div>
                 
-                        <AudiosList handleUpdate={this.handleNewAudioSubmit} audiolist={this.state.audiolist} />
+                        <AudiosList handleUpdate={this.handleNewAudioSubmit} handleNewAudios={this.handleNewRowSubmit}  />
                     </div>
                 </div>
             </div>
@@ -242,32 +268,57 @@ var VKMusicApp = React.createClass({
 
 var AudiosList = React.createClass({
 
+    getInitialState:function() {
+        return {
+              audiolist: []
+        };
+    },
+
+    loadNewAudiosFromServer: function() {
+
+        vk_getaudios(function (audiosArray){
+            if (audiosArray) {
+
+                console.log('alistk ' + audiosArray)
+                //this.props.handleNewAudios(audiosArray);
+
+                this.setState( {audiolist: audiosArray} );
+            }
+
+        }.bind(this))
+
+    },
+
+    componentDidMount: function() {
+        this.loadNewAudiosFromServer();
+    },
+
     handleTest: function(url) {
 
         this.props.handleUpdate(url);
+
     },
 
     render: function() {
 
         var auidosarray = [];
-        var _data = this.props.audiolist
+        var _data = this.state.audiolist
 
-        console.log('alist-> ' + this.props.audiolist);
-
-        var that = this
+        console.log('alist-> ' + this.state.audiolist);
 
         return ( 
               <div>
                 <table className="table">
                   <tbody>
                       {_data.map(function(audioModel, i) {
-                         return <AudioRow audio={audioModel} handleUpdate={that.handleTest} key={i}/>
-                      })}
+                         return <AudioRow audio={audioModel} handleUpdate={this.handleTest} key={i}/>
+                      }.bind(this))}
                   </tbody>
                 </table>
               </div>
             );
     }
+
 });
 
 
