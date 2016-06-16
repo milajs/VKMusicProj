@@ -18,15 +18,6 @@ body
    background #fff
    color #707070
    
-#container
-  width 100%
-  height 100%
-  position fixed
-  top 0
-  left 0
-  display flex
-  overflow auto
-   
 .btn
   width 200px
   height 70px
@@ -50,15 +41,16 @@ body
   opacity 0.9
   border-radius 3%
 
-
 td
-  width 30%
+  width 300px
   height 40px
   font-size 14px
   
 .artists
+  width 250px !important
   color #22313F
   font-weight 600
+  padding-left 20px
    
 .wrap
   white-space nowrap
@@ -69,18 +61,16 @@ td
 .top
   vertical-align top
   position fixed
-  padding-top 20px
   height 100vh
-  background rgba(107,185,240,0.5)
+  background rgba(107,185,240,0.4)
   z-index 5
   
 .table
-  margin-left 280px
+  margin-left 260px
   margin-top 10px
 
 .player
   margin-left 280px
-
   
 .stop-btn
   color #fff
@@ -90,8 +80,8 @@ td
   letter-spacing 3px
   position fixed
   text-align right
-  left 825px
-  top 30px
+  left 280px
+  top 32px
   width 30px
   height 25px
   border-radius 5%
@@ -112,6 +102,20 @@ td
   height 20px
   border-radius 5%
   border 0px solid
+  vertical-align top
+  &:focus
+     outline 0 
+     box-shadow none 
+     
+.download-btn
+  color #fff
+  background #1E8BC3
+  margin-left 10px
+  width 25px
+  height 20px
+  border-radius 5%
+  border 0px solid
+  text-align center
   &:focus
      outline 0 
      box-shadow none 
@@ -119,7 +123,7 @@ td
   
 input[type=range] {
   -webkit-appearance: none;
-  width: 500px;
+  width: 380px;
   background rgba(200,200,200,0);
 }
 
@@ -148,19 +152,16 @@ input[type=range]::-webkit-slider-thumb {
   -webkit-appearance: none;
 }
 
-input[type=range]:focus::-webkit-slider-runnable-track {
-  background: rgba(220,220,220,1);
-}
-
 input[type=range]:focus::-webkit-slider-thumb {
   margin-top: -2px;
   height: 10px;
   width: 10px;
+  transition 0.3s
 }
 
 .progress-bar
   position fixed
-  left 280px
+  left 380px
   top 40px
   z-index 2
 
@@ -176,8 +177,59 @@ input[type=range]:focus::-webkit-slider-thumb {
   
 .volume-bar
   position fixed
-  left 280px
-  top 70px
+  width 80px !important
+  left 780px
+  top 40px
   z-index 2
   opacity 0.8
   
+.volume-pic
+  width 15px
+  opacity 0.4
+  position fixed
+  left 870px
+  top 38px
+  
+.download-img
+  width 15px
+  
+.player-design
+  background rgba(52, 73, 94, 0.2)
+  width 645px
+  height 50px
+  margin-top 20px
+  border 1px solid rgba(52, 73, 94, 0.3)
+  border-radius 1%
+  box-shadow 0px 1px 2px rgba(0,0,0,0.5)
+  
+.user-name
+  color #22313F
+  width 100%
+  text-align center
+  margin-top 10px
+  margin-bottom 10px
+  font-weight 600
+  
+.audio-row
+  &:hover
+    background #E4F1FE
+    
+.buttons-onrow
+  width 80px !important
+  
+.switch-buttons
+  width 20px
+
+.pervios-audio
+  border 0px solid
+  background rgba(0,0,0,0)
+  position fixed
+  top 33px
+  left 315px
+  
+.next-audio
+  border 0px solid
+  background rgba(0,0,0,0)
+  position fixed
+  top 33px
+  left 345px

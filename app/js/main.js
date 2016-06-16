@@ -22,13 +22,6 @@ var AuthBnt = React.createClass({
         VK.Auth.login(function (cb) {
             console.log('cb ->' + cb); 
         },1034);
-
-        // vk_getuserphoto(function (userData){
-        //     if (userData) {
-
-        //         that.props.handleUpdate(userData);
-        //     }
-        // })
     },
 
     render: function() {
@@ -53,7 +46,6 @@ var AudioBnt = React.createClass({
                 this.props.handleUpdate(audiosArray);
             }
         }.bind(this))
-
     },
 
     render: function() {
@@ -70,7 +62,9 @@ var AudioBnt = React.createClass({
 var UserImg = React.createClass({
 
     getInitialState: function() {
-        return {imgUrl: "/media/no-photo.png"};
+        return {imgUrl: "/media/no-photo.png",
+                userName: "",
+                userLastName: ""};
     },
 
     loadCommentsFromServer: function() {
@@ -79,17 +73,12 @@ var UserImg = React.createClass({
 
             if (userData) {
 
-                // that.props.handleUpdate(userData);
-
                 var imageURL = userData.photo_200;
-
-                console.log('image url -> ' + imageURL);
-
-                this.setState( {imgUrl: imageURL} );
+                var user_name = userData.first_name;
+                var user_last_name = userData.last_name;
+                this.setState( {imgUrl: imageURL, userName: user_name, userLastName: user_last_name} );
             }
-
         }.bind(this))
-
     },
 
 
@@ -99,17 +88,18 @@ var UserImg = React.createClass({
 
     handleNewPhoto: function(user_data) {
         var imageURL = user_data.photo_200;
-
-        console.log('image url -> ' + imageURL);
-
-        this.setState( {imgUrl: imageURL} );
+        var user_name = user_data.first_name;
+        var user_last_name = user_data.last_name;
+        this.setState( {imgUrl: imageURL, userName: user_name, userLastName: user_last_name} );
     },
 
     render: function() {
 
         return(
             <div>
-               <img className="user-img" src={this.state.imgUrl} handleUpdate={this.handleNewPhoto} /> 
+               <img className="user-img" src={this.state.imgUrl} handleUpdate={this.handleNewPhoto} />
+               <p className="user-name" handleUpdate={this.handleNewPhoto} > {this.state.userName} </p>
+               <p className="user-name" handleUpdate={this.handleNewPhoto} > {this.state.userLastName} </p>
             </div>
         );
     }
@@ -173,47 +163,42 @@ var VKMusicApp = React.createClass({
 
     getInitialState: function() {
 
-        return {audiolist:this.props.audios,
-                audiourl:"", 
+        return {audiolist: this.props.audios,
+                audiourl: "", 
                 playing: true, 
-                value: "▶",
+                value: '▶',
                 played: 0,
                 volume: 0.8};
     },
 
     handleNewRowSubmit: function( newaudios ) {
-
         this.setState( {audiolist: newaudios} );
     },
 
     handleNewAudioSubmit: function(url) {
-
         console.log('it works!!!!!! KEK ->' + url);
-
         this.setState( {audiourl: url, playing: true} );
     },
 
     onProgressHandle: function(event) {
-        //
         console.log('::: progress handle ->' + event.played);
-
         this.setState({ played: parseFloat(event.played) });
-
     },
 
-    pause: function() {
-    
+    onEndedHandle: function(event) {
+        console.log('::: playing is ended :::');
+    },
+
+    pause: function() { 
         this.setState( {playing: !this.state.playing, value: this.state.playing ? '▶' : '||'} );
     },
 
-    onSeekChange: function(event) {
-    
+    onSeekChange: function(event) {    
         this.setState({ played: parseFloat(event.target.value) });
         this.refs.player.seekTo(parseFloat(event.target.value));
     },
 
-    setVolume: function(event) {
-    
+    setVolume: function(event) {   
         this.setState({ volume: parseFloat(event.target.value) });
     },
 
@@ -245,14 +230,18 @@ var VKMusicApp = React.createClass({
                         playing={this.state.playing} 
                         seekTo={this.state.played}
                         onProgress={this.onProgressHandle}
+                        onEnded={this.onEndedHandle}
                         height="120px"
                         /> 
 
                         <div className="player-holder">
                             <div className="player-design">
-                                <input type='range' className="progress-bar" min={0} max={1} step='any' value={this.state.played} onChange={this.onSeekChange} />
                                 <input type="button" className="stop-btn" onClick={this.pause} value={this.state.value} /> 
+                                <button className="pervios-audio"> <img className="switch-buttons" src="/media/prev-arrow.png" /> </button>
+                                <button className="next-audio"> <img className="switch-buttons" src="/media/next-arrow.png" /> </button>
+                                <input type='range' className="progress-bar" min={0} max={1} step='any' value={this.state.played} onChange={this.onSeekChange} />
                                 <input type='range' className="volume-bar" min={0} max={1} step='any' value={this.state.volume} onChange={this.setVolume} />
+                                <img className="volume-pic" src="/media/audio-speaker.png" />
                             </div>
                         </div>
                 
@@ -269,9 +258,7 @@ var VKMusicApp = React.createClass({
 var AudiosList = React.createClass({
 
     getInitialState:function() {
-        return {
-              audiolist: []
-        };
+        return {audiolist: []};
     },
 
     loadNewAudiosFromServer: function() {
@@ -280,7 +267,6 @@ var AudiosList = React.createClass({
             if (audiosArray) {
 
                 console.log('alistk ' + audiosArray)
-                //this.props.handleNewAudios(audiosArray);
 
                 this.setState( {audiolist: audiosArray} );
             }
@@ -294,9 +280,7 @@ var AudiosList = React.createClass({
     },
 
     handleTest: function(url) {
-
         this.props.handleUpdate(url);
-
     },
 
     render: function() {
@@ -334,30 +318,23 @@ var AudioRow = React.createClass({
 
     render: function() {
         return (
-            <tr>
+            <tr className="audio-row">
                 <td className="artists"> {this.props.audio.artist} </td>
                 <td> {this.props.audio.title} </td>
-                <td><input type="button" className="stop-btn-onrow" onClick={this.handleClick} value={this.state.value} />  </td>
+                <td className="wrap buttons-onrow">
+                    <input type="button" className="stop-btn-onrow line" onClick={this.handleClick} value={this.state.value} /> 
+                    <a href={this.props.audio.url} download="audio.mp3">
+                    <button className="download-btn line"> <img className="download-img" src="/media/download.png"/> </button>
+                    </a>
+                </td>
             </tr>
           );
     }
 });
 
 
-var App = React.createClass({
-
-    render: function() {
-        return(
-            <div>
-               <VKMusicApp audios={audios_array}/>
-            </div>
-        );
-    }
-});
-
-
 ReactDOM.render(
-    <App />, 
+    <VKMusicApp />, 
     document.getElementById('container')
 );
 
