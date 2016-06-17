@@ -111,6 +111,7 @@ body {
   color: #202020;
   font-size: 16px;
   border: 0px solid;
+  cursor: pointer;
 }
 .btn:hover {
   background: #202020;
@@ -184,6 +185,7 @@ td {
   border-radius: 5%;
   border: 0px solid;
   z-index: 2;
+  cursor: pointer;
 }
 .stop-btn:focus {
   outline: 0;
@@ -203,6 +205,7 @@ td {
   border-radius: 5%;
   border: 0px solid;
   vertical-align: top;
+  cursor: pointer;
 }
 .stop-btn-onrow:focus {
   outline: 0;
@@ -219,6 +222,7 @@ td {
   border-radius: 5%;
   border: 0px solid;
   text-align: center;
+  cursor: pointer;
 }
 .download-btn:focus {
   outline: 0;
@@ -338,6 +342,7 @@ input[type=range]:focus::-webkit-slider-thumb {
   position: fixed;
   top: 33px;
   left: 315px;
+  cursor: pointer;
 }
 .next-audio {
   border: 0px solid;
@@ -345,4 +350,12 @@ input[type=range]:focus::-webkit-slider-thumb {
   position: fixed;
   top: 33px;
   left: 345px;
+  cursor: pointer;
+}
+.selected {
+  color: #fff;
+  background: #1e8bc3;
+}
+.selected .artists {
+  color: #fff;
 }
