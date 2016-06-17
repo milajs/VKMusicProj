@@ -277,7 +277,7 @@ input[type=range]:focus::-webkit-slider-thumb {
 }
 .player-holder {
   background: #e4f1fe;
-  height: 100px;
+  height: 140px;
   width: 100%;
   position: fixed;
   -webkit-border-radius: 1%;
@@ -358,4 +358,40 @@ input[type=range]:focus::-webkit-slider-thumb {
 }
 .selected .artists {
   color: #fff;
+}
+.search-audio-input {
+  margin-top: 20px;
+  width: 499px;
+  border: 1px solid rgba(52,73,94,0.5);
+  padding: 4px;
+  padding-left: 30px;
+  background-image: url("/media/search.png");
+  background-repeat: no-repeat;
+  -webkit-background-size: 20px;
+  -moz-background-size: 20px;
+  background-size: 20px;
+  background-opacity: 0.5;
+  background-position: 3px center;
+}
+.search-audio-input:focus {
+  outline: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.search-button {
+  width: 113px;
+  color: #fff;
+  font-size: 14px;
+  background: #1e8bc3;
+  border: 0px solid;
+  height: 25px;
+}
+.search-button:hover {
+  font-size: 16px;
+  cursor: pointer;
+  -webkit-transition: 0.2s;
+  -moz-transition: 0.2s;
+  -o-transition: 0.2s;
+  -ms-transition: 0.2s;
+  transition: 0.2s;
 }

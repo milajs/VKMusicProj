@@ -245,7 +245,7 @@ var VKMusicApp = React.createClass({
                         seekTo={this.state.played}
                         onProgress={this.onProgressHandle}
                         onEnded={this.onEndedHandle}
-                        height="120px"
+                        height="150px"
                         /> 
 
                         <div className="player-holder">
@@ -257,6 +257,8 @@ var VKMusicApp = React.createClass({
                                 <input type='range' className="volume-bar" min={0} max={1} step='any' value={this.state.volume} onChange={this.setVolume} />
                                 <img className="volume-pic" src="/media/audio-speaker.png" />
                             </div>
+                            <input type="text" className="search-audio-input" placeholder="Search audio" />
+                            <input type="submit" className="search-button" value="Search" />
                         </div>
                 
                         <AudiosList 
