@@ -1,7 +1,7 @@
 /*
  * Import nib
  */
-@import 'nib'
+// @import 'nib'
 
 /*
  * Grab a custom font from Google
@@ -15,8 +15,13 @@ global-reset()
 
 body
    font-family 'Open Sans'
-   background #fff
+   background #55AAFF
    color #707070
+   
+.testbody
+   font-family 'Open Sans'
+   background white
+   color #707070   
    
 .btn
   width 200px
@@ -272,3 +277,6 @@ input[type=range]:focus::-webkit-slider-thumb {
     font-size 16px
     cursor pointer
     transition 0.2s
+  &:focus
+     outline 0 
+     box-shadow none 
