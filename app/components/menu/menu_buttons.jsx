@@ -1,14 +1,12 @@
 import React, { Component, PropTypes } from 'react';
-import MenuButton from './button.jsx';
+
 
 class MenuButtonsList extends Component {
 
-	onClick() {
+	HandleLogIn() {
 
-		console.log('onclick works -_-');
-
-		// VK.Auth.login(function(cb) {
-		// 	console.log('cb ->' + cb);},1034);
+		VK.Auth.login(function(cb) {
+			console.log('cb ->' + cb);},1034);
     }
 
 
@@ -16,9 +14,9 @@ class MenuButtonsList extends Component {
 		return (
 
 		<div className="menu-buttons-block">
-			<button className="menu-button" onClick={this.onClick.bind(this)} > Log In </button>
-			<MenuButton value="Load audio" />
-			<MenuButton value="Log Out" />
+			<button className="menu-button" onClick={this.HandleLogIn.bind(this)} > Log In </button>
+			<button className="menu-button" > Load audio </button>
+			<button className="menu-button" > Log Out </button>
 		</div>
 
 		)

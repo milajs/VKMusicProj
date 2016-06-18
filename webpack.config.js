@@ -12,7 +12,7 @@ module.exports = {
   ],
   resolve: {extensions: ['', '.js', '.jsx','.png']},
   output: {
-    path: path.join(__dirname, 'dev'),
+    path: path.join(__dirname, 'app'),
     filename: 'bundle.js'
   },
   plugins: [
