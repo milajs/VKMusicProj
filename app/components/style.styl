@@ -25,11 +25,12 @@ body
   vertical-align top
   text-align center
   position fixed
+  z-index 5
   top 0
   left 0
   width 240px
   height 100vh
-  background rgba(27,75,148,0.65)
+  background rgba(27,75,148,0.6)
  
 .user-img
   margin-top 40px
@@ -62,7 +63,30 @@ body
   &:focus
      outline 0 
      box-shadow none 
+ 
+ ////////////////  player  //////////////////////////
+
+.player-block
+  background rgba(97,141,208,0.4)
+  height 150px
+  width 100%
+  position fixed
+  padding-left 20px
+  top 0
+  left 240px
+  z-index 2   
   
+.player-body
+  background rgba(52, 73, 94, 0.2)
+  width 645px
+  height 50px
+  margin-top 20px
+  border 1px solid rgba(52, 73, 94, 0.3)
+  border-radius 1%
+  box-shadow 0px 1px 2px rgba(0,0,0,0.5)
+  
+   
+
 
 
 ////////////////////////////////////////////////////
@@ -197,15 +221,6 @@ input[type=range]:focus::-webkit-slider-thumb {
   top 40px
   z-index 2
 
-.player-holder
-  background #E4F1FE
-  height 140px
-  width 100%
-  position fixed
-  border-radius 1%
-  padding-left 260px
-  top 0px
-  z-index 2
   
 .volume-bar
   position fixed
