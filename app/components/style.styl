@@ -15,16 +15,39 @@ global-reset()
 
 body
    font-family 'Open Sans'
-   background #55AAFF
+   background #fff
    color #707070
    
-.testbody
-   font-family 'Open Sans'
-   background white
-   color #707070   
+
+////////////////////  menu  ////////////////////////////////
+
+.menu-section
+  vertical-align top
+  text-align center
+  position fixed
+  top 0
+  left 0
+  width 240px
+  height 100vh
+  background rgba(107,185,240,0.4)
+ 
+.user-img
+  margin-top 40px
+  margin-bottom 20px
+  border-radius 50%
    
-.btn
-  width 200px
+.user-name
+  color #22313F
+  width 100%
+  text-align center
+  margin-top 10px
+  font-weight 600
+  
+.menu-buttons-block
+  margin-top 40px
+  
+.menu-button
+  width 100%
   height 70px
   background rgba(255,255,255,0.5)
   color #202020
@@ -39,6 +62,13 @@ body
   &:focus
      outline 0 
      box-shadow none 
+  
+
+
+////////////////////////////////////////////////////
+///////  old styles   /////////////////////////////
+//////////////////////////////////////////////////
+      
   
 .play-btn
   width 100px
@@ -63,13 +93,6 @@ td
   
 .line
   display inline-block
-  
-.top
-  vertical-align top
-  position fixed
-  height 100vh
-  background rgba(107,185,240,0.4)
-  z-index 5
   
 .table
   margin-left 260px
