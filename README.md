@@ -5,5 +5,5 @@ VK music web app.
 ***WIP***
 + clone repo
 + `npm install`
-+ `webpack-dev-server --port 4001`
-+ go to `http://localhost:4001/` in your browser
++ `npm start`
++ go to `http://localhost:3000/` in your browser
