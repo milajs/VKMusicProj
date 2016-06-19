@@ -21,9 +21,10 @@ class UserData extends Component {
 		super(props);
 
 		this.state = {
-			ImageUrl: "http://cs415829.vk.me/u138009602/docs/eca9b792fdf9/no-photo.png",
-			UserFirstName: 'User first name',
-			UserLastName: 'User last name'
+			IsAuth:false,
+			ImageUrl: "",
+			UserFirstName: '',
+			UserLastName: ''
 		};
 	}
 
@@ -33,7 +34,8 @@ class UserData extends Component {
 		vk_getuserphoto(function (userData){
 
 			if (userData) {
-				this.setState( {ImageUrl: userData.photo_200, 
+				this.setState( {IsAuth:true,
+								ImageUrl: userData.photo_200, 
 								UserFirstName: userData.first_name, 
 								UserLastName: userData.last_name} );
 			}
@@ -45,9 +47,17 @@ class UserData extends Component {
 
 		console.log('render image url -> ' + this.state.ImageUrl);
 
+		var avatarImage;
+
+		if (this.state.IsAuth == false) {
+			avatarImage = require('./../media/no-photo.png');
+		} else {
+			avatarImage = this.state.ImageUrl;
+		}
+
 		return (
 			<div>
-				<img className="user-img" src={this.state.ImageUrl} />
+				<img className="user-img" src={avatarImage} />
 				<p className="user-name"> {this.state.UserFirstName} </p>
 				<p className="user-name"> {this.state.UserLastName} </p>
 			</div>

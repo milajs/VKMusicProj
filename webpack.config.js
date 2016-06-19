@@ -42,7 +42,7 @@ module.exports = {
     ]
   },
   devServer: {
-    contentBase: path.join(__dirname, 'dev'),
+    contentBase: path.join(__dirname, 'app'),
     historyApiFallback: true,
     hot: true,
     progress: true,

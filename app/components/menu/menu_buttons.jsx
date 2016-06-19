@@ -5,12 +5,13 @@ class MenuButtonsList extends Component {
 
 	HandleLogIn() {
 		VK.Auth.login(function(cb) {
-			console.log('cb ->' + cb);},1034);
+			console.log('login cb ->' + JSON.stringify(cb));
+		},1034);
 	}
 
 	HandleLogOut() {
         VK.Auth.logout(function (cb) {
-            console.log('cb ->' + JSON.stringify(cb)); 
+            console.log('logout cb ->' + JSON.stringify(cb)); 
         });
 	}
 

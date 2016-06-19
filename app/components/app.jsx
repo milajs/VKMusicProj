@@ -9,9 +9,6 @@ class App extends Component {
 
   componentDidMount() {
       
-      VK.Auth.login(function (cb) {
-           console.log("test -> " + cb); 
-      },1034);
   }
 
   render() {
