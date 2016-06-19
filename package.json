@@ -38,6 +38,7 @@
     "babel-runtime": "^6.6.1",
     "react": "^15.0.0-rc.2",
     "react-dom": "^15.0.0-rc.2",
+    "react-player": "^0.7.2",
     "react-soundplayer": "^0.3.5",
     "stylus": "^0.54.5",
     "url-loader": "^0.5.7"

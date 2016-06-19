@@ -71,35 +71,163 @@ body
   height 150px
   width 100%
   position fixed
-  padding-left 20px
+  padding-left 40px
   top 0
   left 240px
   z-index 2   
   
 .player-body
-  background rgba(52, 73, 94, 0.2)
-  width 645px
-  height 50px
+  background rgba(37, 101, 199, 0.3)
+  width 680px
+  height 60px
   margin-top 20px
-  border 1px solid rgba(52, 73, 94, 0.3)
-  border-radius 1%
+  border 1px solid rgba(20, 20, 20, 0.3)
+  border-radius 5px
   box-shadow 0px 1px 2px rgba(0,0,0,0.5)
   
+.play-btn-on-player
+  color #fff
+  background rgba(13,36,71,0.8)
+  font-weight 600
+  font-size 16px
+  letter-spacing 3px
+  text-align right
+  margin-top 15px
+  margin-left 20px
+  width 30px
+  height 30px
+  border-radius 5%
+  border 0px solid
+  padding-bottom 5px
+  z-index 2
+  cursor pointer
+  &:focus
+     outline 0 
+     box-shadow none 
+     
+.player
+  position fixed
+  top 0
+  z-index -1
+  
+  
+.switch-buttons-pic
+  width 20px
+  vertical-align middle
+  opacity 0.8
+  
+.pervios-audio
+  border 0px solid
+  height 30px
+  background rgba(0,0,0,0)
+  margin-left 10px
+  cursor pointer
+  vertical-align middle
+  
+.next-audio
+  border 0px solid
+  height 30px
+  background rgba(0,0,0,0)
+  cursor pointer
+  vertical-align middle
+  
+input[type=range] {
+  -webkit-appearance: none;
+  width: 400px;
+  background rgba(200,200,200,0);
+}
+
+input[type=range]:focus {
+  outline: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 6px;
+  cursor: pointer;
+  animate: 0.2s;
+  background: rgba(255,255,255,0.9);
+  border: 0px solid;
+  border-radius 5px
+}
+
+input[type=range]::-webkit-slider-thumb {
+  box-shadow: 0px 0px 0px #000000;
+  border: 0px solid #529DE1;
+  height: 6px;
+  width: 6px;
+  background: #22313F;
+  border-radius 50%
+  cursor: pointer;
+  -webkit-appearance: none;
+}
+
+input[type=range]:focus::-webkit-slider-thumb {
+  margin-top: -2px;
+  height: 10px;
+  width: 10px;
+  transition 0.3s
+}
+
+.progress-bar
+  position fixed
+  left 410px
+  top 45px
+  z-index 2
+  
+.volume-bar
+  position fixed
+  width 80px !important
+  left 830px
+  top 45px
+  z-index 2
+  
+.volume-pic
+  width 15px
+  opacity 0.4
+  position fixed
+  left 925px
+  top 42px
+  
+
+//////////////  search audio  /////////////////////////
    
-
-
+.search-audio-input
+  margin-top 20px
+  width 510px
+  height 25px
+  border 1px solid rgba(52, 73, 94, 0.5)
+  padding-left 33px
+  background-image url('http://cs415623.vk.me/u138009602/docs/d3c277db4621/loopa.png')
+  background-repeat no-repeat
+  background-size 20px
+  background-position 4px 4px
+  &:focus
+     outline 0 
+     box-shadow none 
+  
+.search-button
+  width 133px
+  color #fff
+  font-size 14px
+  background rgba(13,36,71,0.8)
+  border 0px solid
+  height 29px
+  border-radius 3px
+  &:hover
+    background #0D2447
+    color #fff
+    transition 0.2s
+    font-size 16px
+  &:focus
+     outline 0 
+     box-shadow none 
+     
 
 ////////////////////////////////////////////////////
 ///////  old styles   /////////////////////////////
 //////////////////////////////////////////////////
       
-  
-.play-btn
-  width 100px
-  height 25px
-  font-size 14px
-  opacity 0.9
-  border-radius 3%
 
 td
   width 300px
@@ -121,29 +249,6 @@ td
 .table
   margin-left 260px
   margin-top 10px
-
-.player
-  margin-left 280px
-  
-.stop-btn
-  color #fff
-  background #1E8BC3
-  font-weight 600
-  font-size 16px
-  letter-spacing 3px
-  position fixed
-  text-align right
-  left 280px
-  top 32px
-  width 30px
-  height 25px
-  border-radius 5%
-  border 0px solid
-  z-index 2
-  cursor pointer
-  &:focus
-     outline 0 
-     box-shadow none 
      
 .stop-btn-onrow
   color #fff
@@ -177,85 +282,9 @@ td
      box-shadow none 
   
   
-input[type=range] {
-  -webkit-appearance: none;
-  width: 380px;
-  background rgba(200,200,200,0);
-}
-
-input[type=range]:focus {
-  outline: none;
-}
-
-input[type=range]::-webkit-slider-runnable-track {
-  width: 100%;
-  height: 6px;
-  cursor: pointer;
-  animate: 0.2s;
-  background: rgba(255,255,255,1);
-  border: 0px solid;
-  border-radius 3%
-}
-
-input[type=range]::-webkit-slider-thumb {
-  box-shadow: 0px 0px 0px #000000;
-  border: 0px solid #529DE1;
-  height: 6px;
-  width: 6px;
-  background: #22313F;
-  border-radius 50%
-  cursor: pointer;
-  -webkit-appearance: none;
-}
-
-input[type=range]:focus::-webkit-slider-thumb {
-  margin-top: -2px;
-  height: 10px;
-  width: 10px;
-  transition 0.3s
-}
-
-.progress-bar
-  position fixed
-  left 380px
-  top 40px
-  z-index 2
-
-  
-.volume-bar
-  position fixed
-  width 80px !important
-  left 780px
-  top 40px
-  z-index 2
-  opacity 0.8
-  
-.volume-pic
-  width 15px
-  opacity 0.4
-  position fixed
-  left 870px
-  top 38px
-  
 .download-img
   width 15px
   
-.player-design
-  background rgba(52, 73, 94, 0.2)
-  width 645px
-  height 50px
-  margin-top 20px
-  border 1px solid rgba(52, 73, 94, 0.3)
-  border-radius 1%
-  box-shadow 0px 1px 2px rgba(0,0,0,0.5)
-  
-.user-name
-  color #22313F
-  width 100%
-  text-align center
-  margin-top 10px
-  margin-bottom 10px
-  font-weight 600
   
 .audio-row
   &:hover
@@ -264,24 +293,6 @@ input[type=range]:focus::-webkit-slider-thumb {
 .buttons-onrow
   width 80px !important
   
-.switch-buttons
-  width 20px
-
-.pervios-audio
-  border 0px solid
-  background rgba(0,0,0,0)
-  position fixed
-  top 33px
-  left 315px
-  cursor pointer
-  
-.next-audio
-  border 0px solid
-  background rgba(0,0,0,0)
-  position fixed
-  top 33px
-  left 345px
-  cursor pointer
   
 .selected
   color #fff
@@ -289,32 +300,3 @@ input[type=range]:focus::-webkit-slider-thumb {
   .artists
     color #fff
     
-.search-audio-input
-  margin-top 20px
-  width 499px
-  border 1px solid rgba(52, 73, 94, 0.5)
-  padding 4px
-  padding-left 30px
-  background-image url('/media/search.png')
-  background-repeat no-repeat 
-  background-size 20px
-  background-opacity 0.5
-  background-position 3px center
-  &:focus
-     outline 0 
-     box-shadow none 
-  
-.search-button
-  width 113px
-  color #fff
-  font-size 14px
-  background #1E8BC3
-  border 0px solid
-  height 25px
-  &:hover
-    font-size 16px
-    cursor pointer
-    transition 0.2s
-  &:focus
-     outline 0 
-     box-shadow none 
