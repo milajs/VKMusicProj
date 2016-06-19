@@ -42,11 +42,7 @@ class UserData extends Component {
 		}.bind(this))
 	}
 
-
-	render() {
-
-		console.log('render image url -> ' + this.state.ImageUrl);
-
+	getAvatarImage() {
 		var avatarImage;
 
 		if (this.state.IsAuth == false) {
@@ -55,9 +51,15 @@ class UserData extends Component {
 			avatarImage = this.state.ImageUrl;
 		}
 
+		return avatarImage;
+	}
+
+
+	render() {
+
 		return (
 			<div>
-				<img className="user-img" src={avatarImage} />
+				<img className="user-img" src={this.getAvatarImage()} />
 				<p className="user-name"> {this.state.UserFirstName} </p>
 				<p className="user-name"> {this.state.UserLastName} </p>
 			</div>

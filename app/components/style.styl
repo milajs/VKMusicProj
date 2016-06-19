@@ -16,7 +16,7 @@ global-reset()
 body
    font-family 'Open Sans'
    background #fff
-   color #707070
+   color #505050
    
 
 ////////////////////  menu  ////////////////////////////////
@@ -63,11 +63,12 @@ body
   &:focus
      outline 0 
      box-shadow none 
+     
  
  ////////////////  player  //////////////////////////
 
 .player-block
-  background rgba(97,141,208,0.4)
+  background rgba(220,233,255,1)
   height 150px
   width 100%
   position fixed
@@ -224,35 +225,30 @@ input[type=range]:focus::-webkit-slider-thumb {
      box-shadow none 
      
 
-////////////////////////////////////////////////////
-///////  old styles   /////////////////////////////
-//////////////////////////////////////////////////
-      
+/////////////////////  audio list  ///////////////////////////////
 
+.audio-section
+  margin-top 170px
+  margin-left 280px
+  
 td
-  width 300px
-  height 40px
+  width 260px
+  height 35px
   font-size 14px
   
-.artists
-  width 250px !important
-  color #22313F
+.artist
+  color #0D2447
   font-weight 600
   padding-left 20px
-   
-.wrap
+  
+.buttons-onrow
+  width 80px !important
   white-space nowrap
   
-.line
-  display inline-block
-  
-.table
-  margin-left 260px
-  margin-top 10px
-     
 .stop-btn-onrow
+  display inline-block
   color #fff
-  background #1E8BC3
+  background rgba(13,36,71,0.9)
   font-weight 600
   font-size 12px
   letter-spacing 3px
@@ -266,6 +262,20 @@ td
   &:focus
      outline 0 
      box-shadow none 
+     
+
+////////////////////////////////////////////////////
+///////  old styles   /////////////////////////////
+//////////////////////////////////////////////////
+      
+   
+.wrap
+  white-space nowrap
+  
+.line
+  display inline-block
+       
+
      
 .download-btn
   color #fff
