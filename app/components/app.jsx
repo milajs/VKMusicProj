@@ -7,6 +7,7 @@ var css = require('./style.styl');
 
 
 var audios_array = [];
+var search_result = [];
 
 function vk_getaudios (callback) {
   VK.Api.call('audio.get', {count: 50}, function(r) { 
@@ -17,11 +18,29 @@ function vk_getaudios (callback) {
 
       audios_array = r.response;
 
-      console.log('Список аудио 50 штук: ' + JSON.stringify(audios_array));
+      //console.log('Список аудио 50 штук: ' + JSON.stringify(audios_array));
       callback(r.response);
     }
   }); 
 }
+
+function vk_searchaudio (query,callback) {
+
+    VK.Api.call('audio.search', {q: query}, function(r) { 
+
+        if(r.error) {
+            console.log("audio.search error ->" + JSON.stringify(r.error));
+        } else {
+
+            search_result = r.response;
+            search_result.shift();
+
+            //console.log('результаты поиска:  ' + JSON.stringify(search_result));
+            callback(search_result);
+        }
+    }); 
+}
+
 
 
 class App extends Component {
@@ -32,18 +51,19 @@ class App extends Component {
       ButtonValue: '▶',
       Audiolist: [],
       Audiourl: '',
-      Playing: false
+      Playing: false,
+      CurrentQuery: ''
     };
   }
 
   HandleLoadAudios() {
 
     vk_getaudios(function (audiosArray){
-      if (audiosArray) {
-        console.log('alist: ' + audiosArray)
-        this.setState( {Audiolist: audiosArray} );
-      }
-    }.bind(this))
+        if (audiosArray) {
+          console.log('alist: ' + audiosArray)
+          this.setState( {Audiolist: audiosArray} );
+        }
+      }.bind(this))
   }
 
   handleUpdatePlaying(audiomodel) {
@@ -60,28 +80,37 @@ class App extends Component {
   }
 
   playPause() {
-
     this.setState( {playing: !this.state.playing, ButtonValue: this.state.playing ? '▶' : '||'} );
-
   }
 
   nextAudioByEnd() {
 
     var audiolist = this.state.Audiolist;
-
     var indexLastPlayedAudio = audiolist.indexOf(this.state.CurrentPlayedAudioModel);
-
-    console.log('last played audio model in audiolist array -> ' + indexLastPlayedAudio);
-
     var audiomodel = audiolist[indexLastPlayedAudio+1];
-
     this.handleUpdatePlaying(audiomodel);
+  }
 
-    // var audiomodel = audiolist[this.state.currentAudioIndex];
+  OnChangeAudioSearchQuery(query) {
 
-    // console.log('audio-model  --> ' + audiomodel);
+      if (query != '') {
 
-    // this.handleUpdatePlaying(audiomodel);
+        vk_searchaudio(query,function(audio_list) {
+
+          if (audio_list) {
+
+            this.setState( {Audiolist: audio_list} );
+
+          }
+
+        }.bind(this));
+
+    } else {
+
+      this.HandleLoadAudios();
+
+    }
+
   }
 
   render() {
@@ -92,8 +121,12 @@ class App extends Component {
         <MenuSection {...this.state} />
         <PlayerSection 
           {...this.state}
+          {...this.props}
           playPause={this.playPause.bind(this)}
           nextAudioByEnd={this.nextAudioByEnd.bind(this)}
+          SearchAudio={this.SearchAudioQuery.bind(this)}
+          OnChangeAudioSearchQuery={this.OnChangeAudioSearchQuery.bind(this)}
+
         />
         <AudioList 
           {...this.state} 

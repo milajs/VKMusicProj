@@ -3,13 +3,24 @@ import React, { Component, PropTypes } from 'react';
 
 class SearchField extends Component {
 
+	handleClick(event) {
+		var query =  event.target.value;
+		this.props.OnChangeAudioSearchQuery(query);
+	}
+
+	handleInput(event) {
+		console.log('inputttt' + event.target.value);
+		console.log('props ->' + this.props);
+		this.props.OnChangeAudioSearchQuery(event.target.value)
+	}
+
 	render() {
 		return (
 
 			<div>
 
-				<input type="text" className="search-audio-input" placeholder="Search audio" />
-				<input type="submit" className="search-button" value="Search" />
+				<input type="text" className="search-audio-input" placeholder="Search audio" onChange={this.handleInput.bind(this)} />
+				<input type="submit" className="search-button" value="Search" onClick={this.handleClick.bind(this)} />
 
 			</div>
 
@@ -17,5 +28,11 @@ class SearchField extends Component {
 	}
  
 }
+
+
+SearchField.propTyes = {
+	SearchAudio: PropTypes.func.isRequired,
+	OnChangeAudioSearchQuery: PropTypes.func.isRequired
+};
 
 export default SearchField

@@ -10,7 +10,7 @@ class PlayerSection extends Component {
 
 			<div className="player-block">
 				<Player {...this.props} />
-				<SearchField />
+				<SearchField {...this.props} />
 			</div>
 
 		)
@@ -23,6 +23,7 @@ Player.propTyes = {
 	Audiourl: PropTypes.string.isRequired,
 	playing: PropTypes.bool.isRequired,
 	ButtonValue: PropTypes.string.isRequired
+	//OnChangeAudioSearchQuery: PropTypes.func.isRequired
 };
 
 
