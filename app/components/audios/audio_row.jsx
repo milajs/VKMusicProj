@@ -7,20 +7,36 @@ class AudioRow extends Component {
 		super(props);
 
 		this.state = {
-			Value: '▶'
+			Value: '▶',
+			selectedClass: "audio-row"
 		};
 	}
 
 	handleClick() { 
-		this.props.handleNewAudioRow(this.props.audio.url);
+		this.props.handleNewAudioRow(this.props.audio); 
 	}
 
 	render() {
+
+		var selectedClass;
+
+		if (this.props.CurrentPlayedAudioModel != null) {
+
+			if (this.props.audio.aid === this.props.CurrentPlayedAudioModel.aid) {
+				selectedClass = "audio-row selected"
+			} else {
+				selectedClass = "audio-row"
+			}
+
+		} else {
+			selectedClass = "audio-row"
+		}
+
 		return (
 
-			<tr>
+			<tr className={selectedClass}>
 				<td className="artist"> {this.props.audio.artist} </td>
-				<td> {this.props.audio.title} </td>
+				<td className="title"> {this.props.audio.title} </td>
 				<td className="buttons-onrow">
 					<input type="button" className="stop-btn-onrow" onClick={this.handleClick.bind(this)} value={this.state.Value} /> 
 					<a href={this.props.audio.url} download="audio.mp3">
@@ -36,6 +52,7 @@ class AudioRow extends Component {
 
 AudioRow.propTyes = {
 	handleUpdatePlaying: PropTypes.func.isRequired,
+	CurrentPlayedAudioModel: PropTypes.object.isRequired
 };
 
 

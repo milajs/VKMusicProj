@@ -21,7 +21,8 @@ class PlayerSection extends Component {
 
 Player.propTyes = {
 	Audiourl: PropTypes.string.isRequired,
-	playing: PropTypes.bool.isRequired
+	playing: PropTypes.bool.isRequired,
+	ButtonValue: PropTypes.string.isRequired
 };
 
 

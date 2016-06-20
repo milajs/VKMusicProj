@@ -25,8 +25,8 @@ class AudioList extends Component {
 		this.props.HandleLoadAudios();
 	}
 
-	handleNewAudioPlay(url) {
-		this.props.handleUpdatePlaying(url);
+	handleNewAudioPlay(audiomodel) {
+		this.props.handleUpdatePlaying(audiomodel);
 	}
 
 
@@ -42,7 +42,7 @@ class AudioList extends Component {
 
 						{_data.map(function(audioModel, i) {
 							return <AudioRow 
-										{...this.state}
+										{...this.props}
 										audio={audioModel} 
 										handleNewAudioRow={this.handleNewAudioPlay.bind(this)} 
 										audioIndex={i} 
@@ -61,7 +61,8 @@ class AudioList extends Component {
 
 AudioList.propTyes = {
 	HandleLoadAudios: PropTypes.func.isRequired,
-	Audiolist: PropTypes.array.isRequired
+	Audiolist: PropTypes.array.isRequired,
+	CurrentPlayedAudioModel: PropTypes.object.isRequired
 };
 
 export default AudioList

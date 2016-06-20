@@ -26,9 +26,10 @@ function vk_getaudios (callback) {
 
 class App extends Component {
 
-    constructor(props){
+  constructor(props){
     super(props);
     this.state = {
+      ButtonValue: '▶',
       Audiolist: [],
       Audiourl: '',
       Playing: false
@@ -45,25 +46,58 @@ class App extends Component {
     }.bind(this))
   }
 
-  handleUpdatePlaying(url) {
-    this.setState( {Audiourl: url, playing: true} );
+  handleUpdatePlaying(audiomodel) {
 
-    console.log('loloasdadsad ->' + this.state.Audiourl);
+    this.setState( {  
 
-    // this.setState( {value: this.state.playing ? '▶' : '||'} );
+                      Audiourl: audiomodel.url,
+                      CurrentPlayedAudioModel:audiomodel, 
+                      playing: true, 
+                      ButtonValue: '||'
 
+                    } );
+
+  }
+
+  playPause() {
+
+    this.setState( {playing: !this.state.playing, ButtonValue: this.state.playing ? '▶' : '||'} );
+
+  }
+
+  nextAudioByEnd() {
+
+    var audiolist = this.state.Audiolist;
+
+    var indexLastPlayedAudio = audiolist.indexOf(this.state.CurrentPlayedAudioModel);
+
+    console.log('last played audio model in audiolist array -> ' + indexLastPlayedAudio);
+
+    var audiomodel = audiolist[indexLastPlayedAudio+1];
+
+    this.handleUpdatePlaying(audiomodel);
+
+    // var audiomodel = audiolist[this.state.currentAudioIndex];
+
+    // console.log('audio-model  --> ' + audiomodel);
+
+    // this.handleUpdatePlaying(audiomodel);
   }
 
   render() {
 
-    console.log('url test' + this.state.Audiourl);
     return (
 
       <div>
         <MenuSection {...this.state} />
-        <PlayerSection {...this.state} />
+        <PlayerSection 
+          {...this.state}
+          playPause={this.playPause.bind(this)}
+          nextAudioByEnd={this.nextAudioByEnd.bind(this)}
+        />
         <AudioList 
           {...this.state} 
+          {...this.props} 
           HandleLoadAudios={this.HandleLoadAudios.bind(this)}
           handleUpdatePlaying={this.handleUpdatePlaying.bind(this)} 
         />

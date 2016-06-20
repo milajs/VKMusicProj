@@ -288,9 +288,16 @@ td
 //////////////////////////////////////////////////
 
 
-.audio-row
+table
+  border-collapse collapse
+  cellspacing 0  
+
+tr
+  border-collapse collapse
   &:hover
     background #E4F1FE
+    border-collapse collapse
+    border:  0px solid black
     
 .buttons-onrow
   width 80px !important
@@ -298,7 +305,8 @@ td
   
 .selected
   color #fff
-  background #1E8BC3
-  .artists
-    color #fff
-    
+  background rgba(27,75,148,0.6)
+  .artist
+    color #fff 
+  &:hover
+    background rgba(27,75,148,0.6) !important

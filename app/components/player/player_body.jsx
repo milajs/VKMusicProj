@@ -8,7 +8,6 @@ class Player extends Component {
 		super(props);
 
 		this.state = {
-			ButtonValue: '▶',
 			played: 0,
 			volume: 0.8
 		};
@@ -27,6 +26,16 @@ class Player extends Component {
         this.setState({ volume: parseFloat(event.target.value) });
     }
 
+    onClick() {
+    	this.props.playPause();
+    }
+
+    onEndedHandle() {
+    	this.props.nextAudioByEnd();
+		console.log('audio is ended');
+    }
+
+
 	render() {
 
 		return (
@@ -41,9 +50,10 @@ class Player extends Component {
 					className="player"
 					seekTo={this.props.played}
 					onProgress={this.onProgressHandle.bind(this)}
+					onEnded={this.onEndedHandle.bind(this)}
 				/> 
 
-				<input type="button" className="play-btn-on-player" value={this.state.ButtonValue} />
+				<input type="button" className="play-btn-on-player" value={this.props.ButtonValue} onClick={this.onClick.bind(this)} />
 				<button className="pervios-audio"> <img className="switch-buttons-pic" src={require('./../media/prev-arrow.png')} /> </button>
 				<button className="next-audio"> <img className="switch-buttons-pic" src={require('./../media/next-arrow.png')} /> </button>
 				<input type='range' className="progress-bar" min={0} max={1} step='any' value={this.state.played} onChange={this.onSeekChange.bind(this)} />
@@ -58,7 +68,8 @@ class Player extends Component {
 
 Player.propTyes = {
 	Audiourl: PropTypes.string.isRequired,
-	playing: PropTypes.bool.isRequired
+	playing: PropTypes.bool.isRequired,
+	ButtonValue: PropTypes.string.isRequired
 };
 
 export default Player
