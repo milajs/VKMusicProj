@@ -21,34 +21,18 @@ import AudioRow from './audio_row.jsx';
 
 class AudioList extends Component {
 
-	// constructor(props) {
-	// 	super(props);
-
-	// 	this.state = {
-	// 		audiolist: []
-	// 	};
-	// }
-
 	componentDidMount() {
-
 		this.props.HandleLoadAudios();
-
-		// vk_getaudios(function (audiosArray){
-		// 	if (audiosArray) {
-		// 		console.log('alist: ' + audiosArray)
-		// 		this.setState( {audiolist: audiosArray} );
-		// 	}
-		// }.bind(this))
 	}
 
-	handleTest(url,key) {
-		this.props.handleUpdate(url,key);
+	handleNewAudioPlay(url) {
+		this.props.handleUpdatePlaying(url);
 	}
 
 
 	render() {
 
-		var _data = this.props.audiolist
+		var _data = this.props.Audiolist
 
 		return (
 
@@ -58,8 +42,9 @@ class AudioList extends Component {
 
 						{_data.map(function(audioModel, i) {
 							return <AudioRow 
+										{...this.state}
 										audio={audioModel} 
-										handleUpdate={this.handleTest} 
+										handleNewAudioRow={this.handleNewAudioPlay.bind(this)} 
 										audioIndex={i} 
 										key={i} 
 									/>
@@ -76,7 +61,7 @@ class AudioList extends Component {
 
 AudioList.propTyes = {
 	HandleLoadAudios: PropTypes.func.isRequired,
-	audiolist: PropTypes.array.isRequired
+	Audiolist: PropTypes.array.isRequired
 };
 
 export default AudioList

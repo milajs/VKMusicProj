@@ -9,7 +9,7 @@ class PlayerSection extends Component {
 		return (
 
 			<div className="player-block">
-				<Player />
+				<Player {...this.props} />
 				<SearchField />
 			</div>
 
@@ -17,5 +17,12 @@ class PlayerSection extends Component {
 	}
 
 }
+
+
+Player.propTyes = {
+	Audiourl: PropTypes.string.isRequired,
+	playing: PropTypes.bool.isRequired
+};
+
 
 export default PlayerSection

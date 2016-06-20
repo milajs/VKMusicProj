@@ -29,7 +29,9 @@ class App extends Component {
     constructor(props){
     super(props);
     this.state = {
-      audiolist: [],
+      Audiolist: [],
+      Audiourl: '',
+      Playing: false
     };
   }
 
@@ -38,19 +40,33 @@ class App extends Component {
     vk_getaudios(function (audiosArray){
       if (audiosArray) {
         console.log('alist: ' + audiosArray)
-        this.setState( {audiolist: audiosArray} );
+        this.setState( {Audiolist: audiosArray} );
       }
     }.bind(this))
+  }
+
+  handleUpdatePlaying(url) {
+    this.setState( {Audiourl: url, playing: true} );
+
+    console.log('loloasdadsad ->' + this.state.Audiourl);
+
+    // this.setState( {value: this.state.playing ? '▶' : '||'} );
 
   }
 
   render() {
+
+    console.log('url test' + this.state.Audiourl);
     return (
 
       <div>
         <MenuSection {...this.state} />
-        <PlayerSection />
-        <AudioList {...this.state} HandleLoadAudios={this.HandleLoadAudios.bind(this)} />
+        <PlayerSection {...this.state} />
+        <AudioList 
+          {...this.state} 
+          HandleLoadAudios={this.HandleLoadAudios.bind(this)}
+          handleUpdatePlaying={this.handleUpdatePlaying.bind(this)} 
+        />
       </div>
 
     )

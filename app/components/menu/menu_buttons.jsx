@@ -1,22 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 
-// var audios_array = [];
-
-// function vk_getaudios (callback) {
-// 	VK.Api.call('audio.get', {count: 50}, function(r) { 
-
-// 		if(r.error) {
-// 			console.log("audio.get error ->" + JSON.stringify(r.error));
-// 		} else {
-
-// 			audios_array = r.response;
-
-// 			console.log('Список аудио 50 штук, ' + JSON.stringify(audios_array));
-// 			callback(r.response);
-// 		}
-// 	}); 
-// }
-
 
 class MenuButtonsList extends Component {
 
