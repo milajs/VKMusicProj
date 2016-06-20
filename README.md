@@ -10,4 +10,5 @@ VK music web app.
 
 
 ## Screenshots
-![ScreenShot](http://cs615218.vk.me/u138009602/docs/c7813bf4abec/screen.png)
+
+![ScreenShot](https://github.com/LyudmilaP/VKMusicProj/blob/master/app/components/media/screen.png?raw=true)
