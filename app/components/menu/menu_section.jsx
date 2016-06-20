@@ -10,7 +10,7 @@ class MenuSection extends Component {
 
 		<div className="menu-section">
 			<UserData />
-			<MenuButtonsList />
+			<MenuButtonsList {...this.state} />
 		</div>
 
     )

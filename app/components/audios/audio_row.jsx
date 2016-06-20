@@ -19,15 +19,15 @@ class AudioRow extends Component {
 		return (
 
 			<tr>
-                <td className="artist"> {this.props.audio.artist} </td>
-                <td> {this.props.audio.title} </td>
-                <td className="buttons-onrow">
-                    <input type="button" className="stop-btn-onrow" onClick={this.handleClick} value={this.state.Value} /> 
-                    <a href={this.props.audio.url} download="audio.mp3">
-                    	<button className="download-btn line"> <img className="download-img" src="/media/download.png"/> </button>
-                    </a>
-                </td>
-            </tr>
+				<td className="artist"> {this.props.audio.artist} </td>
+				<td> {this.props.audio.title} </td>
+				<td className="buttons-onrow">
+					<input type="button" className="stop-btn-onrow" onClick={this.handleClick} value={this.state.Value} /> 
+					<a href={this.props.audio.url} download="audio.mp3">
+						<button className="download-btn"> <img className="download-img" src={require('./../media/download.png')}/> </button>
+					</a>
+				</td>
+			</tr>
 
 		)
 	}

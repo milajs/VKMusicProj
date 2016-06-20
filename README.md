@@ -7,3 +7,7 @@ VK music web app.
 + `npm install`
 + `npm start`
 + go to `http://localhost:3000/` in your browser
+
+
+## Screenshots
+![ScreenShot](http://cs615218.vk.me/u138009602/docs/c7813bf4abec/screen.png)

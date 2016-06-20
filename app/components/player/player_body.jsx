@@ -24,11 +24,11 @@ class Player extends Component {
 				/> 
 
 				<input type="button" className="play-btn-on-player" value={this.state.ButtonValue} />
-				<button className="pervios-audio"> <img className="switch-buttons-pic" src="http://cs415216.vk.me/u138009602/docs/0db858380268/prev-arrow.png" /> </button>
-				<button className="next-audio"> <img className="switch-buttons-pic" src="http://cs615430.vk.me/u138009602/docs/91670ae29878/next-arrow.png" /> </button>
+				<button className="pervios-audio"> <img className="switch-buttons-pic" src={require('./../media/prev-arrow.png')} /> </button>
+				<button className="next-audio"> <img className="switch-buttons-pic" src={require('./../media/next-arrow.png')} /> </button>
 				<input type='range' className="progress-bar" min={0} max={1} step='any' />
 				<input type='range' className="volume-bar" min={0} max={1} step='any' />
-				<img className="volume-pic" src="http://cs415521.vk.me/u138009602/docs/835c5ecbaae0/audio-speaker.png" />
+				<img className="volume-pic" src={require('./../media/audio-speaker.png')} />
 			</div>
 
 		)

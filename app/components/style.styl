@@ -30,7 +30,7 @@ body
   left 0
   width 240px
   height 100vh
-  background rgba(27,75,148,0.6)
+  background rgba(27,75,148,0.5)
  
 .user-img
   margin-top 40px
@@ -97,7 +97,7 @@ body
   margin-left 20px
   width 30px
   height 30px
-  border-radius 5%
+  border-radius 3px
   border 0px solid
   padding-bottom 5px
   z-index 2
@@ -109,7 +109,8 @@ body
 .player
   position fixed
   top 0
-  z-index -1
+  left 950px
+  z-index -5
   
   
 .switch-buttons-pic
@@ -185,7 +186,7 @@ input[type=range]:focus::-webkit-slider-thumb {
   
 .volume-pic
   width 15px
-  opacity 0.4
+  opacity 0.5
   position fixed
   left 925px
   top 42px
@@ -199,7 +200,7 @@ input[type=range]:focus::-webkit-slider-thumb {
   height 25px
   border 1px solid rgba(52, 73, 94, 0.5)
   padding-left 33px
-  background-image url('http://cs415623.vk.me/u138009602/docs/d3c277db4621/loopa.png')
+  background-image url('./media/loopa.png')
   background-repeat no-repeat
   background-size 20px
   background-position 4px 4px
@@ -243,6 +244,7 @@ td
   
 .buttons-onrow
   width 80px !important
+  padding-left 20px
   white-space nowrap
   
 .stop-btn-onrow
@@ -250,12 +252,12 @@ td
   color #fff
   background rgba(13,36,71,0.9)
   font-weight 600
-  font-size 12px
+  font-size 10px
   letter-spacing 3px
   text-align right
   width 25px
   height 20px
-  border-radius 5%
+  border-radius 3px
   border 0px solid
   vertical-align top
   cursor pointer
@@ -263,39 +265,29 @@ td
      outline 0 
      box-shadow none 
      
-
-////////////////////////////////////////////////////
-///////  old styles   /////////////////////////////
-//////////////////////////////////////////////////
-      
-   
-.wrap
-  white-space nowrap
-  
-.line
-  display inline-block
-       
-
      
 .download-btn
-  color #fff
-  background #1E8BC3
+  display inline-block
+  background rgba(13,36,71,0.9)
   margin-left 10px
   width 25px
   height 20px
-  border-radius 5%
+  border-radius 3px
   border 0px solid
-  text-align center
   cursor pointer
   &:focus
      outline 0 
      box-shadow none 
-  
-  
+     
 .download-img
-  width 15px
-  
-  
+  width 13px
+     
+
+////////////////////////////////////////////////////
+///////  old styles   /////////////////////////////
+//////////////////////////////////////////////////
+
+
 .audio-row
   &:hover
     background #E4F1FE

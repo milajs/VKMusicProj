@@ -1,42 +1,44 @@
 import React, { Component, PropTypes } from 'react';
 import AudioRow from './audio_row.jsx';
 
-var audios_array = [];
+// var audios_array = [];
 
-function vk_getaudios (callback) {
-	VK.Api.call('audio.get', {count: 30}, function(r) { 
+// function vk_getaudios (callback) {
+// 	VK.Api.call('audio.get', {count: 50}, function(r) { 
 
-		if(r.error) {
-			console.log("audio.get error ->" + JSON.stringify(r.error));
-		} else {
+// 		if(r.error) {
+// 			console.log("audio.get error ->" + JSON.stringify(r.error));
+// 		} else {
 
-			audios_array = r.response;
+// 			audios_array = r.response;
 
-			console.log('Список аудио 30 штук, ' + JSON.stringify(audios_array));
-			callback(r.response);
-		}
-	}); 
-}
+// 			console.log('Список аудио 50 штук: ' + JSON.stringify(audios_array));
+// 			callback(r.response);
+// 		}
+// 	}); 
+// }
 
 
 class AudioList extends Component {
 
-	constructor(props) {
-		super(props);
+	// constructor(props) {
+	// 	super(props);
 
-		this.state = {
-			audiolist: []
-		};
-	}
+	// 	this.state = {
+	// 		audiolist: []
+	// 	};
+	// }
 
 	componentDidMount() {
 
-		vk_getaudios(function (audiosArray){
-			if (audiosArray) {
-				console.log('alist: ' + audiosArray)
-				this.setState( {audiolist: audiosArray} );
-			}
-		}.bind(this))
+		this.props.HandleLoadAudios();
+
+		// vk_getaudios(function (audiosArray){
+		// 	if (audiosArray) {
+		// 		console.log('alist: ' + audiosArray)
+		// 		this.setState( {audiolist: audiosArray} );
+		// 	}
+		// }.bind(this))
 	}
 
 	handleTest(url,key) {
@@ -46,7 +48,7 @@ class AudioList extends Component {
 
 	render() {
 
-		var _data = this.state.audiolist
+		var _data = this.props.audiolist
 
 		return (
 
@@ -70,5 +72,11 @@ class AudioList extends Component {
 		)
 	}
 }
+
+
+AudioList.propTyes = {
+	HandleLoadAudios: PropTypes.func.isRequired,
+	audiolist: PropTypes.array.isRequired
+};
 
 export default AudioList
