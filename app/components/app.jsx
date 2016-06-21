@@ -10,6 +10,7 @@ var audios_array = [];
 var search_result = [];
 
 function vk_getaudios (callback) {
+
   VK.Api.call('audio.get', {count: 50}, function(r) { 
 
     if(r.error) {
@@ -17,11 +18,13 @@ function vk_getaudios (callback) {
     } else {
 
       audios_array = r.response;
-
       //console.log('Список аудио 50 штук: ' + JSON.stringify(audios_array));
       callback(r.response);
+
     }
+
   }); 
+
 }
 
 function vk_searchaudio (query,callback) {
@@ -124,7 +127,6 @@ class App extends Component {
           {...this.props}
           playPause={this.playPause.bind(this)}
           nextAudioByEnd={this.nextAudioByEnd.bind(this)}
-          SearchAudio={this.SearchAudioQuery.bind(this)}
           OnChangeAudioSearchQuery={this.OnChangeAudioSearchQuery.bind(this)}
 
         />
