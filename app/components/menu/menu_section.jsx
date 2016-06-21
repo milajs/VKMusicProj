@@ -20,6 +20,7 @@ class MenuSection extends Component {
 
 MenuSection.propTyes = {
 	HandleLoadRecommendations: PropTypes.func.isRequired,
+	HandleLoadAudios: PropTypes.func.isRequired,
 	GetUserData: PropTypes.func.isRequired,
 	User_id: PropTypes.number.isRequired,
     ImageUrl: PropTypes.string.isRequired,

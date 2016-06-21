@@ -35,6 +35,14 @@ class Player extends Component {
 		console.log('audio is ended');
 	}
 
+	ChangeAudioPrev() {
+		this.props.playPrevAudio();
+	}
+
+	ChangeAudioNext() {
+		this.props.playNextAudio();
+	}
+
 
 	render() {
 
@@ -53,11 +61,34 @@ class Player extends Component {
 					onEnded={this.onEndedHandle.bind(this)}
 				/> 
 
-				<input type="button" className="play-btn-on-player" value={this.props.ButtonValue} onClick={this.onClick.bind(this)} />
-				<button className="pervios-audio"> <img className="switch-buttons-pic" src={require('./../media/prev-arrow.png')} /> </button>
-				<button className="next-audio"> <img className="switch-buttons-pic" src={require('./../media/next-arrow.png')} /> </button>
-				<input type='range' className="progress-bar" min={0} max={1} step='any' value={this.state.played} onChange={this.onSeekChange.bind(this)} />
-				<input type='range' className="volume-bar" min={0} max={1} step='any' value={this.state.volume} onChange={this.setVolume.bind(this)} />
+				<input 
+					type="button" 
+					className="play-btn-on-player" 
+					value={this.props.ButtonValue} 
+					onClick={this.onClick.bind(this)} 
+				/>
+
+				<button className="pervios-audio" onClick={this.ChangeAudioPrev.bind(this)}> <img className="switch-buttons-pic" src={require('./../media/prev-arrow.png')} /> </button>
+				<button className="next-audio" onClick={this.ChangeAudioNext.bind(this)}> <img className="switch-buttons-pic" src={require('./../media/next-arrow.png')} /> </button>
+
+				<input 
+					type='range' 
+					className="progress-bar" 
+					min={0} 
+					max={1} 
+					step='any' 
+					value={this.state.played} 
+					onChange={this.onSeekChange.bind(this)} 
+				/>
+				<input 
+					type='range' 
+					className="volume-bar" 
+					min={0} 
+					max={1} 
+					step='any' 
+					value={this.state.volume} 
+					onChange={this.setVolume.bind(this)} 
+				/>
 				<img className="volume-pic" src={require('./../media/audio-speaker.png')} />
 			</div>
 
@@ -69,7 +100,9 @@ class Player extends Component {
 Player.propTyes = {
 	Audiourl: PropTypes.string.isRequired,
 	playing: PropTypes.bool.isRequired,
-	ButtonValue: PropTypes.string.isRequired
+	ButtonValue: PropTypes.string.isRequired,
+	playNextAudio: PropTypes.func.isRequired,
+	playPrevAudio: PropTypes.func.isRequired
 };
 
 export default Player

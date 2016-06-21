@@ -6,7 +6,8 @@ class MenuButtonsList extends Component {
 	HandleLogIn() {
 		VK.Auth.login(function(cb) {
 			console.log('login cb ->' + JSON.stringify(cb));
-		},1034);
+			this.setState({IsAuth : true}); 
+		}.bind(this),1034);
 	}
 
 	HandleLoad() {		
@@ -19,20 +20,38 @@ class MenuButtonsList extends Component {
 
 	HandleLogOut() {
 		VK.Auth.logout(function (cb) {
-			console.log('logout cb ->' + JSON.stringify(cb)); 
-		});
+			console.log('logout cb ->' + JSON.stringify(cb));
+			this.setState({IsAuth : false}); 
+
+		}.bind(this));
 	}
 
+	HandleAuthAction() {
 
+		if (this.props.IsAuth == true) {
+			this.HandleLogOut();
+		} else {
+			this.HandleLogIn();
+		}
+
+	}
 
 	render() {
+
+		var authStateString;
+
+		if (this.props.IsAuth == true) {
+			authStateString	= "Log out";
+		} else {
+			authStateString = "Log in";
+		}
+
 		return (
 
 		<div className="menu-buttons-block">
-			<button className="menu-button" onClick={this.HandleLogIn.bind(this)} > Log In </button>
-			<button className="menu-button" onClick={this.HandleLoad.bind(this)} > Load audio </button>
+			<button className="menu-button" onClick={this.HandleLoad.bind(this)} > My audios </button>
 			<button className="menu-button" onClick={this.HandleRecommend.bind(this)} > Recommendations </button>
-			<button className="menu-button" onClick={this.HandleLogOut.bind(this)} > Log Out </button>
+			<button className="menu-button" onClick={this.HandleAuthAction.bind(this)} > {authStateString} </button>
 		</div>
 
 		)
@@ -41,7 +60,8 @@ class MenuButtonsList extends Component {
 
 MenuButtonsList.propTyes = {
 	HandleLoadAudios: PropTypes.func.isRequired,
-	HandleLoadRecommendations: PropTypes.func.isRequired
+	HandleLoadRecommendations: PropTypes.func.isRequired,
+	IsAuth: PropTypes.bool.isRequired
 };
 
 export default MenuButtonsList
