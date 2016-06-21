@@ -8,6 +8,7 @@ var css = require('./style.styl');
 
 var audios_array = [];
 var search_result = [];
+var user_id = [];
 
 function vk_getaudios (callback) {
 
@@ -18,7 +19,6 @@ function vk_getaudios (callback) {
     } else {
 
       audios_array = r.response;
-      //console.log('Список аудио 50 штук: ' + JSON.stringify(audios_array));
       callback(r.response);
 
     }
@@ -37,13 +37,43 @@ function vk_searchaudio (query,callback) {
 
             search_result = r.response;
             search_result.shift();
-
-            //console.log('результаты поиска:  ' + JSON.stringify(search_result));
             callback(search_result);
         }
     }); 
 }
 
+
+function vk_getrecommend (callback) {
+
+    VK.Api.call('audio.getRecommendations', {user_id: user_id}, function(r) { 
+
+        if(r.error) {
+            console.log("audio.getRecommendations error ->" + JSON.stringify(r.error));
+        } else {
+
+            search_result = r.response;
+            search_result.shift();
+            callback(search_result);
+            console.log("audio.getRecommendations results ->" + r.response);
+        }
+    }); 
+}
+
+
+function vk_getuserphoto (callback) {
+  VK.Api.call('users.get', {fields: 'photo_200'}, function(r) { 
+
+    if(r.error) {
+      console.log("users.get error ->" + JSON.stringify(r.error));
+    } else {
+
+      var user = r.response;
+
+      console.log('Данные пользователя ' + JSON.stringify(user[0]));
+      callback(user[0]);
+    }
+  }); 
+}
 
 
 class App extends Component {
@@ -55,7 +85,12 @@ class App extends Component {
       Audiolist: [],
       Audiourl: '',
       Playing: false,
-      CurrentQuery: ''
+      CurrentQuery: '',
+      User_id: 0,
+      ImageUrl: '',
+      UserFirstName: '',
+      UserLastName: '',
+      IsAuth:false
     };
   }
 
@@ -68,6 +103,18 @@ class App extends Component {
         }
       }.bind(this))
   }
+
+  HandleLoadRecommendations() {
+
+    console.log("search recommendations"); 
+
+    vk_getrecommend(function(RecArray) {
+          if (RecArray) {
+            this.setState( {Audiolist: RecArray} );
+          }
+        }.bind(this));
+  }
+
 
   handleUpdatePlaying(audiomodel) {
 
@@ -86,6 +133,25 @@ class App extends Component {
     this.setState( {playing: !this.state.playing, ButtonValue: this.state.playing ? '▶' : '||'} );
   }
 
+
+  GetUserData() {
+    console.log(':::: id get ::::');
+
+    vk_getuserphoto(function (userData){
+
+      if (userData) {
+        this.setState( {
+                IsAuth:true,
+                User_id: userData.uid,
+                ImageUrl: userData.photo_200, 
+                UserFirstName: userData.first_name, 
+                UserLastName: userData.last_name} );
+        user_id = userData.uid;
+      }
+    }.bind(this))
+  }
+
+
   nextAudioByEnd() {
 
     var audiolist = this.state.Audiolist;
@@ -97,31 +163,28 @@ class App extends Component {
   OnChangeAudioSearchQuery(query) {
 
       if (query != '') {
-
         vk_searchaudio(query,function(audio_list) {
-
           if (audio_list) {
-
             this.setState( {Audiolist: audio_list} );
-
           }
-
         }.bind(this));
 
     } else {
-
       this.HandleLoadAudios();
-
     }
-
-  }
+  } 
 
   render() {
 
     return (
 
       <div>
-        <MenuSection {...this.state} />
+        <MenuSection 
+          {...this.state} 
+          {...this.props} 
+          HandleLoadRecommendations={this.HandleLoadRecommendations.bind(this)}
+          GetUserData={this.GetUserData.bind(this)}
+        />
         <PlayerSection 
           {...this.state}
           {...this.props}

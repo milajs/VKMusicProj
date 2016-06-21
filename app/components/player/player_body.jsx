@@ -14,26 +14,26 @@ class Player extends Component {
 	}
 
 	onSeekChange(event) {    
-        this.setState({ played: parseFloat(event.target.value) });
-        this.refs.player.seekTo(parseFloat(event.target.value));
-    }
+		this.setState({ played: parseFloat(event.target.value) });
+		this.refs.player.seekTo(parseFloat(event.target.value));
+	}
 
-    onProgressHandle(event) {
-        this.setState({ played: parseFloat(event.played) });
-    }
+	onProgressHandle(event) {
+		this.setState({ played: parseFloat(event.played) });
+	}
 
-    setVolume(event) {   
-        this.setState({ volume: parseFloat(event.target.value) });
-    }
+	setVolume(event) {   
+		this.setState({ volume: parseFloat(event.target.value) });
+	}
 
-    onClick() {
-    	this.props.playPause();
-    }
+	onClick() {
+		this.props.playPause();
+	}
 
-    onEndedHandle() {
-    	this.props.nextAudioByEnd();
+	onEndedHandle() {
+		this.props.nextAudioByEnd();
 		console.log('audio is ended');
-    }
+	}
 
 
 	render() {

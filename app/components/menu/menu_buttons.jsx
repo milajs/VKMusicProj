@@ -13,6 +13,10 @@ class MenuButtonsList extends Component {
 		this.props.HandleLoadAudios();
 	}
 
+	HandleRecommend() {		
+		this.props.HandleLoadRecommendations();
+	}
+
 	HandleLogOut() {
 		VK.Auth.logout(function (cb) {
 			console.log('logout cb ->' + JSON.stringify(cb)); 
@@ -27,6 +31,7 @@ class MenuButtonsList extends Component {
 		<div className="menu-buttons-block">
 			<button className="menu-button" onClick={this.HandleLogIn.bind(this)} > Log In </button>
 			<button className="menu-button" onClick={this.HandleLoad.bind(this)} > Load audio </button>
+			<button className="menu-button" onClick={this.HandleRecommend.bind(this)} > Recommendations </button>
 			<button className="menu-button" onClick={this.HandleLogOut.bind(this)} > Log Out </button>
 		</div>
 
@@ -36,6 +41,7 @@ class MenuButtonsList extends Component {
 
 MenuButtonsList.propTyes = {
 	HandleLoadAudios: PropTypes.func.isRequired,
+	HandleLoadRecommendations: PropTypes.func.isRequired
 };
 
 export default MenuButtonsList
