@@ -116,6 +116,7 @@ class App extends Component {
     if (this.state.TotalCountAudios > 0) {
 
         if (offset < this.state.TotalCountAudios) {
+
                 vk_getaudios(offset,function (audiosArray,totalcount){
                 if (audiosArray) {
 
@@ -149,7 +150,10 @@ class App extends Component {
 
           this.setState( {Audiolist: resarr,
                           OffsetCounter:offset,
-                          TotalCountAudios:totalcount} );
+                          TotalCountAudios:totalcount,
+                          CurrentArtist: resarr[0].artist,
+                          CurrentTitle: resarr[0].title,
+                          CurrentPlayedAudioModel: resarr[0]} );
         }
 
       }.bind(this))
@@ -169,7 +173,9 @@ class App extends Component {
 
   handleUpdatePlaying(audiomodel) {
 
-    this.setState( {  
+    if(this.state.CurrentPlayedAudioModel.id !== audiomodel.id) {
+
+      this.setState( {  
 
                       Audiourl: audiomodel.url,
                       CurrentPlayedAudioModel:audiomodel, 
@@ -178,7 +184,10 @@ class App extends Component {
                       CurrentArtist: audiomodel.artist,
                       CurrentTitle: audiomodel.title
 
-                    } );
+                      } );
+    } else {
+      this.playPause();
+    }
   }
 
 
@@ -247,7 +256,6 @@ class App extends Component {
   OnChangeAudioSearchQuery(query) {
 
       if (query != '') {
-
         vk_searchaudio(query,function(audio_list) {
           if (audio_list) {
             this.setState( {Audiolist: audio_list} );

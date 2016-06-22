@@ -56,6 +56,7 @@ class AudioList extends Component {
 						{_data.map(function(audioModel, i) {
 							return <AudioRow 
 										{...this.props}
+										{...this.state}
 										audio={audioModel} 
 										handleNewAudioRow={this.handleNewAudioPlay.bind(this)} 
 										audioIndex={i} 
@@ -75,7 +76,9 @@ class AudioList extends Component {
 AudioList.propTyes = {
 	HandleLoadAudios: PropTypes.func.isRequired,
 	Audiolist: PropTypes.array.isRequired,
-	CurrentPlayedAudioModel: PropTypes.object.isRequired
+	CurrentPlayedAudioModel: PropTypes.object.isRequired,
+	playPause: PropTypes.func.isRequired,
+	ButtonValue: PropTypes.string.isRequired
 };
 
 export default AudioList
