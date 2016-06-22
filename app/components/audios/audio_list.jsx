@@ -1,32 +1,45 @@
 import React, { Component, PropTypes } from 'react';
 import AudioRow from './audio_row.jsx';
+import ReactDOM from 'react-dom';
+import InfiniteScroll from 'react-infinite-scroller'
 
-// var audios_array = [];
-
-// function vk_getaudios (callback) {
-// 	VK.Api.call('audio.get', {count: 50}, function(r) { 
-
-// 		if(r.error) {
-// 			console.log("audio.get error ->" + JSON.stringify(r.error));
-// 		} else {
-
-// 			audios_array = r.response;
-
-// 			console.log('Список аудио 50 штук: ' + JSON.stringify(audios_array));
-// 			callback(r.response);
-// 		}
-// 	}); 
-// }
-
+var scroll_position = 0;
 
 class AudioList extends Component {
 
 	componentDidMount() {
 		this.props.HandleLoadAudios();
+		window.addEventListener('scroll', this.handleScroll);
 	}
 
 	handleNewAudioPlay(audiomodel) {
 		this.props.handleUpdatePlaying(audiomodel);
+	}
+
+	componentWillUnmount() {
+    	window.removeEventListener('scroll', this.handleScroll);
+	}
+
+	handleScroll() {
+
+		let body = document.body;
+    	let	html = document.documentElement;
+
+		let scrollSize = Math.max( body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
+	    let scrollOffset = body.scrollTop;
+	    let windowHeight = window.innerHeight;
+	    scroll_position = scrollSize - scrollOffset - windowHeight;
+
+	    console.log('value -> ', scroll_position);
+	    console.log('value scrollSize -> ', scrollSize);
+	    console.log('value scrollOffset -> ', scrollOffset)
+	    console.log('value windowHeight -> ', windowHeight);
+
+
+	    if (scroll_position < 200) {
+	    	console.log(':::: LOAD MORE :::::');
+	    	this.props.HandleLoadAudios();
+	    } 
 	}
 
 

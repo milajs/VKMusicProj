@@ -23,6 +23,8 @@ Player.propTyes = {
 	Audiourl: PropTypes.string.isRequired,
 	playing: PropTypes.bool.isRequired,
 	ButtonValue: PropTypes.string.isRequired,
+	CurrentArtist: PropTypes.string.isRequired,
+	CurrentTitle: PropTypes.string.isRequired,
 	playNextAudio: PropTypes.func.isRequired,
 	playPrevAudio: PropTypes.func.isRequired,
 	OnChangeAudioSearchQuery: PropTypes.func.isRequired

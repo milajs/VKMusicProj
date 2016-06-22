@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import MenuSection from './menu/menu_section.jsx';
 import PlayerSection from './player/player_section.jsx';
 import AudioList from './audios/audio_list.jsx';
+import InfiniteScroll from 'react-infinite-scroller';
 
 var css = require('./style.styl');
 
@@ -10,22 +11,28 @@ var audios_array = [];
 var search_result = [];
 var user_id = [];
 
-function vk_getaudios (callback) {
+function vk_getaudios (offset,callback) {
 
-  VK.Api.call('audio.get', {count: 50}, function(r) { 
+  console.log('::: current audios count ->   ',offset);
+
+  VK.Api.call('audio.get', {count: 30 ,offset:offset,v:"5.52"}, function(r) { 
 
     if(r.error) {
       console.log("audio.get error ->" + JSON.stringify(r.error));
-    } else {
+      return;
+    } 
 
-      audios_array = r.response;
-      callback(r.response);
+    console.log('::: reponse ->',r.response.count);
 
-    }
+    audios_array = r.response.items;
 
-  }); 
+    callback(audios_array,r.response.count);
+
+
+  }.bind(this)); 
 
 }
+
 
 function vk_searchaudio (query,callback) {
 
@@ -90,23 +97,67 @@ class App extends Component {
       ImageUrl: '',
       UserFirstName: '',
       UserLastName: '',
-      IsAuth:false
+      IsAuth:false,
+      OffsetCounter: 0,
+      TotalCountAudios: 0,
+      CurrentArtist: '',
+      CurrentTitle: ''
     };
   }
 
   HandleLoadAudios() {
 
-    vk_getaudios(function (audiosArray){
-        if (audiosArray) {
-          console.log('alist: ' + audiosArray)
-          this.setState( {Audiolist: audiosArray} );
+    var offset = this.state.OffsetCounter;
+
+    if (this.state.Audiolist.length != 0) {
+      offset += 30
+    } 
+
+    if (this.state.TotalCountAudios > 0) {
+
+        if (offset < this.state.TotalCountAudios) {
+                vk_getaudios(offset,function (audiosArray,totalcount){
+                if (audiosArray) {
+
+                  var currentAudioList = this.state.Audiolist;
+
+                  console.log(':::: currentAudioList -> ',currentAudioList);
+                  console.log(':::: audiosArray -> ',audiosArray);
+
+                  var resarr =  currentAudioList.concat(audiosArray);
+
+                  console.log(':::: resArray -> ',resarr);
+
+                  this.setState( {Audiolist: resarr,OffsetCounter:offset,TotalCountAudios:totalcount} );
+                }
+              }.bind(this))
         }
+    } else {
+
+      vk_getaudios(0,function (audiosArray,totalcount){
+
+        if (audiosArray) {
+
+          var currentAudioList = this.state.Audiolist;
+
+          console.log(':::: currentAudioList -> ',currentAudioList);
+          console.log(':::: audiosArray -> ',audiosArray);
+
+          var resarr =  currentAudioList.concat(audiosArray);
+
+          console.log(':::: resArray -> ',resarr);
+
+          this.setState( {Audiolist: resarr,
+                          OffsetCounter:offset,
+                          TotalCountAudios:totalcount} );
+        }
+
       }.bind(this))
+    }
   }
 
-  HandleLoadRecommendations() {
 
-    console.log("search recommendations"); 
+  HandleLoadRecommendations() {
 
     vk_getrecommend(function(RecArray) {
           if (RecArray) {
@@ -123,11 +174,13 @@ class App extends Component {
                       Audiourl: audiomodel.url,
                       CurrentPlayedAudioModel:audiomodel, 
                       playing: true, 
-                      ButtonValue: '||'
+                      ButtonValue: '||',
+                      CurrentArtist: audiomodel.artist,
+                      CurrentTitle: audiomodel.title
 
                     } );
-
   }
+
 
   playPause() {
     this.setState( {playing: !this.state.playing, ButtonValue: this.state.playing ? '▶' : '||'} );
@@ -135,7 +188,6 @@ class App extends Component {
 
 
   GetUserData() {
-    console.log(':::: id get ::::');
 
     vk_getuserphoto(function (userData){
 
@@ -156,7 +208,6 @@ class App extends Component {
     this.playNextAudio();
   }
 
-
   playNextAudio() {
 
     var audiolist = this.state.Audiolist;
@@ -172,7 +223,6 @@ class App extends Component {
     }
 
     this.handleUpdatePlaying(audiomodel);
-
   }
 
 
@@ -188,12 +238,11 @@ class App extends Component {
     } else {
 
       var audiomodel = audiolist[indexLastPlayedAudio-1];
-
     }
 
     this.handleUpdatePlaying(audiomodel);
-
   }
+
 
   OnChangeAudioSearchQuery(query) {
 
@@ -209,6 +258,7 @@ class App extends Component {
       this.HandleLoadAudios();
     }
   } 
+
 
   render() {
 
@@ -236,7 +286,7 @@ class App extends Component {
           {...this.state} 
           {...this.props} 
           HandleLoadAudios={this.HandleLoadAudios.bind(this)}
-          handleUpdatePlaying={this.handleUpdatePlaying.bind(this)} 
+          handleUpdatePlaying={this.handleUpdatePlaying.bind(this)}
         />
       </div>
 

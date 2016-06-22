@@ -22,8 +22,9 @@ class AudioRow extends Component {
 
 		if (this.props.CurrentPlayedAudioModel != null) {
 
-			if (this.props.audio.aid === this.props.CurrentPlayedAudioModel.aid) {
+			if (this.props.audio.id === this.props.CurrentPlayedAudioModel.id) {
 				selectedClass = "audio-row selected"
+
 			} else {
 				selectedClass = "audio-row"
 			}

@@ -71,13 +71,20 @@ class Player extends Component {
 				<button className="pervios-audio" onClick={this.ChangeAudioPrev.bind(this)}> <img className="switch-buttons-pic" src={require('./../media/prev-arrow.png')} /> </button>
 				<button className="next-audio" onClick={this.ChangeAudioNext.bind(this)}> <img className="switch-buttons-pic" src={require('./../media/next-arrow.png')} /> </button>
 
+				<div className="current-song-on-player"> 
+					<p className="artist-on-player"> {this.props.CurrentArtist} </p>
+					<p className="title-on-player"> {this.props.CurrentTitle} </p>
+				</div>
+
+
 				<input 
 					type='range' 
 					className="progress-bar" 
 					min={0} 
 					max={1} 
 					step='any' 
-					value={this.state.played} 
+					value={this.state.played}
+
 					onChange={this.onSeekChange.bind(this)} 
 				/>
 				<input 
@@ -101,6 +108,8 @@ Player.propTyes = {
 	Audiourl: PropTypes.string.isRequired,
 	playing: PropTypes.bool.isRequired,
 	ButtonValue: PropTypes.string.isRequired,
+	CurrentArtist: PropTypes.string.isRequired,
+	CurrentTitle: PropTypes.string.isRequired,
 	playNextAudio: PropTypes.func.isRequired,
 	playPrevAudio: PropTypes.func.isRequired
 };
