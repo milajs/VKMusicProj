@@ -5,6 +5,9 @@ class AudioRow extends Component {
 
 	handleClick() { 
 		this.props.handleNewAudioRow(this.props.audio); 
+
+		console.log('audio id  -->  ' + this.props.audio.id);
+		console.log('current audio id  -->  ' + this.props.CurrentPlayedAudioModel.id);
 	}
 
 	render() {

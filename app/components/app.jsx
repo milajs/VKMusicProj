@@ -15,7 +15,7 @@ function vk_getaudios (offset,callback) {
 
   console.log('::: current audios count ->   ',offset);
 
-  VK.Api.call('audio.get', {count: 30 ,offset:offset,v:"5.52"}, function(r) { 
+  VK.Api.call('audio.get', {count: 30, offset:offset, v:"5.52"}, function(r) { 
 
     if(r.error) {
       console.log("audio.get error ->" + JSON.stringify(r.error));
@@ -52,16 +52,14 @@ function vk_searchaudio (query,callback) {
 
 function vk_getrecommend (callback) {
 
-    VK.Api.call('audio.getRecommendations', {user_id: user_id}, function(r) { 
+    VK.Api.call('audio.getRecommendations', {user_id: user_id, count: 100, v:"5.52"}, function(r) { 
 
         if(r.error) {
             console.log("audio.getRecommendations error ->" + JSON.stringify(r.error));
         } else {
 
-            search_result = r.response;
-            search_result.shift();
+            search_result = r.response.items;
             callback(search_result);
-            console.log("audio.getRecommendations results ->" + r.response);
         }
     }); 
 }
@@ -153,7 +151,8 @@ class App extends Component {
                           TotalCountAudios:totalcount,
                           CurrentArtist: resarr[0].artist,
                           CurrentTitle: resarr[0].title,
-                          CurrentPlayedAudioModel: resarr[0]} );
+                          CurrentPlayedAudioModel: resarr[0],
+                          Audiourl: resarr[0].url} )
         }
 
       }.bind(this))

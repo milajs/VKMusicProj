@@ -73,6 +73,7 @@ class Player extends Component {
 
 				<div className="current-song-on-player"> 
 					<p className="artist-on-player"> {this.props.CurrentArtist} </p>
+					<p className="title-on-player"> - </p>
 					<p className="title-on-player"> {this.props.CurrentTitle} </p>
 				</div>
 
