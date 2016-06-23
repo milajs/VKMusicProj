@@ -103,6 +103,7 @@ class App extends Component {
     };
   }
 
+
   HandleLoadAudios() {
 
     var offset = this.state.OffsetCounter;
@@ -267,6 +268,37 @@ class App extends Component {
   } 
 
 
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll);
+  }
+
+  componentWillUnmount() {
+     window.removeEventListener('scroll', this.handleScroll);
+  }
+
+  handleScroll() {
+
+    let body = document.body;
+    let html = document.documentElement;
+
+    let scrollSize = Math.max( body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
+    let scrollOffset = body.scrollTop;
+    let windowHeight = window.innerHeight;
+    let scroll_position = scrollSize - scrollOffset - windowHeight;
+
+    console.log('value -> ', scroll_position);
+    console.log('value scrollSize -> ', scrollSize);
+    console.log('value scrollOffset -> ', scrollOffset)
+    console.log('value windowHeight -> ', windowHeight);
+
+
+    if (scroll_position < 200) {
+      console.log(':::: LOAD MORE :::::');
+      this.refs.audiolist.HandleLoadAudios();
+    } 
+  }
+
+
   render() {
 
     return (
@@ -292,6 +324,7 @@ class App extends Component {
         <AudioList 
           {...this.state} 
           {...this.props} 
+          ref="audiolist"
           HandleLoadAudios={this.HandleLoadAudios.bind(this)}
           handleUpdatePlaying={this.handleUpdatePlaying.bind(this)}
         />

@@ -3,11 +3,6 @@ import React, { Component, PropTypes } from 'react';
 
 class SearchField extends Component {
 
-	handleClick(event) {
-		var query =  event.target.value;
-		this.props.OnChangeAudioSearchQuery(query);
-	}
-
 	handleInput(event) {
 		console.log('inputttt' + event.target.value);
 		console.log('props ->' + this.props);
@@ -18,10 +13,7 @@ class SearchField extends Component {
 		return (
 
 			<div>
-
 				<input type="text" className="search-audio-input" placeholder="Search audio" onChange={this.handleInput.bind(this)} />
-				<input type="submit" className="search-button" value="Search" onClick={this.handleClick.bind(this)} />
-
 			</div>
 
 		)
