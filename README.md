@@ -11,4 +11,4 @@ VK music web app.
 
 ## Screenshots
 
-![ScreenShot](https://github.com/LyudmilaP/VKMusicProj/blob/master/app/components/media/screen.png?raw=true)
+![ScreenShot](https://raw.githubusercontent.com/LyudmilaP/VKMusicProj/master/app/components/media/screen.png)
