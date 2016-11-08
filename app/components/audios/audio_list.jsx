@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import AudioRow from './audio_row.jsx';
 import ReactDOM from 'react-dom';
-import InfiniteScroll from 'react-infinite-scroller'
+// import InfiniteScroll from 'react-infinite-scroller'
 
 // var scroll_position = 0;
 
