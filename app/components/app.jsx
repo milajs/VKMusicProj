@@ -6,13 +6,11 @@ import AudioList from './audios/audio_list.jsx';
 
 var css = require('./style.styl');
 
-
 var audios_array = [];
 var search_result = [];
 var user_id = [];
 
 function vk_getaudios (offset,callback) {
-
   console.log('::: current audios count ->   ',offset);
 
   VK.Api.call('audio.get', {count: 30, offset:offset, v:"5.52"}, function(r) { 
@@ -27,43 +25,34 @@ function vk_getaudios (offset,callback) {
     audios_array = r.response.items;
 
     callback(audios_array,r.response.count);
-
-
   }.bind(this)); 
-
 }
-
 
 function vk_searchaudio (query,callback) {
+  VK.Api.call('audio.search', {q: query}, function(r) { 
 
-    VK.Api.call('audio.search', {q: query}, function(r) { 
+    if(r.error) {
+        console.log("audio.search error ->" + JSON.stringify(r.error));
+    } else {
 
-        if(r.error) {
-            console.log("audio.search error ->" + JSON.stringify(r.error));
-        } else {
-
-            search_result = r.response;
-            search_result.shift();
-            callback(search_result);
-        }
-    }); 
+        search_result = r.response;
+        search_result.shift();
+        callback(search_result);
+    }
+  }); 
 }
-
 
 function vk_getrecommend (callback) {
+  VK.Api.call('audio.getRecommendations', {user_id: user_id, count: 100, v:"5.52"}, function(r) { 
 
-    VK.Api.call('audio.getRecommendations', {user_id: user_id, count: 100, v:"5.52"}, function(r) { 
-
-        if(r.error) {
-            console.log("audio.getRecommendations error ->" + JSON.stringify(r.error));
-        } else {
-
-            search_result = r.response.items;
-            callback(search_result);
-        }
-    }); 
+      if(r.error) {
+        console.log("audio.getRecommendations error ->" + JSON.stringify(r.error));
+      } else {
+        search_result = r.response.items;
+        callback(search_result);
+      }
+  }); 
 }
-
 
 function vk_getuserphoto (callback) {
   VK.Api.call('users.get', {fields: 'photo_200'}, function(r) { 
@@ -80,9 +69,7 @@ function vk_getuserphoto (callback) {
   }); 
 }
 
-
 class App extends Component {
-
   constructor(props){
     super(props);
     this.state = {
@@ -103,9 +90,7 @@ class App extends Component {
     };
   }
 
-
   HandleLoadAudios() {
-
     var offset = this.state.OffsetCounter;
 
     if (this.state.Audiolist.length != 0) {
@@ -116,21 +101,21 @@ class App extends Component {
 
         if (offset < this.state.TotalCountAudios) {
 
-                vk_getaudios(offset,function (audiosArray,totalcount){
-                if (audiosArray) {
+            vk_getaudios(offset,function (audiosArray,totalcount){
+            if (audiosArray) {
 
-                  var currentAudioList = this.state.Audiolist;
+              var currentAudioList = this.state.Audiolist;
 
-                  console.log(':::: currentAudioList -> ',currentAudioList);
-                  console.log(':::: audiosArray -> ',audiosArray);
+              console.log(':::: currentAudioList -> ',currentAudioList);
+              console.log(':::: audiosArray -> ',audiosArray);
 
-                  var resarr =  currentAudioList.concat(audiosArray);
+              var resarr =  currentAudioList.concat(audiosArray);
 
-                  console.log(':::: resArray -> ',resarr);
+              console.log(':::: resArray -> ',resarr);
 
-                  this.setState( {Audiolist: resarr,OffsetCounter:offset,TotalCountAudios:totalcount} );
-                }
-              }.bind(this))
+              this.setState( {Audiolist: resarr,OffsetCounter:offset,TotalCountAudios:totalcount} );
+            }
+          }.bind(this))
         }
     } else {
 
@@ -155,14 +140,11 @@ class App extends Component {
                           CurrentPlayedAudioModel: resarr[0],
                           Audiourl: resarr[0].url} )
         }
-
       }.bind(this))
     }
   }
 
-
   HandleLoadRecommendations() {
-
     vk_getrecommend(function(RecArray) {
           if (RecArray) {
             this.setState( {Audiolist: RecArray} );
@@ -170,9 +152,7 @@ class App extends Component {
         }.bind(this));
   }
 
-
   handleUpdatePlaying(audiomodel) {
-
     if(this.state.CurrentPlayedAudioModel.id !== audiomodel.id) {
 
       this.setState( {  
@@ -190,14 +170,11 @@ class App extends Component {
     }
   }
 
-
   playPause() {
     this.setState( {playing: !this.state.playing, ButtonValue: this.state.playing ? '▶' : '||'} );
   }
 
-
   GetUserData() {
-
     vk_getuserphoto(function (userData){
 
       if (userData) {
@@ -212,13 +189,11 @@ class App extends Component {
     }.bind(this))
   }
 
-
   nextAudioByEnd() {
     this.playNextAudio();
   }
 
   playNextAudio() {
-
     var audiolist = this.state.Audiolist;
     var indexLastPlayedAudio = audiolist.indexOf(this.state.CurrentPlayedAudioModel);
 
@@ -234,9 +209,7 @@ class App extends Component {
     this.handleUpdatePlaying(audiomodel);
   }
 
-
   playPrevAudio() {
-
     var audiolist = this.state.Audiolist;
     var indexLastPlayedAudio = audiolist.indexOf(this.state.CurrentPlayedAudioModel);
 
@@ -252,9 +225,7 @@ class App extends Component {
     this.handleUpdatePlaying(audiomodel);
   }
 
-
   OnChangeAudioSearchQuery(query) {
-
       if (query != '') {
         vk_searchaudio(query,function(audio_list) {
           if (audio_list) {
@@ -267,7 +238,6 @@ class App extends Component {
     }
   } 
 
-
   componentDidMount() {
     window.addEventListener('scroll', this.handleScroll);
   }
@@ -277,7 +247,6 @@ class App extends Component {
   }
 
   handleScroll() {
-
     let body = document.body;
     let html = document.documentElement;
 
@@ -291,18 +260,14 @@ class App extends Component {
     console.log('value scrollOffset -> ', scrollOffset)
     console.log('value windowHeight -> ', windowHeight);
 
-
     if (scroll_position < 200) {
       console.log(':::: LOAD MORE :::::');
       this.refs.audiolist.HandleLoadAudios();
     } 
   }
 
-
   render() {
-
     return (
-
       <div>
         <MenuSection 
           {...this.state} 
@@ -329,10 +294,8 @@ class App extends Component {
           handleUpdatePlaying={this.handleUpdatePlaying.bind(this)}
         />
       </div>
-
     )
   }
-
 }
 
 export default App

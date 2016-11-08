@@ -1,9 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import ReactPlayer from 'react-player';
 
-
 class Player extends Component {
-
 	constructor(props) {
 		super(props);
 
@@ -43,13 +41,9 @@ class Player extends Component {
 		this.props.playNextAudio();
 	}
 
-
 	render() {
-
 		return (
-
 			<div className="player-body">
-
 				<ReactPlayer 
 					ref='player'
 					url={this.props.Audiourl} 
@@ -77,7 +71,6 @@ class Player extends Component {
 					<p className="title-on-player"> {this.props.CurrentTitle} </p>
 				</div>
 
-
 				<input 
 					type='range' 
 					className="progress-bar" 
@@ -99,10 +92,8 @@ class Player extends Component {
 				/>
 				<img className="volume-pic" src={require('./../media/audio-speaker.png')} />
 			</div>
-
 		)
 	}
-
 }
 
 Player.propTyes = {

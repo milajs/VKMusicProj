@@ -1,11 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 
-
 class UserData extends Component {
-
-
 	componentDidMount() {
-
 		this.props.GetUserData();
 	}
 
@@ -21,9 +17,7 @@ class UserData extends Component {
 		return avatarImage;
 	}
 
-
 	render() {
-
 		return (
 			<div>
 				<img className="user-img" src={this.getAvatarImage()} />

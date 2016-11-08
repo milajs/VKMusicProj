@@ -1,8 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
-
 class SearchField extends Component {
-
 	handleInput(event) {
 		console.log('inputttt' + event.target.value);
 		console.log('props ->' + this.props);
@@ -11,16 +9,12 @@ class SearchField extends Component {
 
 	render() {
 		return (
-
 			<div>
 				<input type="text" className="search-audio-input" placeholder="Search audio" onChange={this.handleInput.bind(this)} />
 			</div>
-
 		)
 	}
- 
 }
-
 
 SearchField.propTyes = {
 	SearchAudio: PropTypes.func.isRequired,

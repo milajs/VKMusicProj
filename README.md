@@ -1,8 +1,7 @@
 # VKMusicProj
-VK music web app.
+VK music web app created with React.
 
 ## Setup and Run App Locally
-***WIP***
 + clone repo
 + `npm install`
 + `npm start`
