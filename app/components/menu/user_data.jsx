@@ -13,7 +13,6 @@ class UserData extends Component {
 		} else {
 			avatarImage = this.props.ImageUrl;
 		}
-
 		return avatarImage;
 	}
 

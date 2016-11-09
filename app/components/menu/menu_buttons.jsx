@@ -1,26 +1,23 @@
 import React, { Component, PropTypes } from 'react';
 
-
 class MenuButtonsList extends Component {
 	HandleLogIn() {
 		VK.Auth.login(function(cb) {
-			console.log('login cb ->' + JSON.stringify(cb));
-			this.setState({IsAuth : true}); 
+			this.setState({IsAuth : true});
 		}.bind(this),1034);
 	}
 
-	HandleLoad() {		
+	HandleLoad() {
 		this.props.HandleLoadAudios();
 	}
 
-	HandleRecommend() {		
+	HandleRecommend() {
 		this.props.HandleLoadRecommendations();
 	}
 
 	HandleLogOut() {
 		VK.Auth.logout(function (cb) {
-			console.log('logout cb ->' + JSON.stringify(cb));
-			this.setState({IsAuth : false}); 
+			this.setState({IsAuth : false});
 
 		}.bind(this));
 	}
@@ -31,7 +28,6 @@ class MenuButtonsList extends Component {
 		} else {
 			this.HandleLogIn();
 		}
-
 	}
 
 	render() {

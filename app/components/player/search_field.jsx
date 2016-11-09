@@ -2,8 +2,6 @@ import React, { Component, PropTypes } from 'react';
 
 class SearchField extends Component {
 	handleInput(event) {
-		console.log('inputttt' + event.target.value);
-		console.log('props ->' + this.props);
 		this.props.OnChangeAudioSearchQuery(event.target.value)
 	}
 

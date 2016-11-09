@@ -1,9 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import AudioRow from './audio_row.jsx';
 import ReactDOM from 'react-dom';
-// import InfiniteScroll from 'react-infinite-scroller'
-
-// var scroll_position = 0;
 
 class AudioList extends Component {
 	componentDidMount() {
@@ -22,13 +19,13 @@ class AudioList extends Component {
 				<table>
 					<tbody>
 						{_data.map(function(audioModel, i) {
-							return <AudioRow 
+							return <AudioRow
 										{...this.props}
 										{...this.state}
-										audio={audioModel} 
+										audio={audioModel}
 										handleNewAudioRow={this.handleNewAudioPlay.bind(this)}
-										audioIndex={i} 
-										key={i} 
+										audioIndex={i}
+										key={i}
 									/>
 						}.bind(this))}
 					</tbody>

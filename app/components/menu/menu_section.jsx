@@ -3,7 +3,6 @@ import UserData from './user_data.jsx';
 import MenuButtonsList from './menu_buttons.jsx';
 
 class MenuSection extends Component {
-
 	render() {
 		return (
 			<div className="menu-section">
@@ -12,7 +11,6 @@ class MenuSection extends Component {
 			</div>
 		)
 	}
-
 }
 
 MenuSection.propTyes = {
@@ -24,7 +22,6 @@ MenuSection.propTyes = {
     UserFirstName: PropTypes.string.isRequired,
     UserLastName: PropTypes.string.isRequired,
     IsAuth: PropTypes.bool.isRequired
-
 };
 
 export default MenuSection
