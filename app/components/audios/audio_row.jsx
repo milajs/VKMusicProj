@@ -32,7 +32,7 @@ class AudioRow extends Component {
 				<td className="buttons-onrow">
 					<input type="button" className="stop-btn-onrow" onClick={this.handleClick.bind(this)} value={value} />
 					<a href={this.props.audio.url} download="audio.mp3">
-						<button className="download-btn"> <img className="download-img" src={require('./../media/download.png')}/> </button>
+						<button className="download-btn"> <img className="download-img" src={require('../../media/download.png')}/> </button>
 					</a>
 				</td>
 			</tr>

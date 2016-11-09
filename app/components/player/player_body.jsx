@@ -61,8 +61,8 @@ class Player extends Component {
 					onClick={this.onClick.bind(this)}
 				/>
 
-				<button className="pervios-audio" onClick={this.ChangeAudioPrev.bind(this)}> <img className="switch-buttons-pic" src={require('./../media/prev-arrow.png')} /> </button>
-				<button className="next-audio" onClick={this.ChangeAudioNext.bind(this)}> <img className="switch-buttons-pic" src={require('./../media/next-arrow.png')} /> </button>
+				<button className="pervios-audio" onClick={this.ChangeAudioPrev.bind(this)}> <img className="switch-buttons-pic" src={require('../../media/prev-arrow.png')} /> </button>
+				<button className="next-audio" onClick={this.ChangeAudioNext.bind(this)}> <img className="switch-buttons-pic" src={require('../../media/next-arrow.png')} /> </button>
 
 				<div className="current-song-on-player">
 					<p className="artist-on-player"> {this.props.CurrentArtist} </p>
@@ -88,7 +88,7 @@ class Player extends Component {
 					value={this.state.volume}
 					onChange={this.setVolume.bind(this)}
 				/>
-				<img className="volume-pic" src={require('./../media/audio-speaker.png')} />
+				<img className="volume-pic" src={require('../../media/audio-speaker.png')} />
 			</div>
 		)
 	}

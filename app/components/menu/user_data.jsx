@@ -9,7 +9,7 @@ class UserData extends Component {
 		var avatarImage;
 
 		if (this.props.IsAuth == false) {
-			avatarImage = require('./../media/no-photo.png');
+			avatarImage = require('../../media/no-photo.png');
 		} else {
 			avatarImage = this.props.ImageUrl;
 		}
