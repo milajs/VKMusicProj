@@ -10,4 +10,4 @@ VK music web app created with React.
 
 ## Screenshots
 
-![ScreenShot](https://raw.githubusercontent.com/LyudmilaP/VKMusicProj/master/app/components/media/screen.png)
+![ScreenShot](https://github.com/LyudmilaP/VKMusicProj/blob/master/app/media/screen.png)
