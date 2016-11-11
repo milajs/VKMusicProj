@@ -23,10 +23,19 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin()
   ],
   module: {
+    // preLoaders: [
+    //   {
+    //     test: /\.js$/,
+    //     loaders: ['eslint'],
+    //     include: [
+    //       path.resolve(__dirname, 'app'),
+    //     ],
+    //   }
+    // ],
     loaders: [
-      { 
-        test: /\.styl$/, 
-        loader: 'style-loader!css-loader!stylus-loader', 
+      {
+        test: /\.styl$/,
+        loader: 'style-loader!css-loader!stylus-loader',
         include: path.join(__dirname, 'app')
       },
       {

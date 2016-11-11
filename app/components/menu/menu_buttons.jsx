@@ -41,9 +41,9 @@ class MenuButtonsList extends Component {
 
 		return (
 			<div className="menu-buttons-block">
-				<button className="menu-button" onClick={this.HandleLoad.bind(this)} > My audios </button>
-				<button className="menu-button" onClick={this.HandleRecommend.bind(this)} > Recommendations </button>
-				<button className="menu-button" onClick={this.HandleAuthAction.bind(this)} > {authStateString} </button>
+				<button className="menu-button" onClick={this.HandleLoad.bind(this)}>My audios</button>
+				<button className="menu-button" onClick={this.HandleRecommend.bind(this)}>Recommendations</button>
+				<button className="menu-button" onClick={this.HandleAuthAction.bind(this)}>{authStateString}</button>
 			</div>
 		)
 	}
