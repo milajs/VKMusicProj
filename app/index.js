@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './components/app'
+import App from './containers/app'
 
 VK.init({
     apiId: 5505191

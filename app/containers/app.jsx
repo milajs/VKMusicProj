@@ -1,8 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-import MenuSection from './menu/menu_section.jsx';
-import PlayerSection from './player/player_section.jsx';
-import AudioList from './audios/audio_list.jsx';
-// import InfiniteScroll from 'react-infinite-scroller';
+import MenuSection from '../components/menu/menu_section.jsx';
+import PlayerSection from '../components/player/player_section.jsx';
+import AudioList from '../components/audios/audio_list.jsx';
 
 var css = require('../styles/style.styl');
 
