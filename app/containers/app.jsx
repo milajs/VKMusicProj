@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
-import MenuSection from '../components/menu/menu_section.jsx';
-import PlayerSection from '../components/player/player_section.jsx';
+import Menu from './menu';
+import Player from '../components/player/player_section.jsx';
 import AudioList from '../components/audios/audio_list.jsx';
 
 var css = require('../styles/style.styl');
@@ -243,14 +243,14 @@ class App extends Component {
   render() {
     return (
       <div>
-        <MenuSection
+        <Menu
           {...this.state}
           {...this.props}
           HandleLoadRecommendations={this.HandleLoadRecommendations.bind(this)}
           HandleLoadAudios={this.HandleLoadAudios.bind(this)}
           GetUserData={this.GetUserData.bind(this)}
         />
-        <PlayerSection
+        <Player
           {...this.state}
           {...this.props}
           playPause={this.playPause.bind(this)}
