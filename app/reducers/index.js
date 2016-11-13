@@ -1,5 +1,7 @@
 const initialState = {
-  user: 'Unknown User'
+  userId: 1337,
+  nowPlaying: `anyTreck`,
+  recommendations: [],
 };
 
 export default function userstate(state = initialState) {

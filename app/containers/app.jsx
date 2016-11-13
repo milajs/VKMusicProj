@@ -1,4 +1,6 @@
 import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux'
+
 import MenuSection from '../components/menu/menu_section.jsx';
 import PlayerSection from '../components/player/player_section.jsx';
 import AudioList from '../components/audios/audio_list.jsx';
@@ -270,4 +272,10 @@ class App extends Component {
   }
 }
 
-export default App
+function mapStateToProps (state) {
+  return {
+    state
+  }
+}
+
+export default connect(mapStateToProps)(App)
