@@ -23,15 +23,6 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin()
   ],
   module: {
-    // preLoaders: [
-    //   {
-    //     test: /\.js$/,
-    //     loaders: ['eslint'],
-    //     include: [
-    //       path.resolve(__dirname, 'app'),
-    //     ],
-    //   }
-    // ],
     loaders: [
       {
         test: /\.styl$/,
@@ -45,8 +36,17 @@ module.exports = {
       },
       {
         test: /\.jsx?$/,
+        exclude: /node_modules/,
         loaders: ['react-hot', 'babel-loader'],
         include: path.join(__dirname, 'app')
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'babel',
+        query: {
+          presets: ['es2015', 'stage-0', 'react']
+        }
       }
     ]
   },

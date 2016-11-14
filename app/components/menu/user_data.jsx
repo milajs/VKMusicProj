@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 
 class UserData extends Component {
-	componentDidMount() {
+	componentWillMount() {
 		this.props.GetUserData();
 	}
 
