@@ -1,10 +1,26 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import { bindActionCreators } from 'redux'
+
 import UserData from '../components/menu/user_data.jsx';
 import MenuButtonsList from '../components/menu/menu_buttons.jsx';
 
+import * as menuActions from '../actions/menuActions'
+
 class Menu extends Component {
+  componentWillMount() {
+    this.load();
+  }
+
+  load() {
+    const data = {
+      firstName: `Иван`,
+      lastName: `Иванов`,
+    }
+    this.props.menuActions.getUserData(data);
+  }
+
 	render() {
 		return (
 			<div className="menu-section">
@@ -15,10 +31,14 @@ class Menu extends Component {
 	}
 }
 
-function mapStateToProps (state) {
+function mapStateToProps(state) {
   return {
     state
   }
 }
-
-export default connect(mapStateToProps)(Menu)
+function mapDispatchToProps(dispatch) {
+  return {
+    menuActions: bindActionCreators(menuActions, dispatch)
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Menu)

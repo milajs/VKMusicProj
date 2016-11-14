@@ -50,7 +50,6 @@ function vk_getrecommend (callback) {
 
 function vk_getuserphoto (callback) {
   VK.Api.call('users.get', {fields: 'photo_200'}, function(r) {
-
     if(r.error) {
       return;
     } else {
@@ -156,7 +155,6 @@ class App extends Component {
 
   GetUserData() {
     vk_getuserphoto(function (userData){
-
       if (userData) {
         this.setState( {
                 IsAuth:true,
@@ -241,6 +239,7 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.props.state);
     return (
       <div>
         <Menu
