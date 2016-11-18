@@ -69,9 +69,6 @@ class App extends Component {
       Playing: false,
       CurrentQuery: '',
       User_id: 0,
-      ImageUrl: '',
-      UserFirstName: '',
-      UserLastName: '',
       IsAuth:false,
       OffsetCounter: 0,
       TotalCountAudios: 0,
@@ -158,10 +155,7 @@ class App extends Component {
       if (userData) {
         this.setState( {
                 IsAuth:true,
-                User_id: userData.uid,
-                ImageUrl: userData.photo_200,
-                UserFirstName: userData.first_name,
-                UserLastName: userData.last_name} );
+                User_id: userData.uid} );
         user_id = userData.uid;
       }
     }.bind(this))
@@ -239,7 +233,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.props.state);
     return (
       <div>
         <Menu
