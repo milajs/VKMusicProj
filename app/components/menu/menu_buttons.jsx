@@ -1,6 +1,6 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 
-class MenuButtonsList extends Component {
+class MenuButtons extends Component {
 	HandleLogIn() {
 		VK.Auth.login(function(cb) {
 			this.setState({IsAuth : true});
@@ -33,26 +33,14 @@ class MenuButtonsList extends Component {
 	render() {
 		var authStateString;
 
-		if (this.props.IsAuth == true) {
-			authStateString	= "Log out";
-		} else {
-			authStateString = "Log in";
-		}
-
 		return (
 			<div className="menu-buttons-block">
-				<button className="menu-button" onClick={this.HandleLoad.bind(this)}>My audios</button>
-				<button className="menu-button" onClick={this.HandleRecommend.bind(this)}>Recommendations</button>
-				<button className="menu-button" onClick={this.HandleAuthAction.bind(this)}>{authStateString}</button>
+				<button className="menu-button" onClick={this.HandleLoad.bind(this)}>Мои аудиозаписи</button>
+				<button className="menu-button" onClick={this.HandleRecommend.bind(this)}>Рекомендации</button>
+				<button className="menu-button" onClick={this.HandleAuthAction.bind(this)}>Выйти</button>
 			</div>
 		)
 	}
 }
 
-MenuButtonsList.propTyes = {
-	HandleLoadAudios: PropTypes.func.isRequired,
-	HandleLoadRecommendations: PropTypes.func.isRequired,
-	IsAuth: PropTypes.bool.isRequired
-};
-
-export default MenuButtonsList
+export default MenuButtons

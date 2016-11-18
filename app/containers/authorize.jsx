@@ -3,12 +3,6 @@ import { connect } from 'react-redux';
 
 import { bindActionCreators } from 'redux'
 
-import UserData from '../components/menu/userData';
-import MenuButtonsList from '../components/menu/menu_buttons';
-
-import * as menuActions from '../actions/menuActions';
-import { loadUserData } from '../api';
-
 class Menu extends Component {
   componentWillMount() {
     this.load();

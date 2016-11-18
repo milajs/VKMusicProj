@@ -38,7 +38,6 @@ function vk_searchaudio (query,callback) {
 
 function vk_getrecommend (callback) {
   VK.Api.call('audio.getRecommendations', {user_id: user_id, count: 100, v:"5.52"}, function(r) {
-
       if(r.error) {
         return;
       } else {
@@ -69,7 +68,7 @@ class App extends Component {
       Playing: false,
       CurrentQuery: '',
       User_id: 0,
-      IsAuth:false,
+      IsAuth: false,
       OffsetCounter: 0,
       TotalCountAudios: 0,
       CurrentArtist: '',

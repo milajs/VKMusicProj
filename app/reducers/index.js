@@ -2,7 +2,7 @@ import { GET_USER_DATA } from '../constants';
 
 const initialState = {
   user: {},
-  userId: 1337,
+  isAuth: false,
   nowPlaying: `anyTreck`,
   recommendations: [],
 };
