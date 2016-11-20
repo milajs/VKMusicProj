@@ -233,12 +233,15 @@ class App extends Component {
   }
 
   render() {
-    if (this.state.IsAuth === false) {
+    const { state } = this.props;
+    const { isAuth } = state;
+    console.log(state);
+    if (isAuth === false) {
       return (
         <Authorize />
       )
     }
-    if (this.state.IsAuth === true) {
+    if (isAuth === true) {
       return (
         <div>
           <Menu

@@ -3,11 +3,19 @@ import { connect } from 'react-redux';
 
 import { bindActionCreators } from 'redux';
 
-import * as menuActions from '../actions/menuActions';
+import * as authActions from '../actions/authActions';
+import { logIn } from '../api';
 
 var css = require('../styles/authorize.styl');
 
 class Menu extends Component {
+  HandleLogIn() {
+    console.log(this.props.authActions);
+    logIn((status) => {
+      this.props.authActions.logIn(status);
+    });
+  }
+
 	render() {
     const { state } = this.props;
     const { user = {} } = state;
@@ -21,7 +29,7 @@ class Menu extends Component {
         </video>
 
         <div className="overlay">
-          <button>Войти через VK</button>
+          <button onClick={this.HandleLogIn.bind(this)}>Войти через VK</button>
         </div>
       </div>
 		)
@@ -35,7 +43,7 @@ function mapStateToProps(state) {
 }
 function mapDispatchToProps(dispatch) {
   return {
-    menuActions: bindActionCreators(menuActions, dispatch)
+    authActions: bindActionCreators(authActions, dispatch)
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Menu)
