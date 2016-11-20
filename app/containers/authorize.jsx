@@ -1,30 +1,29 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { bindActionCreators } from 'redux'
+import { bindActionCreators } from 'redux';
+
+import * as menuActions from '../actions/menuActions';
+
+var css = require('../styles/authorize.styl');
 
 class Menu extends Component {
-  componentWillMount() {
-    this.load();
-  }
-
-  load() {
-    loadUserData((data) => {
-      if (data) {
-        this.props.menuActions.getUserData(data);
-      }
-    });
-  }
-
 	render() {
     const { state } = this.props;
     const { user = {} } = state;
 
 		return (
-			<div className="menu-section">
-				<UserData data={user} />
-				<MenuButtonsList {...this.state} {...this.props}  />
-			</div>
+      <div className="container">
+        <video autoPlay loop poster="../media/Cheer-Up.jpg">
+          <source src="../media/Cheer-Up.webm" type="video/webm"></source>
+          <source src="../media/Cheer-Up.mp4" type="video/mp4"></source>
+          <source src="../media/Cheer-Up.ogg" type="video/ogg"></source>
+        </video>
+
+        <div className="overlay">
+          <button>Войти через VK</button>
+        </div>
+      </div>
 		)
 	}
 }

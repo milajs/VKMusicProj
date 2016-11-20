@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import Menu from './menu';
+import Authorize from './authorize';
 import Player from '../components/player/player_section.jsx';
 import AudioList from '../components/audios/audio_list.jsx';
 
@@ -232,34 +233,41 @@ class App extends Component {
   }
 
   render() {
-    return (
-      <div>
-        <Menu
-          {...this.state}
-          {...this.props}
-          HandleLoadRecommendations={this.HandleLoadRecommendations.bind(this)}
-          HandleLoadAudios={this.HandleLoadAudios.bind(this)}
-          GetUserData={this.GetUserData.bind(this)}
-        />
-        <Player
-          {...this.state}
-          {...this.props}
-          playPause={this.playPause.bind(this)}
-          nextAudioByEnd={this.nextAudioByEnd.bind(this)}
-          OnChangeAudioSearchQuery={this.OnChangeAudioSearchQuery.bind(this)}
-          playPrevAudio={this.playPrevAudio.bind(this)}
-          playNextAudio={this.playNextAudio.bind(this)}
+    if (this.state.IsAuth === false) {
+      return (
+        <Authorize />
+      )
+    }
+    if (this.state.IsAuth === true) {
+      return (
+        <div>
+          <Menu
+            {...this.state}
+            {...this.props}
+            HandleLoadRecommendations={this.HandleLoadRecommendations.bind(this)}
+            HandleLoadAudios={this.HandleLoadAudios.bind(this)}
+            GetUserData={this.GetUserData.bind(this)}
+          />
+          <Player
+            {...this.state}
+            {...this.props}
+            playPause={this.playPause.bind(this)}
+            nextAudioByEnd={this.nextAudioByEnd.bind(this)}
+            OnChangeAudioSearchQuery={this.OnChangeAudioSearchQuery.bind(this)}
+            playPrevAudio={this.playPrevAudio.bind(this)}
+            playNextAudio={this.playNextAudio.bind(this)}
 
-        />
-        <AudioList
-          {...this.state}
-          {...this.props}
-          ref="audiolist"
-          HandleLoadAudios={this.HandleLoadAudios.bind(this)}
-          handleUpdatePlaying={this.handleUpdatePlaying.bind(this)}
-        />
-      </div>
-    )
+          />
+          <AudioList
+            {...this.state}
+            {...this.props}
+            ref="audiolist"
+            HandleLoadAudios={this.HandleLoadAudios.bind(this)}
+            handleUpdatePlaying={this.handleUpdatePlaying.bind(this)}
+          />
+        </div>
+      )
+    }
   }
 }
 
