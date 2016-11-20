@@ -6,7 +6,7 @@ import Authorize from './authorize';
 import Player from '../components/player/player_section.jsx';
 import AudioList from '../components/audios/audio_list.jsx';
 
-var css = require('../styles/style.styl');
+const css = require('../styles/style.styl');
 
 var audios_array = [];
 var search_result = [];

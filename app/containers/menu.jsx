@@ -11,6 +11,8 @@ import * as authActions from '../actions/authActions';
 import { logOut } from '../api';
 import { loadUserData } from '../api';
 
+var css = require('../styles/menu.styl');
+
 class Menu extends Component {
   componentWillMount() {
     this.load();

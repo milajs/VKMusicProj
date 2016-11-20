@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux';
 import * as authActions from '../actions/authActions';
 import { logIn } from '../api';
 
-var css = require('../styles/authorize.styl');
+const css = require('../styles/authorize.styl');
 
 class Menu extends Component {
   HandleLogIn() {

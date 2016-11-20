@@ -10,13 +10,6 @@ class MenuButtons extends Component {
 	}
 
 	HandleLogOut() {
-		VK.Auth.logout(function (cb) {
-			this.setState({IsAuth : false});
-
-		}.bind(this));
-	}
-
-	HandleLogOut() {
 		this.props.onLogOut();
 	}
 
