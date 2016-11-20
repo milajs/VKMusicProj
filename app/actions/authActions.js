@@ -1,8 +1,8 @@
 import { LOG_IN } from '../constants';
 
-export function logIn() {
+export function logIn(status) {
   return {
     type: LOG_IN,
-    payload: true,
+    payload: status,
   }
 }

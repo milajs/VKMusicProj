@@ -7,6 +7,8 @@ import UserData from '../components/menu/userData';
 import MenuButtonsList from '../components/menu/menu_buttons';
 
 import * as menuActions from '../actions/menuActions';
+import * as authActions from '../actions/authActions';
+import { logOut } from '../api';
 import { loadUserData } from '../api';
 
 class Menu extends Component {
@@ -22,6 +24,12 @@ class Menu extends Component {
     });
   }
 
+  HandleLogOut() {
+    logOut((status) => {
+      this.props.authActions.logIn(status);
+    });
+  }
+
 	render() {
     const { state } = this.props;
     const { user = {} } = state;
@@ -29,7 +37,7 @@ class Menu extends Component {
 		return (
 			<div className="menu-section">
 				<UserData data={user} />
-				<MenuButtonsList {...this.state} {...this.props}  />
+				<MenuButtonsList onLogOut={this.HandleLogOut.bind(this)} {...this.state} {...this.props}  />
 			</div>
 		)
 	}
@@ -42,7 +50,8 @@ function mapStateToProps(state) {
 }
 function mapDispatchToProps(dispatch) {
   return {
-    menuActions: bindActionCreators(menuActions, dispatch)
+    menuActions: bindActionCreators(menuActions, dispatch),
+    authActions: bindActionCreators(authActions, dispatch),
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Menu)

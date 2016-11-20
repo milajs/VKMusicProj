@@ -10,7 +10,6 @@ var css = require('../styles/authorize.styl');
 
 class Menu extends Component {
   HandleLogIn() {
-    console.log(this.props.authActions);
     logIn((status) => {
       this.props.authActions.logIn(status);
     });
@@ -29,7 +28,7 @@ class Menu extends Component {
         </video>
 
         <div className="overlay">
-          <button onClick={this.HandleLogIn.bind(this)}>Войти через VK</button>
+          <button className="button" onClick={this.HandleLogIn.bind(this)}>Войти через VK</button>
         </div>
       </div>
 		)

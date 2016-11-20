@@ -235,7 +235,7 @@ class App extends Component {
   render() {
     const { state } = this.props;
     const { isAuth } = state;
-    console.log(state);
+
     if (isAuth === false) {
       return (
         <Authorize />

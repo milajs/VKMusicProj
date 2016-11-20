@@ -4,6 +4,12 @@ export const logIn = (callback) => {
   }, 1034);
 };
 
+export const logOut = (callback) => {
+  VK.Auth.logout(function() {
+    callback(false);
+  });
+};
+
 export const loadUserData = (callback) => {
   VK.Api.call('users.get', {fields: 'photo_200'}, function(r) {
     if(r.error) {
