@@ -3,8 +3,7 @@ import { LOG_IN, GET_USER_DATA } from '../constants';
 const initialState = {
   user: {},
   isAuth: false,
-  nowPlaying: `anyTreck`,
-  recommendations: [],
+  AudioList: [],
 };
 
 export default function page(state = initialState, action) {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { bindActionCreators } from 'redux'
+import { bindActionCreators } from 'redux';
 
 import UserData from '../components/menu/userData';
 import MenuButtonsList from '../components/menu/menu_buttons';

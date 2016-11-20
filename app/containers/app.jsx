@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Menu from './menu';
 import Authorize from './authorize';
 import Player from '../components/player/player_section.jsx';
-import AudioList from '../components/audios/audio_list.jsx';
+import AudioList from './audioList';
 
 const css = require('../styles/style.styl');
 
@@ -14,7 +14,6 @@ var user_id = [];
 
 function vk_getaudios (offset,callback) {
   VK.Api.call('audio.get', {count: 30, offset:offset, v:"5.52"}, function(r) {
-
     if(r.error) {
       return;
     }

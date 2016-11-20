@@ -20,3 +20,13 @@ export const loadUserData = (callback) => {
     }
   });
 };
+
+export const loadAudios = (callback) => {
+  VK.Api.call('audio.get', {count: 30, offset:offset, v:"5.52"}, function(r) {
+    if(r.error) {
+      return;
+    }
+
+    callback(r.response.items, r.response.count);
+  });
+};
