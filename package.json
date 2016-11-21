@@ -48,6 +48,7 @@
     "react-redux": "^4.4.5",
     "react-soundplayer": "^0.3.5",
     "redux": "^1.0.1",
+    "redux-logger": "^2.7.4",
     "stylus": "^0.54.5",
     "url-loader": "^0.5.7"
   }
