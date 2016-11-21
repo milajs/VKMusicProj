@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 
 import { bindActionCreators } from 'redux';
+
+import * as authActions from '../actions/authActions';
+import { loadAudios } from '../api';
 
 import AudioRow from '../components/audios/audioRow';
 
@@ -39,4 +41,14 @@ class AudioList extends Component {
 	}
 }
 
-export default AudioList
+function mapStateToProps(state) {
+  return {
+    state
+  }
+}
+function mapDispatchToProps(dispatch) {
+  return {
+    authActions: bindActionCreators(authActions, dispatch)
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(AudioList)
