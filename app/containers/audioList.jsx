@@ -3,28 +3,37 @@ import { connect } from 'react-redux';
 
 import { bindActionCreators } from 'redux';
 
-import * as authActions from '../actions/authActions';
+import * as audioActions from '../actions/audioActions';
 import { loadAudios } from '../api';
 
 import AudioRow from '../components/audios/audioRow';
 
 class AudioList extends Component {
-	componentDidMount() {
-		this.props.HandleLoadAudios();
-	}
+  componentWillMount() {
+    this.load();
+  }
+
+  load() {
+    loadAudios(0, (items, count) => {
+      if (items) {
+        this.props.audioActions.getAudioList(items);
+      }
+    });
+  }
 
 	handleNewAudioPlay(audiomodel) {
 		this.props.handleUpdatePlaying(audiomodel);
 	}
 
 	render() {
-		var _data = this.props.Audiolist
+		var _data = this.props.Audiolist;
+    const { audioList = {} } = this.props.state;
 
 		return (
 			<div className="audio-section">
 				<table>
 					<tbody>
-						{_data.map(function(audioModel, i) {
+						{audioList.map(function(audioModel, i) {
 							return <AudioRow
 										{...this.props}
 										{...this.state}
@@ -48,7 +57,7 @@ function mapStateToProps(state) {
 }
 function mapDispatchToProps(dispatch) {
   return {
-    authActions: bindActionCreators(authActions, dispatch)
+    audioActions: bindActionCreators(audioActions, dispatch)
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(AudioList)

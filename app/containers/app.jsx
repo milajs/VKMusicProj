@@ -90,7 +90,6 @@ class App extends Component {
             if (audiosArray) {
 
               var currentAudioList = this.state.Audiolist;
-
               var resarr =  currentAudioList.concat(audiosArray);
 
               this.setState( {Audiolist: resarr,OffsetCounter:offset,TotalCountAudios:totalcount} );
@@ -104,7 +103,6 @@ class App extends Component {
         if (audiosArray) {
 
           var currentAudioList = this.state.Audiolist;
-
           var resarr =  currentAudioList.concat(audiosArray);
 
           this.setState( {Audiolist: resarr,
@@ -264,7 +262,6 @@ class App extends Component {
             {...this.state}
             {...this.props}
             ref="audiolist"
-            HandleLoadAudios={this.HandleLoadAudios.bind(this)}
             handleUpdatePlaying={this.handleUpdatePlaying.bind(this)}
           />
         </div>
