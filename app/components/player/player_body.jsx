@@ -1,5 +1,7 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import ReactPlayer from 'react-player';
+
+var css = require('../../styles/player.styl');
 
 class Player extends Component {
 	constructor(props) {
@@ -41,6 +43,8 @@ class Player extends Component {
 	}
 
 	render() {
+    const { currentAudio = {} } = this.props;
+
 		return (
 			<div className="player-body">
 				<ReactPlayer
@@ -65,7 +69,7 @@ class Player extends Component {
 				<button className="next-audio" onClick={this.ChangeAudioNext.bind(this)}> <img className="switch-buttons-pic" src={require('../../media/next-arrow.png')} /> </button>
 
 				<div className="current-song-on-player">
-					<p className="artist-on-player"> {this.props.CurrentArtist} </p>
+					<p className="artist-on-player"> {currentAudio.artist} </p>
 					<p className="title-on-player"> - </p>
 					<p className="title-on-player"> {this.props.CurrentTitle} </p>
 				</div>
@@ -93,15 +97,5 @@ class Player extends Component {
 		)
 	}
 }
-
-Player.propTyes = {
-	Audiourl: PropTypes.string.isRequired,
-	playing: PropTypes.bool.isRequired,
-	ButtonValue: PropTypes.string.isRequired,
-	CurrentArtist: PropTypes.string.isRequired,
-	CurrentTitle: PropTypes.string.isRequired,
-	playNextAudio: PropTypes.func.isRequired,
-	playPrevAudio: PropTypes.func.isRequired
-};
 
 export default Player

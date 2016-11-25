@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import Menu from './menu';
 import Authorize from './authorize';
-import Player from '../components/player/player_section.jsx';
+import Menu from './menu';
+import Player from './player';
 import AudioList from './audioList';
 
 const css = require('../styles/style.styl');

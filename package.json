@@ -50,7 +50,6 @@
     "redux": "^1.0.1",
     "redux-logger": "^2.7.4",
     "redux-thunk": "2.1.0",
-    "stylus": "^0.54.5",
-    "url-loader": "^0.5.7"
+    "stylus": "^0.54.5"
   }
 }
