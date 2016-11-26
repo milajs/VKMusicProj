@@ -11,17 +11,6 @@ var audios_array = [];
 var search_result = [];
 var user_id = [];
 
-function vk_getaudios (offset,callback) {
-  VK.Api.call('audio.get', {count: 30, offset:offset, v:"5.52"}, function(r) {
-    if(r.error) {
-      return;
-    }
-    audios_array = r.response.items;
-
-    callback(audios_array,r.response.count);
-  }.bind(this));
-}
-
 function vk_searchaudio (query,callback) {
   VK.Api.call('audio.search', {q: query}, function(r) {
 
@@ -31,28 +20,6 @@ function vk_searchaudio (query,callback) {
         search_result = r.response;
         search_result.shift();
         callback(search_result);
-    }
-  });
-}
-
-function vk_getrecommend (callback) {
-  VK.Api.call('audio.getRecommendations', {user_id: user_id, count: 100, v:"5.52"}, function(r) {
-      if(r.error) {
-        return;
-      } else {
-        search_result = r.response.items;
-        callback(search_result);
-      }
-  });
-}
-
-function vk_getuserphoto (callback) {
-  VK.Api.call('users.get', {fields: 'photo_200'}, function(r) {
-    if(r.error) {
-      return;
-    } else {
-      var user = r.response;
-      callback(user[0]);
     }
   });
 }
@@ -75,55 +42,6 @@ class App extends Component {
     };
   }
 
-  HandleLoadAudios() {
-    var offset = this.state.OffsetCounter;
-
-    if (this.state.Audiolist.length != 0) {
-      offset += 30
-    }
-
-    if (this.state.TotalCountAudios > 0) {
-
-        if (offset < this.state.TotalCountAudios) {
-            vk_getaudios(offset,function (audiosArray,totalcount){
-            if (audiosArray) {
-
-              var currentAudioList = this.state.Audiolist;
-              var resarr =  currentAudioList.concat(audiosArray);
-
-              this.setState( {Audiolist: resarr,OffsetCounter:offset,TotalCountAudios:totalcount} );
-            }
-          }.bind(this))
-        }
-    } else {
-
-      vk_getaudios(0,function (audiosArray,totalcount){
-
-        if (audiosArray) {
-
-          var currentAudioList = this.state.Audiolist;
-          var resarr =  currentAudioList.concat(audiosArray);
-
-          this.setState( {Audiolist: resarr,
-                          OffsetCounter:offset,
-                          TotalCountAudios:totalcount,
-                          CurrentArtist: resarr[0].artist,
-                          CurrentTitle: resarr[0].title,
-                          CurrentPlayedAudioModel: resarr[0],
-                          Audiourl: resarr[0].url} )
-        }
-      }.bind(this))
-    }
-  }
-
-  HandleLoadRecommendations() {
-    vk_getrecommend(function(RecArray) {
-          if (RecArray) {
-            this.setState( {Audiolist: RecArray} );
-          }
-        }.bind(this));
-  }
-
   handleUpdatePlaying(audiomodel) {
     if(this.state.CurrentPlayedAudioModel.id !== audiomodel.id) {
 
@@ -144,17 +62,6 @@ class App extends Component {
 
   playPause() {
     this.setState( {playing: !this.state.playing, ButtonValue: this.state.playing ? '▶' : '||'} );
-  }
-
-  GetUserData() {
-    vk_getuserphoto(function (userData){
-      if (userData) {
-        this.setState( {
-                IsAuth:true,
-                User_id: userData.uid} );
-        user_id = userData.uid;
-      }
-    }.bind(this))
   }
 
   nextAudioByEnd() {
@@ -218,10 +125,6 @@ class App extends Component {
     let scrollOffset = body.scrollTop;
     let windowHeight = window.innerHeight;
     let scroll_position = scrollSize - scrollOffset - windowHeight;
-
-    if (scroll_position < 200) {
-      this.refs.audiolist.HandleLoadAudios();
-    }
   }
 
   render() {
@@ -239,9 +142,6 @@ class App extends Component {
           <Menu
             {...this.state}
             {...this.props}
-            HandleLoadRecommendations={this.HandleLoadRecommendations.bind(this)}
-            HandleLoadAudios={this.HandleLoadAudios.bind(this)}
-            GetUserData={this.GetUserData.bind(this)}
           />
           <MainContainer
             {...this.state}
