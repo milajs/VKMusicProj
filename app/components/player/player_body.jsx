@@ -43,7 +43,9 @@ class Player extends Component {
 	}
 
 	render() {
-    const { currentAudio = {} } = this.props;
+    const { audioModel = {} } = this.props;
+
+    console.log(audioModel);
 
 		return (
 			<div className="player-body">
@@ -69,9 +71,9 @@ class Player extends Component {
 				<button className="next-audio" onClick={this.ChangeAudioNext.bind(this)}> <img className="switch-buttons-pic" src={require('../../media/next-arrow.png')} /> </button>
 
 				<div className="current-song-on-player">
-					<p className="artist-on-player"> {currentAudio.artist} </p>
+					<p className="artist-on-player"> {audioModel.artist} </p>
 					<p className="title-on-player"> - </p>
-					<p className="title-on-player"> {this.props.CurrentTitle} </p>
+					<p className="title-on-player"> {audioModel.title} </p>
 				</div>
 
 				<input

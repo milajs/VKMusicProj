@@ -14,7 +14,8 @@ class PlayerSection extends Component {
 	render() {
     const { state } = this.props;
     const { audioList = [] } = state;
-    const audioModel = state.currentAudio ? state.currentAudio : audioList[0];
+    const hasCurrentAudio = Object.keys(state.currentAudio).length > 0;
+    const audioModel = hasCurrentAudio ? state.currentAudio : audioList[0];
 
 		return (
 			<div className="player-block">

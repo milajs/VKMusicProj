@@ -9,18 +9,6 @@ import { loadAudios } from '../api';
 import AudioRow from '../components/audios/audioRow';
 
 class AudioList extends Component {
-  componentWillMount() {
-    this.load();
-  }
-
-  load() {
-    loadAudios(0, (items, count) => {
-      if (items) {
-        this.props.audioActions.getAudioList(items);
-      }
-    });
-  }
-
 	handleNewAudioPlay(audiomodel) {
 		this.props.handleUpdatePlaying(audiomodel);
 	}

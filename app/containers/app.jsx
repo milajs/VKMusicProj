@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 
 import Authorize from './authorize';
 import Menu from './menu';
-import Player from './player';
-import AudioList from './audioList';
+import MainContainer from './mainContainer';
 
 const css = require('../styles/style.styl');
 
@@ -248,7 +247,7 @@ class App extends Component {
             HandleLoadAudios={this.HandleLoadAudios.bind(this)}
             GetUserData={this.GetUserData.bind(this)}
           />
-          <Player
+          <MainContainer
             {...this.state}
             {...this.props}
             playPause={this.playPause.bind(this)}
@@ -256,13 +255,6 @@ class App extends Component {
             OnChangeAudioSearchQuery={this.OnChangeAudioSearchQuery.bind(this)}
             playPrevAudio={this.playPrevAudio.bind(this)}
             playNextAudio={this.playNextAudio.bind(this)}
-
-          />
-          <AudioList
-            {...this.state}
-            {...this.props}
-            ref="audiolist"
-            handleUpdatePlaying={this.handleUpdatePlaying.bind(this)}
           />
         </div>
       )
