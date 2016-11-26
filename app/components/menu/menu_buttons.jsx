@@ -5,8 +5,8 @@ class MenuButtons extends Component {
 		this.props.HandleLoadAudios();
 	}
 
-	HandleRecommend() {
-		this.props.HandleLoadRecommendations();
+	HandleLoadRecommendations() {
+		this.props.onLoadRecommendations();
 	}
 
 	HandleLogOut() {
@@ -19,7 +19,7 @@ class MenuButtons extends Component {
 		return (
 			<div className="menu-buttons-block">
 				<button className="menu-button" onClick={this.HandleLoad.bind(this)}>Мои аудиозаписи</button>
-				<button className="menu-button" onClick={this.HandleRecommend.bind(this)}>Рекомендации</button>
+				<button className="menu-button" onClick={this.HandleLoadRecommendations.bind(this)}>Рекомендации</button>
 				<button className="menu-button" onClick={this.HandleLogOut.bind(this)}>Выйти</button>
 			</div>
 		)

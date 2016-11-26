@@ -8,20 +8,26 @@ import MenuButtonsList from '../components/menu/menu_buttons';
 
 import * as menuActions from '../actions/menuActions';
 import * as authActions from '../actions/authActions';
-import { logOut } from '../api';
-import { loadUserData } from '../api';
+import * as audioActions from '../actions/audioActions';
+import { logOut, loadUserData, loadRecommendations } from '../api';
 
 var css = require('../styles/menu.styl');
 
 class Menu extends Component {
   componentWillMount() {
-    this.load();
-  }
-
-  load() {
     loadUserData((data) => {
       if (data) {
         this.props.menuActions.getUserData(data);
+      }
+    });
+  }
+
+  handleLoadRecommendations() {
+    const { user = {} } = this.props.state;
+
+    loadRecommendations(user.uid, (items) => {
+      if (items) {
+        this.props.audioActions.getAudioList(items);
       }
     });
   }
@@ -39,7 +45,12 @@ class Menu extends Component {
 		return (
 			<div className="menu-section">
 				<UserData data={user} />
-				<MenuButtonsList onLogOut={this.HandleLogOut.bind(this)} {...this.state} {...this.props}  />
+				<MenuButtonsList
+          onLogOut={this.HandleLogOut.bind(this)}
+          onLoadRecommendations={this.handleLoadRecommendations.bind(this)}
+          {...this.state}
+          {...this.props}
+        />
 			</div>
 		)
 	}
@@ -54,6 +65,7 @@ function mapDispatchToProps(dispatch) {
   return {
     menuActions: bindActionCreators(menuActions, dispatch),
     authActions: bindActionCreators(authActions, dispatch),
+    audioActions: bindActionCreators(audioActions, dispatch)
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Menu)

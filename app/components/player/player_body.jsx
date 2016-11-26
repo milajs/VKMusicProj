@@ -45,13 +45,11 @@ class Player extends Component {
 	render() {
     const { audioModel = {} } = this.props;
 
-    console.log(audioModel);
-
 		return (
 			<div className="player-body">
 				<ReactPlayer
 					ref='player'
-					url={this.props.Audiourl}
+					url={audioModel.url}
 					playing={this.props.playing}
 					volume={this.state.volume}
 					className="player"
@@ -67,8 +65,13 @@ class Player extends Component {
 					onClick={this.onClick.bind(this)}
 				/>
 
-				<button className="pervios-audio" onClick={this.ChangeAudioPrev.bind(this)}> <img className="switch-buttons-pic" src={require('../../media/prev-arrow.png')} /> </button>
-				<button className="next-audio" onClick={this.ChangeAudioNext.bind(this)}> <img className="switch-buttons-pic" src={require('../../media/next-arrow.png')} /> </button>
+				<button className="pervios-audio" onClick={this.ChangeAudioPrev.bind(this)}>
+          <img className="switch-buttons-pic" src={require('../../media/prev-arrow.png')} />
+        </button>
+
+				<button className="next-audio" onClick={this.ChangeAudioNext.bind(this)}>
+          <img className="switch-buttons-pic" src={require('../../media/next-arrow.png')} />
+        </button>
 
 				<div className="current-song-on-player">
 					<p className="artist-on-player"> {audioModel.artist} </p>

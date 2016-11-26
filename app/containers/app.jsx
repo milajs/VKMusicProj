@@ -166,11 +166,9 @@ class App extends Component {
     var indexLastPlayedAudio = audiolist.indexOf(this.state.CurrentPlayedAudioModel);
 
     if (indexLastPlayedAudio === audiolist.length - 1 ) {
-
       var audiomodel = audiolist[0];
 
     } else {
-
       var audiomodel = audiolist[indexLastPlayedAudio+1];
     }
 
@@ -182,11 +180,9 @@ class App extends Component {
     var indexLastPlayedAudio = audiolist.indexOf(this.state.CurrentPlayedAudioModel);
 
     if (indexLastPlayedAudio === 0) {
-
       var audiomodel = audiolist[audiolist.length - 1];
 
     } else {
-
       var audiomodel = audiolist[indexLastPlayedAudio-1];
     }
 

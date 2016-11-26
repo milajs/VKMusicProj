@@ -30,3 +30,13 @@ export const loadAudios = (offset, callback) => {
     callback(r.response.items, r.response.count);
   });
 };
+
+export const loadRecommendations = (user_id, callback) => {
+  VK.Api.call('audio.getRecommendations', {user_id: user_id, count: 30, v:"5.52"}, function(r) {
+      if(r.error) {
+        return;
+      }
+
+      callback(r.response.items);
+  });
+};
