@@ -9,7 +9,7 @@ import MenuButtonsList from '../components/menu/menu_buttons';
 import * as menuActions from '../actions/menuActions';
 import * as authActions from '../actions/authActions';
 import * as audioActions from '../actions/audioActions';
-import { logOut, loadUserData, loadRecommendations } from '../api';
+import { logOut, loadUserData, loadAudios, loadRecommendations } from '../api';
 
 var css = require('../styles/menu.styl');
 
@@ -18,6 +18,14 @@ class Menu extends Component {
     loadUserData((data) => {
       if (data) {
         this.props.menuActions.getUserData(data);
+      }
+    });
+  }
+
+  handleLoadAudios() {
+    loadAudios(0, (items, count) => {
+      if (items) {
+        this.props.audioActions.getAudioList(items);
       }
     });
   }
@@ -48,6 +56,7 @@ class Menu extends Component {
 				<MenuButtonsList
           onLogOut={this.HandleLogOut.bind(this)}
           onLoadRecommendations={this.handleLoadRecommendations.bind(this)}
+          onLoadAudios={this.handleLoadAudios.bind(this)}
           {...this.state}
           {...this.props}
         />
