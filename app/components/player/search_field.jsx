@@ -2,21 +2,21 @@ import React, { Component, PropTypes } from 'react';
 
 class SearchField extends Component {
 	handleInput(event) {
-		this.props.OnChangeAudioSearchQuery(event.target.value)
+		this.props.onChange(event.target.value)
 	}
 
 	render() {
 		return (
 			<div>
-				<input type="text" className="search-audio-input" placeholder="Search audio" onChange={this.handleInput.bind(this)} />
+				<input
+          type="text"
+          className="search-audio-input"
+          placeholder="Search audio"
+          onChange={this.handleInput.bind(this)}
+        />
 			</div>
 		)
 	}
 }
-
-SearchField.propTyes = {
-	SearchAudio: PropTypes.func.isRequired,
-	OnChangeAudioSearchQuery: PropTypes.func.isRequired
-};
 
 export default SearchField

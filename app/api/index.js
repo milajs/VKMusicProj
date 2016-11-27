@@ -22,7 +22,7 @@ export const loadUserData = (callback) => {
 };
 
 export const loadAudios = (offset, callback) => {
-  VK.Api.call('audio.get', {count: 30, offset: offset, v: "5.52"}, function(r) {
+  VK.Api.call('audio.get', {count: 30, offset: offset, v: "5.60"}, function(r) {
     if(r.error) {
       return;
     }
@@ -32,11 +32,23 @@ export const loadAudios = (offset, callback) => {
 };
 
 export const loadRecommendations = (user_id, callback) => {
-  VK.Api.call('audio.getRecommendations', {user_id: user_id, count: 30, v:"5.52"}, function(r) {
+  VK.Api.call('audio.getRecommendations', {user_id: user_id, count: 30, v:"5.60"}, function(r) {
       if(r.error) {
         return;
       }
 
       callback(r.response.items);
+  });
+};
+
+export const searchAudios = (query, callback) => {
+  VK.Api.call('audio.search', {q: query}, function(r) {
+    if(r.error) {
+      return;
+    }
+
+    search_result = r.response;
+    search_result.shift();
+    callback(search_result);
   });
 };

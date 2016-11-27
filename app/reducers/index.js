@@ -4,6 +4,7 @@ const initialState = {
   user: {},
   isAuth: false,
   audioList: [],
+  listType: ``,
   currentAudio: {},
 };
 
