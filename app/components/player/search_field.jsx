@@ -1,8 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 
 class SearchField extends Component {
-	handleInput(event) {
-		this.props.onChange(event.target.value)
+	handleInput(e) {
+    if (e.target.value === ``) {
+      this.props.onLoadAudios()
+    } else {
+      this.props.onChange(e.target.value)
+    }
 	}
 
 	render() {

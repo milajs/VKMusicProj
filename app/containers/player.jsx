@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import * as audioActions from '../actions/audioActions';
-import { searchAudios } from '../api';
+import { searchAudios, loadAudios } from '../api';
 
 import Player from '../components/player/player_body.jsx';
 import SearchField from '../components/player/search_field.jsx';
@@ -13,7 +13,19 @@ var css = require('../styles/player.styl');
 
 class PlayerSection extends Component {
   handleSearch(value) {
-    console.log(value);
+    searchAudios(value, (items) => {
+      if (items) {
+        this.props.audioActions.getAudioList(items);
+      }
+    });
+  }
+
+  handleLoadAudios() {
+    loadAudios(0, (items, count) => {
+      if (items) {
+        this.props.audioActions.getAudioList(items);
+      }
+    });
   }
 
 	render() {
@@ -32,6 +44,7 @@ class PlayerSection extends Component {
 				<SearchField
           {...this.props}
           onChange={this.handleSearch.bind(this)}
+          onLoadAudios={this.handleLoadAudios.bind(this)}
         />
 			</div>
 		)

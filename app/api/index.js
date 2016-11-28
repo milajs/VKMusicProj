@@ -47,8 +47,7 @@ export const searchAudios = (query, callback) => {
       return;
     }
 
-    search_result = r.response;
-    search_result.shift();
-    callback(search_result);
+    r.response.shift();
+    callback(r.response);
   });
 };

@@ -11,19 +11,6 @@ var audios_array = [];
 var search_result = [];
 var user_id = [];
 
-function vk_searchaudio (query,callback) {
-  VK.Api.call('audio.search', {q: query}, function(r) {
-
-    if(r.error) {
-      return;
-    } else {
-        search_result = r.response;
-        search_result.shift();
-        callback(search_result);
-    }
-  });
-}
-
 class App extends Component {
   constructor(props){
     super(props);
@@ -96,19 +83,6 @@ class App extends Component {
     this.handleUpdatePlaying(audiomodel);
   }
 
-  OnChangeAudioSearchQuery(query) {
-      if (query != '') {
-        vk_searchaudio(query,function(audio_list) {
-          if (audio_list) {
-            this.setState( {Audiolist: audio_list} );
-          }
-        }.bind(this));
-
-    } else {
-      this.HandleLoadAudios();
-    }
-  }
-
   componentDidMount() {
     window.addEventListener('scroll', this.handleScroll);
   }
@@ -148,7 +122,6 @@ class App extends Component {
             {...this.props}
             playPause={this.playPause.bind(this)}
             nextAudioByEnd={this.nextAudioByEnd.bind(this)}
-            OnChangeAudioSearchQuery={this.OnChangeAudioSearchQuery.bind(this)}
             playPrevAudio={this.playPrevAudio.bind(this)}
             playNextAudio={this.playNextAudio.bind(this)}
           />
