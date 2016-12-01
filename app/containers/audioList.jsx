@@ -9,29 +9,40 @@ import { loadAudios } from '../api';
 import AudioRow from '../components/audios/audioRow';
 
 class AudioList extends Component {
-	handleNewAudioPlay(audiomodel) {
-		this.props.handleUpdatePlaying(audiomodel);
+  componentWillMount() {
+    this.load();
+  }
+
+  load() {
+    loadAudios(0, (items, count) => {
+      if (items) {
+        this.props.audioActions.getAudioList(items);
+      }
+    });
+  }
+
+	toggleAudio(audioModel) {
+		this.props.audioActions.chacgeAudio(audioModel);
 	}
 
 	render() {
-		var _data = this.props.Audiolist;
-    const { audioList = {} } = this.props.state;
+    const { audioList = [] } = this.props.state;
 
 		return (
 			<div className="audio-section">
 				<table>
-					<tbody>
-						{audioList.map(function(audioModel, i) {
-							return <AudioRow
-										{...this.props}
-										{...this.state}
-										audio={audioModel}
-										handleNewAudioRow={this.handleNewAudioPlay.bind(this)}
-										audioIndex={i}
-										key={i}
-									/>
-						}.bind(this))}
-					</tbody>
+          <tbody>
+  					{audioList.map(function(audioModel, i) {
+  						return <AudioRow
+  									{...this.props}
+  									{...this.state}
+  									audio={audioModel}
+  									toggleAudio={this.toggleAudio.bind(this)}
+  									audioIndex={i}
+  									key={i}
+  								/>
+  					}.bind(this))}
+          </tbody>
 				</table>
 			</div>
 		)

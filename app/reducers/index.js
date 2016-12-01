@@ -1,4 +1,4 @@
-import { LOG_IN, GET_USER_DATA, LOAD_AUDIOS } from '../constants';
+import { LOG_IN, GET_USER_DATA, LOAD_AUDIOS, CHANGE_AUDIO } from '../constants';
 
 const initialState = {
   user: {},
@@ -16,6 +16,8 @@ export default function page(state = initialState, action) {
       return { ...state, user: action.payload }
     case LOAD_AUDIOS:
       return { ...state, audioList: action.payload }
+    case CHANGE_AUDIO:
+      return { ...state, currentAudio: action.payload }
     default:
       return state;
 } }

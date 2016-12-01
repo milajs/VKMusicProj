@@ -3,11 +3,10 @@ import React, { Component, PropTypes } from 'react';
 class AudioRow extends Component {
 
 	handleClick() {
-		this.props.handleNewAudioRow(this.props.audio);
+		this.props.toggleAudio(this.props.audio);
 	}
 
 	render() {
-
 		var selectedClass;
 		var value;
 
@@ -25,25 +24,21 @@ class AudioRow extends Component {
 			value = "▶";
 		}
 
+    const { audio = {} } = this.props;
+
 		return (
 			<tr className={selectedClass}>
-				<td className="artist"> {this.props.audio.artist} </td>
-				<td className="title"> {this.props.audio.title} </td>
+				<td className="artist"> {audio.artist} </td>
+				<td className="title"> {audio.title} </td>
 				<td className="buttons-onrow">
 					<input type="button" className="stop-btn-onrow" onClick={this.handleClick.bind(this)} value={value} />
-					<a href={this.props.audio.url} download="audio.mp3">
-						<button className="download-btn"> <img className="download-img" src={require('../../media/download.png')}/> </button>
+					<a href={audio.url} download="audio.mp3">
+						<button className="download-btn"><img className="download-img" src={require('../../media/download.png')}/></button>
 					</a>
 				</td>
 			</tr>
 		)
 	}
 }
-
-AudioRow.propTyes = {
-	handleUpdatePlaying: PropTypes.func.isRequired,
-	CurrentPlayedAudioModel: PropTypes.object.isRequired,
-	ButtonValue: PropTypes.string.isRequired
-};
 
 export default AudioRow
