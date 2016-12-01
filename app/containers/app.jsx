@@ -30,24 +30,6 @@ class App extends Component {
     };
   }
 
-  handleUpdatePlaying(audiomodel) {
-    if(this.state.CurrentPlayedAudioModel.id !== audiomodel.id) {
-
-      this.setState( {
-
-                      Audiourl: audiomodel.url,
-                      CurrentPlayedAudioModel:audiomodel,
-                      playing: true,
-                      ButtonValue: '||',
-                      CurrentArtist: audiomodel.artist,
-                      CurrentTitle: audiomodel.title
-
-                      } );
-    } else {
-      this.playPause();
-    }
-  }
-
   playPause() {
     this.setState( {playing: !this.state.playing, ButtonValue: this.state.playing ? '▶' : '||'} );
   }
@@ -114,10 +96,8 @@ class App extends Component {
     if (isAuth === true) {
       return (
         <div>
-          <Menu
-            {...this.state}
-            {...this.props}
-          />
+          <Menu />
+
           <Player
             {...this.state}
             {...this.props}

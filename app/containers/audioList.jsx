@@ -26,8 +26,8 @@ class AudioList extends Component {
 	}
 
 	render() {
-    const { audioList = [] } = this.props.state;
-
+    const { audioList = [], currentAudio = {} } = this.props.state;
+  
 		return (
 			<div className="audio-section">
 				<table>
@@ -37,6 +37,7 @@ class AudioList extends Component {
   									{...this.props}
   									{...this.state}
   									audio={audioModel}
+                    сurrentAudio={currentAudio}
   									toggleAudio={this.toggleAudio.bind(this)}
   									audioIndex={i}
   									key={i}

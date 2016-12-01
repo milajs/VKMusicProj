@@ -24,7 +24,7 @@ class AudioRow extends Component {
 			value = "▶";
 		}
 
-    const { audio = {} } = this.props;
+    const { audio = {}, currentAudio = {} } = this.props;
 
 		return (
 			<tr className={selectedClass}>

@@ -57,8 +57,6 @@ class Menu extends Component {
           onLogOut={this.HandleLogOut.bind(this)}
           onLoadRecommendations={this.handleLoadRecommendations.bind(this)}
           onLoadAudios={this.handleLoadAudios.bind(this)}
-          {...this.state}
-          {...this.props}
         />
 			</div>
 		)
