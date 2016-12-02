@@ -5,32 +5,23 @@ import { bindActionCreators } from 'redux';
 
 import * as authActions from '../actions/authActions';
 import * as userActions from '../actions/userActions';
-import { logIn, logOut, loadUserData } from '../api';
+import { logIn, loadUserData } from '../api';
 
 const css = require('../styles/authorize.styl');
 
 class Menu extends Component {
-  componentWillMount() {
+  HandleAuthorize() {
+    logIn(() => {
+      this.props.authActions.logIn();
+      this.load();
+    });
+  }
+
+  load() {
     loadUserData((data) => {
       if (data) {
         this.props.userActions.getUserData(data);
       }
-    });
-  }
-
-  HandleLogIn() {
-    this.props.authActions.logIn();
-  }
-
-  HandleLogOut() {
-    logOut(() => {
-      this.props.authActions.logOut();
-    });
-  }
-
-  HandleAuthorize() {
-    logIn(() => {
-      this.props.authActions.logIn();
     });
   }
 
@@ -46,20 +37,9 @@ class Menu extends Component {
           <source src="../media/Cheer-Up.ogg" type="video/ogg"></source>
         </video>
 
-        {user.uid &&
-          <div className="overlay">
-            <div className="btnContainer">
-              <button className="button" onClick={this.HandleLogIn.bind(this)}>Войти как <br/> {user.first_name} {user.last_name}</button>
-              <button className="button" onClick={this.HandleLogOut.bind(this)}>Сменить пользователя</button>
-            </div>
-          </div>
-        }
-
-        {!user.uid &&
-          <div className="overlay">
-            <button className="button" onClick={this.HandleAuthorize.bind(this)}>Войти через VK</button>
-          </div>
-        }
+        <div className="overlay">
+          <button className="button" onClick={this.HandleAuthorize.bind(this)}>Войти через VK</button>
+        </div>
       </div>
 		)
 	}
