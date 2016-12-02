@@ -1,12 +1,12 @@
 export const logIn = (callback) => {
   VK.Auth.login(function() {
-    callback(true);
+    callback();
   }, 1034);
 };
 
 export const logOut = (callback) => {
   VK.Auth.logout(function() {
-    callback(false);
+    callback();
   });
 };
 

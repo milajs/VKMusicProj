@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux';
 import UserData from '../components/menu/userData';
 import MenuButtonsList from '../components/menu/menu_buttons';
 
-import * as menuActions from '../actions/menuActions';
+import * as userActions from '../actions/userActions';
 import * as authActions from '../actions/authActions';
 import * as audioActions from '../actions/audioActions';
 import { logOut, loadUserData, loadAudios, loadRecommendations } from '../api';
@@ -17,7 +17,7 @@ class Menu extends Component {
   componentWillMount() {
     loadUserData((data) => {
       if (data) {
-        this.props.menuActions.getUserData(data);
+        this.props.userActions.getUserData(data);
       }
     });
   }
@@ -41,8 +41,8 @@ class Menu extends Component {
   }
 
   HandleLogOut() {
-    logOut((status) => {
-      this.props.authActions.logIn(status);
+    logOut(() => {
+      this.props.authActions.logOut();
     });
   }
 
@@ -54,9 +54,9 @@ class Menu extends Component {
 			<div className="menu-section">
 				<UserData data={user} />
 				<MenuButtonsList
-          onLogOut={this.HandleLogOut.bind(this)}
-          onLoadRecommendations={this.handleLoadRecommendations.bind(this)}
           onLoadAudios={this.handleLoadAudios.bind(this)}
+          onLoadRecommendations={this.handleLoadRecommendations.bind(this)}
+          onLogOut={this.HandleLogOut.bind(this)}
         />
 			</div>
 		)
@@ -70,7 +70,7 @@ function mapStateToProps(state) {
 }
 function mapDispatchToProps(dispatch) {
   return {
-    menuActions: bindActionCreators(menuActions, dispatch),
+    userActions: bindActionCreators(userActions, dispatch),
     authActions: bindActionCreators(authActions, dispatch),
     audioActions: bindActionCreators(audioActions, dispatch)
   }

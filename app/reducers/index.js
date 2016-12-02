@@ -1,4 +1,4 @@
-import { LOG_IN, GET_USER_DATA, LOAD_AUDIOS, CHANGE_AUDIO } from '../constants';
+import { LOG_IN, LOG_OUT, GET_USER_DATA, LOAD_AUDIOS, CHANGE_AUDIO } from '../constants';
 
 const initialState = {
   user: {},
@@ -11,7 +11,9 @@ const initialState = {
 export default function page(state = initialState, action) {
   switch (action.type) {
     case LOG_IN:
-      return { ...state, isAuth: action.payload }
+      return { ...state, isAuth: true }
+    case LOG_OUT:
+      return { ...state, isAuth: false, user: {} }
     case GET_USER_DATA:
       return { ...state, user: action.payload }
     case LOAD_AUDIOS:
