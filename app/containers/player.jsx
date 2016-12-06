@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import * as audioActions from '../actions/audioActions';
+import * as playerActions from '../actions/playerActions';
 import { searchAudios, loadAudios } from '../api';
 
 import Player from '../components/player/player_body.jsx';
@@ -28,6 +29,12 @@ class PlayerSection extends Component {
     });
   }
 
+  togglePlay() {
+    const { isPlaying } = this.props.state;
+
+    this.props.playerActions.togglePlay(!isPlaying);
+  }
+
 	render() {
     const { state } = this.props;
     const { audioList = [] } = state;
@@ -40,6 +47,7 @@ class PlayerSection extends Component {
 				<Player
           {...this.props}
           audioModel={audioModel}
+          togglePlay={this.togglePlay.bind(this)}
         />
 				<SearchField
           {...this.props}
@@ -59,6 +67,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     audioActions: bindActionCreators(audioActions, dispatch),
+    playerActions: bindActionCreators(playerActions, dispatch),
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(PlayerSection)

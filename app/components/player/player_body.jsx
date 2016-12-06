@@ -26,8 +26,8 @@ class Player extends Component {
 		this.setState({ volume: parseFloat(event.target.value) });
 	}
 
-	onClick() {
-		this.props.playPause();
+	togglePlay() {
+		this.props.togglePlay();
 	}
 
 	onEndedHandle() {
@@ -62,7 +62,7 @@ class Player extends Component {
 					type="button"
 					className="play-btn-on-player"
 					value={this.props.ButtonValue}
-					onClick={this.onClick.bind(this)}
+					onClick={this.togglePlay.bind(this)}
 				/>
 
 				<button className="pervios-audio" onClick={this.ChangeAudioPrev.bind(this)}>

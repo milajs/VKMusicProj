@@ -5,3 +5,5 @@ export const GET_USER_DATA = 'GET_USER_DATA';
 
 export const LOAD_AUDIOS = 'LOAD_AUDIOS';
 export const CHANGE_AUDIO = 'CHANGE_AUDIO';
+
+export const PLAY_AUDIO = 'PLAY_AUDIO';
