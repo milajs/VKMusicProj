@@ -37,7 +37,7 @@ class PlayerSection extends Component {
 
 	render() {
     const { state } = this.props;
-    const { audioList = [] } = state;
+    const { audioList = [], isPlaying } = state;
 
     const hasCurrentAudio = Object.keys(state.currentAudio).length > 0;
     const audioModel = hasCurrentAudio ? state.currentAudio : audioList[0];
@@ -47,6 +47,7 @@ class PlayerSection extends Component {
 				<Player
           {...this.props}
           audioModel={audioModel}
+          isPlaying={isPlaying}
           togglePlay={this.togglePlay.bind(this)}
         />
 				<SearchField

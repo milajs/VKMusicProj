@@ -43,14 +43,15 @@ class Player extends Component {
 	}
 
 	render() {
-    const { audioModel = {} } = this.props;
+    const { audioModel = {}, isPlaying } = this.props;
+    const ButtonValue = !isPlaying ? '▶' : '||';
 
 		return (
 			<div className="player-body">
 				<ReactPlayer
 					ref='player'
 					url={audioModel.url}
-					playing={this.props.playing}
+					playing={isPlaying}
 					volume={this.state.volume}
 					className="player"
 					seekTo={this.props.played}
@@ -61,7 +62,7 @@ class Player extends Component {
 				<input
 					type="button"
 					className="play-btn-on-player"
-					value={this.props.ButtonValue}
+					value={ButtonValue}
 					onClick={this.togglePlay.bind(this)}
 				/>
 

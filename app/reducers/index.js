@@ -20,7 +20,7 @@ export default function page(state = initialState, action) {
     case LOAD_AUDIOS:
       return { ...state, audioList: action.payload }
     case CHANGE_AUDIO:
-      return { ...state, currentAudio: action.payload }
+      return { ...state, currentAudio: action.payload, isPlaying: true }
     case PLAY_AUDIO:
       return { ...state, isPlaying: action.payload }
     default:
