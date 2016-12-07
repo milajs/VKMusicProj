@@ -7,24 +7,23 @@ class AudioRow extends Component {
 	}
 
 	render() {
+    const { audio = {}, currentAudio = {}, isPlaying } = this.props;
+    const isCurrentAudio = audio.id == currentAudio.id;
+
+    const value = (isCurrentAudio && isPlaying) ? '||' : "▶";
+
 		var selectedClass;
-		var value;
 
 		if (this.props.CurrentPlayedAudioModel != null) {
 
 			if (this.props.audio.id === this.props.CurrentPlayedAudioModel.id) {
 				selectedClass = "audio-row selected";
-				value = this.props.ButtonValue;
 			} else {
 				selectedClass = "audio-row"
-				value = "▶";
 			}
 		} else {
 			selectedClass = "audio-row"
-			value = "▶";
 		}
-
-    const { audio = {}, currentAudio = {} } = this.props;
 
 		return (
 			<tr className={selectedClass}>
