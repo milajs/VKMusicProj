@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import * as audioActions from '../actions/audioActions';
+import * as playerActions from '../actions/playerActions';
 import { loadAudios } from '../api';
 
 import AudioRow from '../components/audios/audioRow';
@@ -22,7 +23,14 @@ class AudioList extends Component {
   }
 
 	toggleAudio(audioModel) {
-		this.props.audioActions.chacgeAudio(audioModel);
+    const { currentAudio = {}, isPlaying } = this.props.state;
+
+    if (currentAudio.id === audioModel.id) {
+      this.props.playerActions.togglePlay(!isPlaying);
+  
+    } else {
+      this.props.audioActions.chacgeAudio(audioModel)
+    }
 	}
 
 	render() {
@@ -58,7 +66,8 @@ function mapStateToProps(state) {
 }
 function mapDispatchToProps(dispatch) {
   return {
-    audioActions: bindActionCreators(audioActions, dispatch)
+    audioActions: bindActionCreators(audioActions, dispatch),
+    playerActions: bindActionCreators(playerActions, dispatch)
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(AudioList)

@@ -22,12 +22,10 @@ class App extends Component {
     super(props);
     this.state = {
       ButtonValue: '▶',
-      Audiolist: [],
       Audiourl: '',
       Playing: false,
       CurrentQuery: '',
       User_id: 0,
-      IsAuth: false,
       OffsetCounter: 0,
       TotalCountAudios: 0,
       CurrentArtist: '',
