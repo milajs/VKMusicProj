@@ -34,12 +34,8 @@ class Player extends Component {
 		this.props.nextAudioByEnd();
 	}
 
-	ChangeAudioPrev() {
-		this.props.playPrevAudio();
-	}
-
-	ChangeAudioNext() {
-		this.props.playNextAudio();
+	changeAudio(direction) {
+		this.props.changeAudio(direction);
 	}
 
 	render() {
@@ -66,11 +62,11 @@ class Player extends Component {
 					onClick={this.togglePlay.bind(this)}
 				/>
 
-				<button className="pervios-audio" onClick={this.ChangeAudioPrev.bind(this)}>
+				<button className="pervios-audio" onClick={this.changeAudio.bind(this, 'prev')}>
           <img className="switch-buttons-pic" src={require('../../media/prev-arrow.png')} />
         </button>
 
-				<button className="next-audio" onClick={this.ChangeAudioNext.bind(this)}>
+				<button className="next-audio" onClick={this.changeAudio.bind(this, 'next')}>
           <img className="switch-buttons-pic" src={require('../../media/next-arrow.png')} />
         </button>
 
@@ -89,6 +85,7 @@ class Player extends Component {
 					value={this.state.played}
 					onChange={this.onSeekChange.bind(this)}
 				/>
+
 				<input
 					type='range'
 					className="volume-bar"
@@ -98,6 +95,7 @@ class Player extends Component {
 					value={this.state.volume}
 					onChange={this.setVolume.bind(this)}
 				/>
+
 				<img className="volume-pic" src={require('../../media/audio-speaker.png')} />
 			</div>
 		)

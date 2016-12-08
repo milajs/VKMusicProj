@@ -35,6 +35,10 @@ class PlayerSection extends Component {
     this.props.playerActions.togglePlay(!isPlaying);
   }
 
+  changeAudio(direction) {
+    console.log(direction);
+  }
+
 	render() {
     const { state } = this.props;
     const { audioList = [], isPlaying } = state;
@@ -49,6 +53,7 @@ class PlayerSection extends Component {
           audioModel={audioModel}
           isPlaying={isPlaying}
           togglePlay={this.togglePlay.bind(this)}
+          changeAudio={this.changeAudio.bind(this)}
         />
 				<SearchField
           onChange={this.handleSearch.bind(this)}
