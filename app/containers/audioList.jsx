@@ -27,7 +27,7 @@ class AudioList extends Component {
 
     if (currentAudio.id === audioModel.id) {
       this.props.playerActions.togglePlay(!isPlaying);
-  
+
     } else {
       this.props.audioActions.chacgeAudio(audioModel)
     }
@@ -42,15 +42,13 @@ class AudioList extends Component {
           <tbody>
   					{audioList.map(function(audioModel, i) {
   						return <AudioRow
-  									{...this.props}
-  									{...this.state}
-  									audio={audioModel}
-                    currentAudio={currentAudio}
-  									toggleAudio={this.toggleAudio.bind(this)}
-                    isPlaying={isPlaying}
-  									audioIndex={i}
-  									key={i}
-  								/>
+      									audio={audioModel}
+                        currentAudio={currentAudio}
+      									toggleAudio={this.toggleAudio.bind(this)}
+                        isPlaying={isPlaying}
+      									audioIndex={i}
+      									key={i}
+      								/>
   					}.bind(this))}
           </tbody>
 				</table>

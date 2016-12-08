@@ -23,7 +23,6 @@ class App extends Component {
     this.state = {
       ButtonValue: '▶',
       Audiourl: '',
-      Playing: false,
       CurrentQuery: '',
       User_id: 0,
       OffsetCounter: 0,
@@ -31,10 +30,6 @@ class App extends Component {
       CurrentArtist: '',
       CurrentTitle: ''
     };
-  }
-
-  playPause() {
-    this.setState( {playing: !this.state.playing, ButtonValue: this.state.playing ? '▶' : '||'} );
   }
 
   nextAudioByEnd() {
@@ -112,15 +107,11 @@ class App extends Component {
             <Player
               {...this.state}
               {...this.props}
-              playPause={this.playPause.bind(this)}
               nextAudioByEnd={this.nextAudioByEnd.bind(this)}
               playPrevAudio={this.playPrevAudio.bind(this)}
               playNextAudio={this.playNextAudio.bind(this)}
             />
-            <AudioList
-              {...this.state}
-              {...this.props}
-            />
+            <AudioList />
           </div>
         }
       </div>

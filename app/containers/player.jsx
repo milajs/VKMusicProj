@@ -51,7 +51,6 @@ class PlayerSection extends Component {
           togglePlay={this.togglePlay.bind(this)}
         />
 				<SearchField
-          {...this.props}
           onChange={this.handleSearch.bind(this)}
           onLoadAudios={this.handleLoadAudios.bind(this)}
         />
