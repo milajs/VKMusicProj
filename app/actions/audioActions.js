@@ -7,7 +7,7 @@ export function getAudioList(array) {
   }
 }
 
-export function chacgeAudio(audio) {
+export function changeAudio(audio) {
   return {
     type: CHANGE_AUDIO,
     payload: audio,

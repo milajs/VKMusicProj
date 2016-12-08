@@ -29,7 +29,7 @@ class AudioList extends Component {
       this.props.playerActions.togglePlay(!isPlaying);
 
     } else {
-      this.props.audioActions.chacgeAudio(audioModel)
+      this.props.audioActions.changeAudio(audioModel)
     }
 	}
 

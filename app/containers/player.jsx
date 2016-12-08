@@ -36,7 +36,16 @@ class PlayerSection extends Component {
   }
 
   changeAudio(direction) {
-    console.log(direction);
+    const { audioList = [], currentAudio = {} } = this.props.state;
+    const currentIndex = audioList.indexOf(currentAudio);
+
+    if (direction === `prev` && currentIndex !== 0) {
+      this.props.audioActions.changeAudio(audioList[currentIndex - 1]);
+    }
+
+    if (direction === `next` && currentIndex !== audioList.length - 1) {
+      this.props.audioActions.changeAudio(audioList[currentIndex + 1]);
+    }
   }
 
 	render() {
