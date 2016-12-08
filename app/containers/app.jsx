@@ -21,47 +21,14 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      ButtonValue: '▶',
-      Audiourl: '',
-      CurrentQuery: '',
       User_id: 0,
       OffsetCounter: 0,
       TotalCountAudios: 0,
-      CurrentArtist: '',
-      CurrentTitle: ''
     };
   }
 
   nextAudioByEnd() {
     this.playNextAudio();
-  }
-
-  playNextAudio() {
-    var audiolist = this.state.Audiolist;
-    var indexLastPlayedAudio = audiolist.indexOf(this.state.CurrentPlayedAudioModel);
-
-    if (indexLastPlayedAudio === audiolist.length - 1 ) {
-      var audiomodel = audiolist[0];
-
-    } else {
-      var audiomodel = audiolist[indexLastPlayedAudio+1];
-    }
-
-    this.handleUpdatePlaying(audiomodel);
-  }
-
-  playPrevAudio() {
-    var audiolist = this.state.Audiolist;
-    var indexLastPlayedAudio = audiolist.indexOf(this.state.CurrentPlayedAudioModel);
-
-    if (indexLastPlayedAudio === 0) {
-      var audiomodel = audiolist[audiolist.length - 1];
-
-    } else {
-      var audiomodel = audiolist[indexLastPlayedAudio-1];
-    }
-
-    this.handleUpdatePlaying(audiomodel);
   }
 
   componentWillMount() {
@@ -108,8 +75,6 @@ class App extends Component {
               {...this.state}
               {...this.props}
               nextAudioByEnd={this.nextAudioByEnd.bind(this)}
-              playPrevAudio={this.playPrevAudio.bind(this)}
-              playNextAudio={this.playNextAudio.bind(this)}
             />
             <AudioList />
           </div>
