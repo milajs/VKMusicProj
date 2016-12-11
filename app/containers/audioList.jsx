@@ -9,6 +9,8 @@ import { loadAudios } from '../api';
 
 import AudioRow from '../components/audios/audioRow';
 
+const css = require('../styles/audioList.styl');
+
 class AudioList extends Component {
   componentWillMount() {
     this.load();

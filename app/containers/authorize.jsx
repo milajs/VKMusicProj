@@ -50,10 +50,12 @@ function mapStateToProps(state) {
     state
   }
 }
+
 function mapDispatchToProps(dispatch) {
   return {
     authActions: bindActionCreators(authActions, dispatch),
     userActions: bindActionCreators(userActions, dispatch),
   }
 }
+
 export default connect(mapStateToProps, mapDispatchToProps)(Menu)

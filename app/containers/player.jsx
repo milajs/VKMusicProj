@@ -7,8 +7,8 @@ import * as audioActions from '../actions/audioActions';
 import * as playerActions from '../actions/playerActions';
 import { searchAudios, loadAudios } from '../api';
 
-import Player from '../components/player/player_body.jsx';
-import SearchField from '../components/player/search_field.jsx';
+import Player from '../components/player/player.jsx';
+import SearchField from '../components/player/search.jsx';
 
 var css = require('../styles/player.styl');
 
@@ -65,6 +65,7 @@ class PlayerSection extends Component {
 		return (
 			<div className="player-block">
 				<Player
+          {...this.props}
           audioModel={currentAudio}
           isPlaying={isPlaying}
           togglePlay={this.togglePlay.bind(this)}

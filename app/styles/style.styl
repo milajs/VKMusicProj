@@ -13,102 +13,11 @@
  */
 global-reset()
 
+@import './variables'
+
 body
    font-family 'Open Sans'
-   background #fff
-   color #505050
+   background $brand-white
+   color $brand-black
    margin 0
-
-//////////////  search audio  /////////////////////////
-
-.search-audio-input
-  margin-top 17px
-  width 646px
-  height 20px
-  border 1px solid rgba(52, 73, 94, 0.5)
-  padding-left 33px
-  background-image url('../media/loopa.png')
-  background-repeat no-repeat
-  background-size 15px
-  background-position 4px 4px
-  &:focus
-     outline 0
-     box-shadow none
-
-/////////////////////  audio list  ///////////////////////////////
-
-.audio-section
-  margin-top 160px
-  margin-left 273px
-
-td
-  width 260px
-  height 35px
-  font-size 14px
-
-.artist
-  color #0D2447
-  font-weight 600
-  padding-left 20px
-
-.buttons-onrow
-  padding-left 20px
-  white-space nowrap
-
-.stop-btn-onrow
-  display inline-block
-  color #fff
-  background rgba(13,36,71,0.9)
-  font-weight 600
-  font-size 10px
-  letter-spacing 3px
-  text-align right
-  width 25px
-  height 20px
-  border-radius 3px
-  border 0px solid
-  vertical-align top
-  cursor pointer
-  &:focus
-     outline 0
-     box-shadow none
-
-.download-btn
-  display inline-block
-  background rgba(13,36,71,0.9)
-  margin-left 10px
-  width 25px
-  height 20px
-  border-radius 3px
-  border 0px solid
-  cursor pointer
-  &:focus
-     outline 0
-     box-shadow none
-
-.download-img
-  width 13px
-
-///////  old styles   /////////////////////////////
-
-table
-  border-collapse collapse
-  cellspacing 0
-
-tr
-  border-collapse collapse
-  &:hover
-    background #E4F1FE
-    border-collapse collapse
-    border:  0px solid black
-
-.buttons-onrow
-  width 80px !important
-
-.selected
-  color #fff
-  background rgba(27,75,148,0.6)
-  .artist
-    color #fff
-  &:hover
-    background rgba(27,75,148,0.6) !important
+   box-sizing border-box

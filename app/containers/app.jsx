@@ -13,17 +13,12 @@ import { loadUserData } from '../api';
 
 const css = require('../styles/style.styl');
 
-var audios_array = [];
-var search_result = [];
-var user_id = [];
-
 class App extends Component {
   constructor(props){
     super(props);
+
     this.state = {
-      User_id: 0,
       OffsetCounter: 0,
-      TotalCountAudios: 0,
     };
   }
 
@@ -89,9 +84,11 @@ function mapStateToProps(state) {
     state
   }
 }
+
 function mapDispatchToProps(dispatch) {
   return {
     userActions: bindActionCreators(userActions, dispatch),
   }
 }
+
 export default connect(mapStateToProps, mapDispatchToProps)(App)

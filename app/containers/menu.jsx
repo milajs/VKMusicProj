@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import UserData from '../components/menu/userData';
-import MenuButtonsList from '../components/menu/menu_buttons';
+import MenuButtonsList from '../components/menu/buttons';
 
 import * as userActions from '../actions/userActions';
 import * as authActions from '../actions/authActions';
@@ -53,6 +53,7 @@ class Menu extends Component {
 		return (
 			<div className="menu-section">
 				<UserData data={user} />
+
 				<MenuButtonsList
           onLoadAudios={this.handleLoadAudios.bind(this)}
           onLoadRecommendations={this.handleLoadRecommendations.bind(this)}

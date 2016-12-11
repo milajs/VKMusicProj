@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 
+const css = require('../../styles/audioList.styl');
+
 class AudioRow extends Component {
 
 	handleClick() {
@@ -12,18 +14,7 @@ class AudioRow extends Component {
 
     const value = (isCurrentAudio && isPlaying) ? '||' : "▶";
 
-		var selectedClass;
-
-		if (this.props.CurrentPlayedAudioModel != null) {
-
-			if (this.props.audio.id === this.props.CurrentPlayedAudioModel.id) {
-				selectedClass = "audio-row selected";
-			} else {
-				selectedClass = "audio-row"
-			}
-		} else {
-			selectedClass = "audio-row"
-		}
+		const selectedClass = isCurrentAudio ? "audio-row selected" : "audio-row";
 
 		return (
 			<tr className={selectedClass}>

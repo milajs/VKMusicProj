@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 
+var css = require('../../styles/player.styl');
+
 class SearchField extends Component {
 	handleInput(e) {
     if (e.target.value === ``) {
