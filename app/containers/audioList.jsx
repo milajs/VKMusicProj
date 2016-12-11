@@ -17,7 +17,13 @@ class AudioList extends Component {
   load() {
     loadAudios(0, (items, count) => {
       if (items) {
+        const payload = {
+          audio: items[0],
+          isPlaying: false,
+        };
+
         this.props.audioActions.getAudioList(items);
+        this.props.audioActions.changeAudio(payload);
       }
     });
   }
@@ -29,7 +35,12 @@ class AudioList extends Component {
       this.props.playerActions.togglePlay(!isPlaying);
 
     } else {
-      this.props.audioActions.changeAudio(audioModel)
+      const payload = {
+        audio: audioModel,
+        isPlaying: true,
+      };
+
+      this.props.audioActions.changeAudio(payload);
     }
 	}
 

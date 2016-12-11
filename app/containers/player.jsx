@@ -40,30 +40,37 @@ class PlayerSection extends Component {
     const currentIndex = audioList.indexOf(currentAudio);
 
     if (direction === `prev` && currentIndex !== 0) {
-      this.props.audioActions.changeAudio(audioList[currentIndex - 1]);
+      const payload = {
+        audio: audioList[currentIndex - 1],
+        isPlaying: true,
+      };
+
+      this.props.audioActions.changeAudio(payload);
     }
 
     if (direction === `next` && currentIndex !== audioList.length - 1) {
-      this.props.audioActions.changeAudio(audioList[currentIndex + 1]);
+      const payload = {
+        audio: audioList[currentIndex + 1],
+        isPlaying: true,
+      };
+
+      this.props.audioActions.changeAudio(payload);
     }
   }
 
 	render() {
     const { state } = this.props;
-    const { audioList = [], isPlaying } = state;
-
-    const hasCurrentAudio = Object.keys(state.currentAudio).length > 0;
-    const audioModel = hasCurrentAudio ? state.currentAudio : audioList[0];
+    const { audioList = [], isPlaying , currentAudio = {}} = state;
 
 		return (
 			<div className="player-block">
 				<Player
-          {...this.props}
-          audioModel={audioModel}
+          audioModel={currentAudio}
           isPlaying={isPlaying}
           togglePlay={this.togglePlay.bind(this)}
           changeAudio={this.changeAudio.bind(this)}
         />
+
 				<SearchField
           onChange={this.handleSearch.bind(this)}
           onLoadAudios={this.handleLoadAudios.bind(this)}
