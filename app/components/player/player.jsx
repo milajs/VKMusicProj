@@ -9,33 +9,29 @@ class Player extends Component {
 
 		this.state = {
 			played: 0,
-			volume: 0.8
+			volume: 0.8,
 		};
 	}
 
-	onSeekChange(event) {
-		this.setState({ played: parseFloat(event.target.value) });
-		this.refs.player.seekTo(parseFloat(event.target.value));
-	}
-
-	onProgressHandle(event) {
-		this.setState({ played: parseFloat(event.played) });
-	}
-
-	setVolume(event) {
-		this.setState({ volume: parseFloat(event.target.value) });
-	}
-
-	togglePlay() {
+  togglePlay() {
 		this.props.togglePlay();
-	}
-
-	onEndedHandle() {
-		this.props.nextAudioByEnd();
 	}
 
 	changeAudio(direction) {
 		this.props.changeAudio(direction);
+	}
+
+	onSeekChange(e) {
+		this.setState({ played: parseFloat(e.target.value) });
+		this.refs.player.seekTo(parseFloat(e.target.value));
+	}
+
+	onProgress(e) {
+		this.setState({ played: parseFloat(e.played) });
+	}
+
+	setVolume(e) {
+		this.setState({ volume: parseFloat(e.target.value) });
 	}
 
 	render() {
@@ -51,8 +47,8 @@ class Player extends Component {
 					volume={this.state.volume}
 					className="player"
 					seekTo={this.props.played}
-					onProgress={this.onProgressHandle.bind(this)}
-					onEnded={this.onEndedHandle.bind(this)}
+					onProgress={this.onProgress.bind(this)}
+					onEnded={this.changeAudio.bind(this, 'next')}
 				/>
 
 				<input

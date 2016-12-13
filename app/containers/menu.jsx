@@ -9,19 +9,11 @@ import MenuButtonsList from '../components/menu/buttons';
 import * as userActions from '../actions/userActions';
 import * as authActions from '../actions/authActions';
 import * as audioActions from '../actions/audioActions';
-import { logOut, loadUserData, loadAudios, loadRecommendations } from '../api';
+import { logOut, loadAudios, loadRecommendations } from '../api';
 
 var css = require('../styles/menu.styl');
 
 class Menu extends Component {
-  componentWillMount() {
-    loadUserData((data) => {
-      if (data) {
-        this.props.userActions.getUserData(data);
-      }
-    });
-  }
-
   handleLoadAudios() {
     loadAudios(0, (items, count) => {
       if (items) {

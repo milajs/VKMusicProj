@@ -31,7 +31,6 @@ class PlayerSection extends Component {
 
   togglePlay() {
     const { isPlaying } = this.props.state;
-
     this.props.playerActions.togglePlay(!isPlaying);
   }
 
@@ -65,7 +64,6 @@ class PlayerSection extends Component {
 		return (
 			<div className="player-block">
 				<Player
-          {...this.props}
           audioModel={currentAudio}
           isPlaying={isPlaying}
           togglePlay={this.togglePlay.bind(this)}
@@ -86,10 +84,12 @@ function mapStateToProps(state) {
     state
   }
 }
+
 function mapDispatchToProps(dispatch) {
   return {
     audioActions: bindActionCreators(audioActions, dispatch),
     playerActions: bindActionCreators(playerActions, dispatch),
   }
 }
+
 export default connect(mapStateToProps, mapDispatchToProps)(PlayerSection)

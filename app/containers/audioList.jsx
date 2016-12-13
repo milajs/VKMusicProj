@@ -75,10 +75,12 @@ function mapStateToProps(state) {
     state
   }
 }
+
 function mapDispatchToProps(dispatch) {
   return {
     audioActions: bindActionCreators(audioActions, dispatch),
     playerActions: bindActionCreators(playerActions, dispatch)
   }
 }
+
 export default connect(mapStateToProps, mapDispatchToProps)(AudioList)
