@@ -1,5 +1,5 @@
-# VKMusicProj
-VK music web app created with React.
+# VKMusicProj 2.0
+VK music web app created with React and Redux.
 
 ## Setup and Run App Locally
 + clone repo
