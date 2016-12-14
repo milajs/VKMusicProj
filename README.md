@@ -1,6 +1,11 @@
 # VKMusicProj 2.0
 VK music web app created with React and Redux.
 
+## Features
++ search audios
++ load recommendations
++ download audios
+
 ## Setup and Run App Locally
 + clone repo
 + `npm install`
