@@ -2,8 +2,9 @@
 VK music web app created with React and Redux.
 
 ## Features
++ show your audiolist
 + search audios
-+ load recommendations
++ show recommendations
 + download audios
 
 ## Setup and Run App Locally
