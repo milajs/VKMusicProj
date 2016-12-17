@@ -3,7 +3,6 @@ import React, { Component, PropTypes } from 'react';
 const css = require('../../styles/audioList.styl');
 
 class AudioRow extends Component {
-
 	handleClick() {
 		this.props.toggleAudio(this.props.audio);
 	}
