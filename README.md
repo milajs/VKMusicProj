@@ -1,4 +1,4 @@
-# VKMusicProj 2.0
+# VK Music Player 2.0
 VK music web app created with React and Redux.
 
 ## Features
