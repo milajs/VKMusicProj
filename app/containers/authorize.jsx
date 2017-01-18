@@ -25,11 +25,11 @@ class Menu extends Component {
     });
   }
 
-	render() {
+  render() {
     const { state } = this.props;
     const { user = {} } = state;
 
-		return (
+    return (
       <div className="container">
         <video autoPlay loop poster="../media/Cheer-Up.jpg">
           <source src="../media/Cheer-Up.webm" type="video/webm"></source>
@@ -41,8 +41,8 @@ class Menu extends Component {
           <button className="button" onClick={this.HandleAuthorize.bind(this)}>Войти через VK</button>
         </div>
       </div>
-		)
-	}
+    )
+  }
 }
 
 function mapStateToProps(state) {
