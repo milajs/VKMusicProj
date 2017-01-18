@@ -30,7 +30,7 @@ class AudioList extends Component {
     });
   }
 
-	toggleAudio(audioModel) {
+  toggleAudio(audioModel) {
     const { currentAudio = {}, isPlaying } = this.props.state;
 
     if (currentAudio.id === audioModel.id) {
@@ -44,30 +44,30 @@ class AudioList extends Component {
 
       this.props.audioActions.changeAudio(payload);
     }
-	}
+  }
 
-	render() {
+  render() {
     const { audioList = [], currentAudio = {}, isPlaying } = this.props.state;
 
-		return (
-			<div className="audio-section">
-				<table>
+    return (
+      <div className="audio-section">
+	<table>
           <tbody>
-  					{audioList.map(function(audioModel, i) {
-  						return <AudioRow
-      									audio={audioModel}
+		  {audioList.map(function(audioModel, i) {
+  		    return <AudioRow
+      			audio={audioModel}
                         currentAudio={currentAudio}
-      									toggleAudio={this.toggleAudio.bind(this)}
+      			toggleAudio={this.toggleAudio.bind(this)}
                         isPlaying={isPlaying}
-      									audioIndex={i}
-      									key={i}
-      								/>
-  					}.bind(this))}
+      			audioIndex={i}
+      			key={i}
+      		      />
+  		   }.bind(this))}
           </tbody>
-				</table>
-			</div>
-		)
-	}
+	</table>
+      </div>
+    )
+  }
 }
 
 function mapStateToProps(state) {
