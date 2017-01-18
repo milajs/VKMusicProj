@@ -42,18 +42,18 @@ class Menu extends Component {
     const { state } = this.props;
     const { user = {} } = state;
 
-		return (
-			<div className="menu-section">
-				<UserData data={user} />
+    return (
+      <div className="menu-section">
+	<UserData data={user} />
 
-				<MenuButtonsList
+	<MenuButtonsList
           onLoadAudios={this.handleLoadAudios.bind(this)}
           onLoadRecommendations={this.handleLoadRecommendations.bind(this)}
           onLogOut={this.HandleLogOut.bind(this)}
         />
-			</div>
-		)
-	}
+      </div>
+    )
+  }
 }
 
 function mapStateToProps(state) {
