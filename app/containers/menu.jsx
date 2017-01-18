@@ -38,7 +38,7 @@ class Menu extends Component {
     });
   }
 
-	render() {
+  render() {
     const { state } = this.props;
     const { user = {} } = state;
 
