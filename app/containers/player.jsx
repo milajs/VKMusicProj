@@ -57,26 +57,26 @@ class PlayerSection extends Component {
     }
   }
 
-	render() {
+  render() {
     const { state } = this.props;
     const { audioList = [], isPlaying , currentAudio = {}} = state;
 
-		return (
-			<div className="player-block">
-				<Player
+    return (
+      <div className="player-block">
+	<Player
           audioModel={currentAudio}
           isPlaying={isPlaying}
           togglePlay={this.togglePlay.bind(this)}
           changeAudio={this.changeAudio.bind(this)}
         />
 
-				<SearchField
+	<SearchField
           onChange={this.handleSearch.bind(this)}
           onLoadAudios={this.handleLoadAudios.bind(this)}
         />
-			</div>
-		)
-	}
+      </div>
+    )
+  }
 }
 
 function mapStateToProps(state) {
